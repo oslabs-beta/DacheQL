@@ -1,10 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import Demo from './Demo.js'
+import Homepage from './Homepage.js';
+import About from './About.js';
+import LandingPage from './LandingPage.js';
+
 
 const App = () => {
     return (
-        <div>Hello World!</div>
+        <BrowserRouter>
+            <Routes>
+                <Route path='/' element ={<LandingPage />}></Route>
+                <Route path='/homepage' element = {<Homepage />}></Route>
+                <Route path='/demo' element = {<Demo />}></Route>
+                <Route path='/about' element = {<About />}></Route>
+            </Routes>
+        </BrowserRouter>   
     )
-}
+};
 
 
 export default App; 
