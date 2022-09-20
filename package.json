@@ -4,8 +4,8 @@
   "description": "GraphQL caching tool",
   "main": "webpack.config.js",
   "scripts": {
-    "start": "node ./server/server.js",
-    "dev": "webpack-dev-server --mode development --open --hot & nodemon ./server/server.js",
+    "start": "node ./Demo/server/server.js",
+    "dev": "webpack-dev-server --mode development --open --hot & nodemon ./Demo/server/server.js",
     "build": "webpack --mode production"
   },
   "repository": {
