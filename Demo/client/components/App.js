@@ -7,7 +7,13 @@ import LandingPage from './LandingPage.js';
 import Team from './Team.js';
 
 
+
+
+
+
 const App = () => {
+  // const logo = document.querySelectorAll('#logo path');
+  // console.log(logo);
   return (
     <BrowserRouter>
       <Routes>
@@ -18,6 +24,7 @@ const App = () => {
       </Routes>
     </BrowserRouter>   
   );
+  
 };
 
 
