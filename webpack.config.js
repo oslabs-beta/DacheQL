@@ -42,15 +42,27 @@ module.exports = {
         }
       },
       {
-        test: /\.s[ac]ss$/i,
-        exclude: /node_modules/,
+        test: /\.s?[ac]ss$/,
         use: [
-          //creates style nodes from js strings
-          'style-loader',
-          //translates css into common js
-          'css-loader',
-          //compiles sass to css
-          'sass-loader'
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader'
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: () => [
+                  require('autoprefixer')
+                ]
+              }
+            }
+          },
+          {
+            loader: 'sass-loader'
+          }
         ]
       },
     ],
