@@ -4,6 +4,7 @@ import Demo from './Demo.js';
 import Homepage from './Homepage.js';
 import About from './About.js';
 import LandingPage from './LandingPage.js';
+import Team from './Team.js';
 
 
 const App = () => {
@@ -13,7 +14,7 @@ const App = () => {
         <Route path='/' element ={<LandingPage />}></Route>
         <Route path='/homepage' element = {<Homepage />}></Route>
         <Route path='/demo' element = {<Demo />}></Route>
-        <Route path='/about' element = {<About />}></Route>
+        <Route path='/about' element = {<Team />}></Route>
       </Routes>
     </BrowserRouter>   
   );

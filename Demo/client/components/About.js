@@ -1,8 +1,22 @@
 import React from 'react';
 
-const About = () => {
+const About = (props) => {
+  const { name, pfp, linkedin, github, bio } = props;
+
   return (
-    <div>This is the about page</div>
+    <div className='member'>
+      <p className='member-name'>{name}</p>
+      {/* <img className='member-image'>{pfp}</img>
+      <div className='member-socials'>
+        <a href=''>
+          <img></img>
+        </a>
+        <a href=''>
+          <img></img>
+        </a>
+      </div> */}
+      <p className='member-bio'>{bio}</p>
+    </div>
   );
 };
 
