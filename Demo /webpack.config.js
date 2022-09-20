@@ -12,7 +12,7 @@ module.exports = {
       title: 'Development',
       template: './client/index.html'
     }
-    )],
+  )],
   devServer: {
     static: {
       publicPath: '/dist',

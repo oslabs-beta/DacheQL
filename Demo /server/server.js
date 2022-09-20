@@ -14,9 +14,9 @@ app.use('/dist', express.static(path.join(__dirname, '../dist')));
 
 
 app.get('/', (req, res) => {
-    console.log('getting index.html')
-    return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
-  });
+  console.log('getting index.html');
+  return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
+});
 
 
 app.use((req, res) => res.status(404).send('Cannot get route'));

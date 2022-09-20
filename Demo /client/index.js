@@ -4,6 +4,6 @@ import App from './components/App.js';
 
 
 render (
-    <App />,
-    document.getElementById('root'),
+  <App />,
+  document.getElementById('root'),
 );
