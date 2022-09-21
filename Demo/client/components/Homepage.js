@@ -4,7 +4,7 @@ const Homepage = () => {
   return (
     <div>
       <Navigation></Navigation>
-			This is Homepage
+			
     </div>
   );
 };
