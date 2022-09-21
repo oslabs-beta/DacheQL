@@ -1,8 +1,8 @@
 import React from 'react';
-
+import Navigation from './Navigation';
 const About = () => {
   return (
-    <div>This is the about page</div>
+    <div><Navigation></Navigation>This is the about page</div>
   );
 };
 

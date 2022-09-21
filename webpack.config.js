@@ -36,9 +36,12 @@ module.exports = {
         }
       },
       {
-        test: /\.jpeg/,
+        test: /\.(jpe?g|png|gif|svg)$/i,
         use: {
-          loader: 'file-loader'
+          loader: ['@svgr/webpack', 'url-loader', 'file-loader'],
+          options: {
+            name: '/public/icons/[name].[ext]'
+          }
         }
       },
       {
