@@ -18,7 +18,6 @@ app.get('/', (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
 });
 
-
 app.use((req, res) => res.status(404).send('Cannot get route'));
 
 app.use((err, req, res, next) => {
