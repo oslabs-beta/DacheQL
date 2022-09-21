@@ -1,8 +1,24 @@
 import React from 'react';
 import Navigation from './Navigation';
-const About = () => {
+
+const About = (props) => {
+  const { name, pfp, linkedin, github, bio } = props;
+
   return (
-    <div><Navigation></Navigation>This is the about page</div>
+    <div className='member'>
+      <Navigation></Navigation>
+      <p className='member-name'>{name}</p>
+      {/* <img className='member-image'>{pfp}</img>
+      <div className='member-socials'>
+        <a href=''>
+          <img></img>
+        </a>
+        <a href=''>
+          <img></img>
+        </a>
+      </div> */}
+      <p className='member-bio'>{bio}</p>
+    </div>
   );
 };
 
