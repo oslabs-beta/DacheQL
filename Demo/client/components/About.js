@@ -6,7 +6,10 @@ const About = (props) => {
 
   return (
     <div className='member'>
-      <Navigation></Navigation>
+      <div>
+        <Navigation/>
+      </div>
+      
       <p className='member-name'>{name}</p>
       {/* <img className='member-image'>{pfp}</img>
       <div className='member-socials'>
