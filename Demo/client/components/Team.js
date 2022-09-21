@@ -7,9 +7,9 @@ const Team = () => {
       {
         name: 'Sandy Liu',
         pfp: '',
-        linkedin: '',
+        linkedin: 'https://www.linkedin.com/in/sandy-liu-1ba488160/',
         github: 'https://github.com/sandyliu31',
-        bio: 'https://www.linkedin.com/in/sandy-liu-1ba488160/'
+        bio: ''
       },
       {
         name: 'Ethan Chuang',
