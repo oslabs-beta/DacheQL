@@ -4,6 +4,7 @@ import Demo from './Demo.js';
 import Homepage from './Homepage.js';
 import About from './About.js';
 import LandingPage from './LandingPage.js';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Team from './Team.js';
 
 
@@ -22,10 +23,15 @@ const App = () => {
         <Route path='/demo' element = {<Demo />}></Route>
         <Route path='/about' element = {<Team />}></Route>
       </Routes>
-    </BrowserRouter>   
+    </BrowserRouter>
+    
+    
+  // <BrowserRouter>
+  //   
+  // </BrowserRouter>
+		
   );
   
 };
 
-
-export default App; 
+export default App;
