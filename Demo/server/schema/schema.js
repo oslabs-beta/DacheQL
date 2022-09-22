@@ -31,7 +31,7 @@ const City = new GraphQLObjectType({
     id: { type: GraphQLNonNull(GraphQLInt)},
     name:  { type: GraphQLNonNull(GraphQLString)},
     population:  { type: GraphQLNonNull(GraphQLInt)},
-    countryID: { type: GraphQLNonNull(GraphQLInt)}
+    country_id: { type: GraphQLNonNull(GraphQLInt)}
   })
 });
 

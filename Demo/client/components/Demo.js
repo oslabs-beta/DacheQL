@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { DropdownButton, Dropdown, Button, Card, Container } from 'react-bootstrap';
 import Query from './Query';
 import Metrics from './Metrics';
-import dacheql from 'dacheql';
+import DacheQL from '../../../library/dacheql';
 
 
 const Demo = () => {
@@ -29,14 +29,16 @@ const Demo = () => {
     console.log(event.target.innerHTML);
     setQuery(event.target.innerHTML);
     setOutput('Query For Valorant');
-    setQueryString(`{
+    setQueryString(`
+    {
       valorant  {
-        id 
-        name
-        role
+        id,
+        name,
+        role,
         ultimate
       }
-    }`);
+    }
+    `);
   };
 
   const handleChangePokemon = (event) => {
@@ -45,7 +47,7 @@ const Demo = () => {
     setOutput('Query For Pokemon');
     setQueryString(`{
       pokemon  {
-        id 
+        id
         name
         type
         ability
@@ -72,20 +74,24 @@ const Demo = () => {
   let endTime;
   const runQuery = () =>{
     console.log('running query!');
+    console.log('queryString: ', queryString);
+    console.log('json ver: ', JSON.stringify(queryString));
     //as soon as they click button
     startTime = performance.now();
-    dacheQL('/graphql', {
+    fetch('/graphql', {
       method: 'POST', 
       headers: {
         'Content-Type': 'application/json',
+        'Accept': 'application/json',
       },
       body: JSON.stringify({
-        query: queryString
+        queryString
       })
     })
       .then((res) => res.json())
       .then((data) => {
         //update the second timer variable once fetch is finished 
+        console.log('data: ', data);
         endTime = performance.now();
         const totalRunTime = (endTime - startTime);
         //update the react hook state for timetofetch
