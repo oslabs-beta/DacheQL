@@ -21,7 +21,7 @@
 }
 
 .landingpagetitle {
-    // font-family: 'Commissioner', sans-serif;
+    font-family: 'Commissioner', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -95,10 +95,13 @@ body {
         fill: white;
     }
 }
-
-.navbar{
-  background-color: rgb(133, 209, 234);
+.nav-link {
+    color: rgb(84, 92, 107);
 }
-.nav-link{
-  color: rgb(84, 92, 107);
-} 
+.navbar-brand {
+    font-family: 'Commissioner', sans-serif;
+    font-size: x-large;
+}
+
+
+
