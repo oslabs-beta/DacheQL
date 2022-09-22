@@ -11,3 +11,27 @@
   text-align: center;
 }
 
+.navbar {
+  /* background-color: rgb(133, 209, 234); */
+  font-family: 'Commissioner', sans-serif;
+  margin: 1px;
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+  font-size: x-large;
+  width: fit-content;
+  /* flex-direction: column; */
+}
+.navbar-logo{
+  margin: 15px;
+  left: 10%;
+  color: darkorange;
+  font-size: .9em;
+  font-weight: bold;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  /* opacity: 0; */
+  transition: opacity .5s;
+
+}
+

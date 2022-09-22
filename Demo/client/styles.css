@@ -95,14 +95,13 @@ body {
         fill: white;
     }
 }
+.nav-link {
+    color: rgb(84, 92, 107);
+}
+.navbar-brand {
+    font-family: 'Commissioner', sans-serif;
+    font-size: x-large;
+}
 
-.navbar{
-  background-color: rgb(133, 209, 234);
-  font-family: 'Commissioner', sans-serif;
-}
-.nav-link{
-  color: rgb(84, 92, 107);
-} 
-.nav-logo{
-    text-align: center;
-}
+
+

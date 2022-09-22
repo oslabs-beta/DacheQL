@@ -7,14 +7,12 @@ const Homepage = () => {
     <div>
       <Container className='homepage-container'>
         <Row>
-          <Navigation></Navigation>
+          <Col><Navigation></Navigation></Col>
         </Row>
-       
         <Row>
-          <Col><div className='fs-1'>Info <Info></Info></div></Col>
+          <Col><div className='fs-1'>Introduction<Info></Info></div></Col>
         </Row>
       </Container>
-			This is Homepage
     </div>
   );
 };
