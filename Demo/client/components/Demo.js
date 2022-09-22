@@ -69,6 +69,17 @@ const Demo = () => {
           </Card.Text>
         </Card.Body>
       </Card>
+
+      <Card style={{color: '#000', width: '20rem', height: '20rem'}}>
+        <Card.Body>
+          <Card.Title>
+            Resulting Query
+          </Card.Title>
+          <Card.Text>
+            
+          </Card.Text>
+        </Card.Body>
+      </Card>
     </div>
   ); 
 };

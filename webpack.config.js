@@ -41,7 +41,7 @@ module.exports = {
           // loader: ['@svgr/webpack', 'url-loader', 'file-loader'],
           loader: 'file-loader',
           options: {
-            name: '/public/icons/[name].[ext]'
+            name: 'public/icons/[name].[ext]'
           }
         }
       },

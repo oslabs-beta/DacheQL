@@ -8,7 +8,7 @@ const Metrics = () =>{
         <div className='metrics-grid'>
           <div className='timer-div'>
             <div className='metric-value'>Fetch Time:</div>
-            <div className='metric-label'>Cache/Fetch Time</div>
+            <div className='metric-label'>Cache/Fetch Time:</div>
           </div>
         </div>
         <div className='cache-cleared-div'>

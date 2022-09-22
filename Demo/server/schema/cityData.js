@@ -179,6 +179,10 @@ const cities = [
     'population': 15436,
     'country_id': '8'
   }
+<<<<<<< HEAD
 ]
+=======
+];
+>>>>>>> dev
 
 module.exports = cities;

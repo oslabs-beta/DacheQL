@@ -1,4 +1,4 @@
-const pokemon =require('./pokemonData');
+const pokemon = require('./pokemonData');
 const valorant = require('./valorantData');
 const cities = require('./cityData');
 
