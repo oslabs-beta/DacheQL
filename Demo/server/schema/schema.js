@@ -1,17 +1,44 @@
-const pokemon = require('./pokemonData');
-const valorant = require('./valorantData');
-const cities = require('./cityData');
-
-const { 
+import { 
   GraphQLSchema, 
   GraphQLObjectType, 
   GraphQLString, 
   GraphQLList, 
   GraphQLInt, 
-  GraphQLNonNull 
-} = require('graphql');
+  GraphQLNonNull,
+  Kind,
+  GraphQLScalarType,
+} from'graphql';
+const pokemon = import('./pokemonData.json', {
+    assert: {
+    type: 'json'
+    }
+})
+const valorant = import('./valorantData.json', {
+  assert: {
+    type: 'json'
+    }
+})
+const cities = import('./cityData.json', {
+  assert: {
+    type: 'json'
+  }
+})
+const bigIntType = new GraphQLScalarType({
+  name: 'BigInt',
+  serialize: (val) => val,
+});
 
-
+const dateType = new GraphQLScalarType({
+  name: 'Date',
+  parseValue: (val) => (new Date(val)).toISOString(),
+  serialize: (date) => date.toDateString(),
+  parseLiteral: (ast) => {
+    if (ast.kind === Kind.INT) {
+      return (new Date(+ast.value)).toISOString();
+    }
+    return null;
+  },
+});
 // agent name, role, ult, id 
 const Valorant = new GraphQLObjectType({
   name: 'Valorant', 
@@ -71,4 +98,4 @@ const schema = new GraphQLSchema({
   type: [Valorant, City, Pokemon]
 });
 
-module.exports = schema; 
+export default schema; 

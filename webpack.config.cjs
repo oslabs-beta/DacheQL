@@ -18,8 +18,12 @@ module.exports = {
       publicPath: '/dist',
       directory: path.join(__dirname, './dist'),
     }, 
+    port: 8080,
+    headers: { 'Access-Control-Allow-Origin': '*' },
     proxy: {
-      '/api': 'http://localhost:3000',
+      '/graphql': {
+        target: 'http://localhost:3000', secure: false,
+      },
     },
   }, 
   mode: process.env.NODE_ENV,

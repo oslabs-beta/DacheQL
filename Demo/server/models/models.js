@@ -14,7 +14,7 @@ pool.connect((err) => {
     return err;
   }
 
-  console.log('it worked');
+  console.log('connected to DB');
 });
 
 module.exports = {

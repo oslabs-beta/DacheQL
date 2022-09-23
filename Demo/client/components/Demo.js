@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
-import Navigation from './Navigation';
+import Navigation from './Navigation.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { DropdownButton, Dropdown, Button, Card, Container } from 'react-bootstrap';
-import Query from './Query';
-import Metrics from './Metrics';
-import DacheQL from '../../../library/dacheql';
+import Query from './Query.js';
+import Metrics from './Metrics.js';
+import DacheQL from '../../../library/dacheql.js';
 
 
 const Demo = () => {
@@ -73,20 +73,15 @@ const Demo = () => {
   let startTime; 
   let endTime;
   const runQuery = () =>{
-    console.log('running query!');
-    console.log('queryString: ', queryString);
-    console.log('json ver: ', JSON.stringify(queryString));
+    console.log('running query: ', queryString);
     //as soon as they click button
     startTime = performance.now();
-    fetch('/graphql', {
+    DacheQL('/graphql', {
       method: 'POST', 
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
       },
-      body: JSON.stringify({
-        queryString
-      })
+      body: JSON.stringify(queryString)
     })
       .then((res) => res.json())
       .then((data) => {

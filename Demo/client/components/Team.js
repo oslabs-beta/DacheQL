@@ -1,6 +1,6 @@
 import React from 'react';
-import About from './About';
-import Navigation from './Navigation';
+import About from './About.js';
+import Navigation from './Navigation.js';
 const Team = () => {
   // members info 
   const members = [

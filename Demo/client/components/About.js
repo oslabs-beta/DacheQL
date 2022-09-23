@@ -1,5 +1,5 @@
 import React from 'react';
-import Navigation from './Navigation';
+import Navigation from './Navigation.js';
 
 const About = (props) => {
   const { name, pfp, linkedin, github, bio } = props;

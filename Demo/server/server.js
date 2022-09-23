@@ -1,24 +1,31 @@
-const path = require('path');
-const express = require('express');
-const expressGraphQL = require('express-graphql').graphqlHTTP;
-const schema = require('./schema/schema.js');
+import express from 'express';
+import path, { dirname } from 'path';
+import { fileURLToPath } from 'url';
+import process from 'process';
+import { graphqlHTTP } from 'express-graphql';
+import { expressDacheQL } from './controllers/queryController.js';
+import { graphqlHTTPCache} from './controllers/graphqlHTTP.js';
+import schema from'./schema/schema.js';
 
 const PORT = 3000;
 
 const app = express();
 
+const folderPath = dirname(fileURLToPath(import.meta.url));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/dist', express.static(path.join(__dirname, '../dist')));
 
+// app.use('/dist', express.static(path.join(__dirname, '../dist')));
+app.use(express.static(path.resolve(folderPath, '../dist')));
 
 app.get('/', (req, res) => {
   console.log('getting index.html');
   return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
 });
 
-app.use('/graphql', expressGraphQL({
+app.use('/graphql', expressDacheQL({}), graphqlHTTPCache(), graphqlHTTP({
   schema: schema,
   graphiql: true
 }));
@@ -39,4 +46,4 @@ app.use((err, req, res, next) => {
 app.listen(PORT,  () => console.log(`listening on port ${PORT}...`));
 
 
-module.exports = app;
+export default app;
