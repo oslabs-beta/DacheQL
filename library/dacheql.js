@@ -60,38 +60,38 @@ const uncacheable = { mutation: true, subscription: true };
 
 function dacheQL(endpoint, options) {
   // If the body is undefined then let the request pass through as is
-  if (!Object.hasOwn(options, 'body')) {
-    return fetch(endpoint, options);
-  }
+  // if (!Object.hasOwn(options, 'body')) {
+  //   return fetch(endpoint, options);
+  // }
   // Check if operation type is uncacheable, if so pass through as is
   const query = options.body.query;
   let operationType;
   if (query) {
     operationType = query.split('{')[0].trim();
   }
-  
   console.log('in dacheql, slit:', operationType);
-  if (Object.hasOwn(uncacheable, operationType)) {
-    return fetch(endpoint, options);
-  }
+  // if (Object.hasOwn(uncacheable, operationType)) {
+  //   return fetch(endpoint, options);
+  // }
   // Reconstruct request as a GET request to make response HTTP cacheable
   // Hash body to store with URL constraint
-  const newOpts = { ...options, method: 'GET' };
-  const HASH = newOpts.body;
-  delete newOpts.body;
+  // const newOpts = { ...options, method: 'GET' };
+  // const HASH = newOpts.body;
+  // delete newOpts.body;
   // Construct new Promise to allow wrapper function to behave as a normal fetch
   return new Promise((resolve, reject) => {
-    fetch(`${endpoint}/?${HASH}`, newOpts)
+    fetch(`${endpoint}`)
       .then((data) => {
         // Status 303 indicates that hash is not found in server cache
         // Upon receipt, send original request as follow-up
-        if (data.status === 303) {
-          fetch(`${endpoint}/?${HASH}`, options)
-            .then((res) => resolve(res))
-            .catch((altErr) => reject(altErr));
-        } else {
-          resolve(data);
-        }
+        // if (data.status === 303) {
+        //   fetch(`${endpoint}/?${HASH}`, options)
+        //     .then((res) => resolve(res))
+        //     .catch((altErr) => reject(altErr));
+        // } else {
+        //   resolve(data);
+        // }
+        console.log('data in dacheql',data);
       })
       .catch((err) => {
         reject(err);

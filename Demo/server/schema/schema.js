@@ -70,7 +70,7 @@ const Pokemon = new GraphQLObjectType({
     name:  { type: GraphQLNonNull(GraphQLString)},
     type:  { type: GraphQLNonNull(GraphQLString)},
     ability:  { type: GraphQLNonNull(GraphQLString)},
-    entryNumber:  { type: GraphQLNonNull(GraphQLString)},
+    // entryNumber:  { type: GraphQLNonNull(GraphQLString)},
   })
 });
 
