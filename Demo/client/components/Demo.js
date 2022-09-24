@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Navigation from './Navigation';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { DropdownButton, Dropdown, Button, Card, Container } from 'react-bootstrap';
 import Query from './Query';
 import Metrics from './Metrics';
 import DacheQL from '../../../library/dacheql';
+// import fs from './fs';
 
 
 
@@ -23,8 +24,7 @@ const Demo = () => {
   const [timeToFetch, setTimeToFetch] = useState([0,0]);
 
   //react hook for storing the state of whatever was fetched (will use to render on resulting query)
-  const [result, setResult] = useState({});
-
+  const [result, setResult] = useState('');
 
   //upon change of drop down after selection set new values for react states for etc...
   const handleChangeValorant = (event) => {
@@ -41,6 +41,7 @@ const Demo = () => {
       }
     }
     `);
+    setTimeToFetch([0, 0]);
   };
 
   const handleChangePokemon = (event) => {
@@ -56,6 +57,7 @@ const Demo = () => {
         ability
       }
     }`);
+    setTimeToFetch([0, 0]);
   };
 
   const handleChangeCities = (event) => {
@@ -71,9 +73,9 @@ const Demo = () => {
         country_id
       }
     }`);
+    setTimeToFetch([0, 0]);
   };
 
-  //instantiate 2 variables at time trackers for the timeToFetch state
   let startTime; 
   let endTime;
   const runQuery = () =>{
@@ -95,7 +97,7 @@ const Demo = () => {
     })
       .then((res) => {
 
-        return res.json()
+        return res.json();
 
       })
   
@@ -105,16 +107,15 @@ const Demo = () => {
         endTime = performance.now();
         const totalRunTime = (endTime - startTime);
         //update the react hook state for timetofetch
-        setTimeToFetch([...timeToFetch, totalRunTime]);
+        setTimeToFetch([timeToFetch, totalRunTime]);
         //react hook for updating the new jsonified resulting query for render purposes
-        setResult(JSON.stringify(data));
+        // const space = JSON.stringify(data, null, 2);
+        // console.log('space: ', space);
+        console.log(JSON.stringify(data, null, 2));
+        setResult(JSON.stringify(data, null, 2));
+        console.log('result',result);
       })
       .catch((err) => console.log('error on demo runQuery', err));
-  };
-
-  const handleChange = (event) => {
-    //resets the fetch time whenever they change the query
-    setTimeToFetch([0,0]);
   };
 
   return (
@@ -131,15 +132,15 @@ const Demo = () => {
           </Card.Text>
         </Card.Body>
       </Card>
-      <Dropdown onChange={handleChange} >
+      <Dropdown  >
         <Dropdown.Toggle variant = "secondary" id ="query-dropdown">
           {query}
         </Dropdown.Toggle>
 
         <Dropdown.Menu>
-          <Dropdown.Item href = "#/action-1" onClick = {handleChangeValorant}>Query For Valorant</Dropdown.Item>
-          <Dropdown.Item href = "#/action-2" onClick = {handleChangePokemon}>Query For Pokemon</Dropdown.Item>
-          <Dropdown.Item href = "#/action-3" onClick = {handleChangeCities}>Query For Cities</Dropdown.Item>
+          <Dropdown.Item href = "#/action-1" onClick = {handleChangeValorant} >Query For Valorant</Dropdown.Item>
+          <Dropdown.Item href = "#/action-2" onClick = {handleChangePokemon} >Query For Pokemon</Dropdown.Item>
+          <Dropdown.Item href = "#/action-3" onClick = {handleChangeCities} >Query For Cities</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
 
@@ -149,18 +150,21 @@ const Demo = () => {
             Metrics
           </Card.Title>
           <Card.Text>
-            <Metrics />
+            <Metrics
+              timeToFetch = {timeToFetch} />
           </Card.Text>
         </Card.Body>
       </Card>
 
-      <Card style={{color: '#000', width: '20rem', height: '20rem'}}>
+      <Card className='result-query'style={{color: '#000', width: '20rem', height: '20rem'}}>
         <Card.Body>
           <Card.Title>
             Resulting Query
           </Card.Title>
           <Card.Text>
-            
+            <pre>
+              <code>{result}</code>
+            </pre>
           </Card.Text>
         </Card.Body>
       </Card>

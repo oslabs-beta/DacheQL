@@ -4,6 +4,7 @@ const expressGraphQL = require('express-graphql').graphqlHTTP;
 const schema = require('./schema/schema.js');
 const cors = require('cors');
 
+
 const PORT = 3000;
 
 const app = express();
@@ -12,7 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/dist', express.static(path.join(__dirname, '../dist')));
-
+app.use(cors());
 
 app.get('/', (req, res) => {
   console.log('getting index.html');
@@ -20,7 +21,7 @@ app.get('/', (req, res) => {
 });
 
 
-app.use(cors());
+
 
 app.use('/graphql', expressGraphQL({
   schema: schema,
