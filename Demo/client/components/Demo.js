@@ -4,33 +4,117 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { DropdownButton, Dropdown, Button, Card, Container } from 'react-bootstrap';
 import Query from './Query';
 import Metrics from './Metrics';
+import DacheQL from '../../../library/dacheql';
+
+
 
 
 const Demo = () => {
+  //react hook for whatever displaying the query in Selected query box but in html format
   const [query, setQuery] = useState('Select Query');
+
+  //react hook for storing whichever button from the dropdown was selected
   const [output, setOutput] = useState('');
+
+  //react hook that stores in state the actual query string
   const [queryString, setQueryString] = useState('');
 
+  //react hook for the timer state comparing the diference will give us the time elapsed
+  const [timeToFetch, setTimeToFetch] = useState([0,0]);
+
+  //react hook for storing the state of whatever was fetched (will use to render on resulting query)
+  const [result, setResult] = useState({});
+
+
+  //upon change of drop down after selection set new values for react states for etc...
   const handleChangeValorant = (event) => {
     console.log(event.target.innerHTML);
     setQuery(event.target.innerHTML);
     setOutput('Query For Valorant');
+    setQueryString(`
+    query  {
+      valorant  {
+        id
+        name
+        role
+        ultimate
+      }
+    }
+    `);
   };
 
   const handleChangePokemon = (event) => {
     console.log(event.target.innerHTML);
     setQuery(event.target.innerHTML);
     setOutput('Query For Pokemon');
+    setQueryString(`
+    query {
+      pokemon  {
+        id
+        name
+        type
+        ability
+      }
+    }`);
   };
 
   const handleChangeCities = (event) => {
     console.log(event.target.innerHTML);
     setQuery(event.target.innerHTML);
     setOutput('Query For Cities');
+    setQueryString(`
+    query {
+      cities  {
+        id 
+        name
+        population
+        country_id
+      }
+    }`);
   };
 
+  //instantiate 2 variables at time trackers for the timeToFetch state
+  let startTime; 
+  let endTime;
   const runQuery = () =>{
     console.log('running query!');
+    console.log('queryString: ', queryString);
+    console.log('json ver: ', JSON.stringify(queryString));
+    
+    startTime = performance.now();
+    // fetch('/graphql', options)
+    fetch('http://localhost:3000/graphql', {
+      method: 'POST', 
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify({
+        query: queryString,
+      })
+    })
+      .then((res) => {
+
+        return res.json()
+
+      })
+  
+      .then((data) => {
+        //update the second timer variable once fetch is finished 
+        console.log('data: ', data);
+        endTime = performance.now();
+        const totalRunTime = (endTime - startTime);
+        //update the react hook state for timetofetch
+        setTimeToFetch([...timeToFetch, totalRunTime]);
+        //react hook for updating the new jsonified resulting query for render purposes
+        setResult(JSON.stringify(data));
+      })
+      .catch((err) => console.log('error on demo runQuery', err));
+  };
+
+  const handleChange = (event) => {
+    //resets the fetch time whenever they change the query
+    setTimeToFetch([0,0]);
   };
 
   return (
@@ -47,7 +131,7 @@ const Demo = () => {
           </Card.Text>
         </Card.Body>
       </Card>
-      <Dropdown >
+      <Dropdown onChange={handleChange} >
         <Dropdown.Toggle variant = "secondary" id ="query-dropdown">
           {query}
         </Dropdown.Toggle>

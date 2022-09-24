@@ -2,6 +2,7 @@ const path = require('path');
 const express = require('express');
 const expressGraphQL = require('express-graphql').graphqlHTTP;
 const schema = require('./schema/schema.js');
+const cors = require('cors');
 
 const PORT = 3000;
 
@@ -17,6 +18,9 @@ app.get('/', (req, res) => {
   console.log('getting index.html');
   return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
 });
+
+
+app.use(cors());
 
 app.use('/graphql', expressGraphQL({
   schema: schema,
