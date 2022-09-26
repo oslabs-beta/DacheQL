@@ -5,12 +5,14 @@ import { DropdownButton, Dropdown, Button, Card, Container } from 'react-bootstr
 import Query from './Query';
 import Metrics from './Metrics';
 import DacheQL from '../../../library/dacheql';
+
+
+// import Redis from 'ioredis';
 // import fs from './fs';
-
-
-
+const cache = {};
 
 const Demo = () => {
+  
   //react hook for whatever displaying the query in Selected query box but in html format
   const [query, setQuery] = useState('Select Query');
 
@@ -22,6 +24,9 @@ const Demo = () => {
 
   //react hook for the timer state comparing the diference will give us the time elapsed
   const [timeToFetch, setTimeToFetch] = useState([0,0]);
+
+  //cache fetch time 
+  const [cacheFetchTime, setCacheFetchTime] = useState(0);
 
   //react hook for storing the state of whatever was fetched (will use to render on resulting query)
   const [result, setResult] = useState('');
@@ -42,6 +47,8 @@ const Demo = () => {
     }
     `);
     setTimeToFetch([0, 0]);
+    setCacheFetchTime(0);
+    
   };
 
   const handleChangePokemon = (event) => {
@@ -58,6 +65,7 @@ const Demo = () => {
       }
     }`);
     setTimeToFetch([0, 0]);
+    setCacheFetchTime(0);
   };
 
   const handleChangeCities = (event) => {
@@ -74,48 +82,61 @@ const Demo = () => {
       }
     }`);
     setTimeToFetch([0, 0]);
+    setCacheFetchTime(0);
+    
   };
 
   let startTime; 
   let endTime;
-  const runQuery = () =>{
-    console.log('running query!');
-    console.log('queryString: ', queryString);
-    console.log('json ver: ', JSON.stringify(queryString));
-    
+  const runQuery = async() =>{
     startTime = performance.now();
-    // fetch('/graphql', options)
-    fetch('http://localhost:3000/graphql', {
-      method: 'POST', 
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-      body: JSON.stringify({
-        query: queryString,
-      })
-    })
-      .then((res) => {
 
-        return res.json();
-
+    if(cache[queryString]){
+      console.log('accessing from local cache');
+      endTime = performance.now();
+      const totalRunTime = (endTime - startTime);
+      setCacheFetchTime(totalRunTime);
+      return cache[queryString];
+    }
+    else{
+      // console.log('running query!');
+    // console.log('queryString: ', queryString);
+    // console.log('json ver: ', JSON.stringify(queryString));
+      console.log('not from cache');
+      await fetch('http://localhost:3000/graphql', {
+        method: 'POST', 
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          query: queryString,
+        })
       })
+        .then((res) => {
+          return res.json();
+        })
   
-      .then((data) => {
+        .then((data) => {
         //update the second timer variable once fetch is finished 
-        console.log('data: ', data);
-        endTime = performance.now();
-        const totalRunTime = (endTime - startTime);
-        //update the react hook state for timetofetch
-        setTimeToFetch([timeToFetch, totalRunTime]);
-        //react hook for updating the new jsonified resulting query for render purposes
-        // const space = JSON.stringify(data, null, 2);
-        // console.log('space: ', space);
-        console.log(JSON.stringify(data, null, 2));
-        setResult(JSON.stringify(data, null, 2));
-        console.log('result',result);
-      })
-      .catch((err) => console.log('error on demo runQuery', err));
+          cache[queryString] = data;
+          console.log('cache:', cache);
+          // console.log('data: ', data);
+          endTime = performance.now();
+          const totalRunTime = (endTime - startTime);
+          //update the react hook state for timetofetch
+          setTimeToFetch([timeToFetch, totalRunTime]);
+          //react hook for updating the new jsonified resulting query for render purposes
+          // const space = JSON.stringify(data, null, 2);
+          // console.log('space: ', space);
+          // console.log(JSON.stringify(data, null, 2));
+          setResult(JSON.stringify(data, null, 2));
+        // console.log('result',result);
+        })
+        .catch((err) => console.log('error on demo runQuery', err));
+    }
+
+    
   };
 
   return (
@@ -151,7 +172,8 @@ const Demo = () => {
           </Card.Title>
           <Card.Text>
             <Metrics
-              timeToFetch = {timeToFetch} />
+              timeToFetch = {timeToFetch}
+              cacheFetchTime = {cacheFetchTime} />
           </Card.Text>
         </Card.Body>
       </Card>
