@@ -33,6 +33,7 @@
     "fs": "^0.0.1-security",
     "graphql": "^15.8.0",
     "graphql-fetch": "^1.0.1",
+    "ioredis": "^5.2.3",
     "node-fetch": "^3.2.10",
     "nodemon": "^2.0.20",
     "path": "^0.12.7",
