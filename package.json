@@ -26,6 +26,7 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@popperjs/core": "^2.11.6",
     "bootstrap": "^5.2.1",
+    "chart.js": "^3.9.1",
     "cors": "^2.8.5",
     "express": "^4.18.1",
     "express-graphql": "^0.12.0",
@@ -38,6 +39,7 @@
     "pg": "^8.8.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",
+    "react-chartjs-2": "^4.3.1",
     "react-router-dom": "^6.4.0"
   },
   "devDependencies": {

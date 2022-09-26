@@ -1,6 +1,7 @@
 import React from 'react';
 import Navigation from './Navigation';
 
+
 const About = (props) => {
   const { name, pfp, linkedin, github, bio } = props;
 
@@ -18,6 +19,7 @@ const About = (props) => {
         </a>
       </div> */}
       <p className='member-bio'>{bio}</p>
+  
     </div>
   );
 };

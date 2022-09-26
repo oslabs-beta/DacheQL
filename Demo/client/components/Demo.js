@@ -5,9 +5,28 @@ import { DropdownButton, Dropdown, Button, Card, Container } from 'react-bootstr
 import Query from './Query';
 import Metrics from './Metrics';
 import DacheQL from '../../../library/dacheql';
-// import fs from './fs';
+import { Bar  } from 'react-chartjs-2';
+import {
+  Chart as ChartJS,
+  CategoryScale, 
+  LinearScale, 
+  BarElement, 
+  Title, 
+  Tooltip, 
+  Legend,
+} from 'chart.js';
 
 
+
+
+ChartJS.register(
+  CategoryScale, 
+  LinearScale, 
+  BarElement, 
+  Title, 
+  Tooltip, 
+  Legend
+);
 
 
 const Demo = () => {
@@ -25,6 +44,48 @@ const Demo = () => {
 
   //react hook for storing the state of whatever was fetched (will use to render on resulting query)
   const [result, setResult] = useState('');
+
+  //react hook for data for chartjs
+  const [chartData, setChartData] = useState({
+    datasets: [],
+  });
+
+
+  //useffect hook on dom content loaded the chart will be created
+  useEffect(() => {
+    setChartData({
+      // type: 'horizontalBar',
+      labels: ['Uncached Data (ms)', 'Cached Data (ms)'],
+      datasets: [
+        {
+          label: 'Response Times',
+          data: [timeToFetch[1],timeToFetch[0]],
+          border: 'rgb(153,31,173)',
+          backgroundColor: 'rgba(153,31,173,0.4)',
+        }
+      ]
+    });
+  },[timeToFetch]);
+
+
+  const config = {
+    indexAxis: 'y',
+    elements: {
+      bar: {
+        borderWidth: 2,
+      },
+    },
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'right',
+      },
+      title: {
+        display: true,
+        text: 'Chart.js Horizontal Bar Chart',
+      },
+    },
+  };
 
   //upon change of drop down after selection set new values for react states for etc...
   const handleChangeValorant = (event) => {
@@ -168,6 +229,11 @@ const Demo = () => {
           </Card.Text>
         </Card.Body>
       </Card>
+
+
+      
+      <Bar options={config} data={chartData} />
+    
     </div>
   ); 
 };
