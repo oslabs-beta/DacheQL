@@ -5,6 +5,10 @@ import { DropdownButton, Dropdown, Button, Card, Container } from 'react-bootstr
 import Query from './Query';
 import Metrics from './Metrics';
 import DacheQL from '../../../library/dacheql';
+import { Line } from 'react-chartjs-2';
+import { Chart, registerables } from 'chart.js';
+Chart.register(...registerables);
+import Trend from 'react-trend';
 
 
 // import Redis from 'ioredis';
@@ -12,7 +16,6 @@ import DacheQL from '../../../library/dacheql';
 const cache = {};
 
 const Demo = () => {
-  
   //react hook for whatever displaying the query in Selected query box but in html format
   const [query, setQuery] = useState('Select Query');
 
@@ -96,6 +99,7 @@ const Demo = () => {
       endTime = performance.now();
       const totalRunTime = (endTime - startTime);
       setCacheFetchTime(totalRunTime);
+      setResult(JSON.stringify(cache[queryString], null, 2));
       return cache[queryString];
     }
     else{
@@ -135,8 +139,6 @@ const Demo = () => {
         })
         .catch((err) => console.log('error on demo runQuery', err));
     }
-
-    
   };
 
   return (

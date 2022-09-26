@@ -3,13 +3,13 @@ const express = require('express');
 const expressGraphQL = require('express-graphql').graphqlHTTP;
 const schema = require('./schema/schema.js');
 const cors = require('cors');
-const Redis = require('ioredis');
-const redisController = require('./controllers/redisController');
+// const Redis = require('ioredis');
+// const redisController = require('./controllers/redisController');
 
-const redis = new Redis({
-  'port': 6379,
-  'host': '127.0.0.1'
-});
+// const redis = new Redis({
+//   'port': 6379,
+//   'host': '127.0.0.1'
+// });
 
 const PORT = 3000;
 
@@ -30,11 +30,6 @@ app.use('/graphql', expressGraphQL({
   schema: schema,
   graphiql: true,
 }));
-
-// app.post('/redis', redisController.addToRedis, (req, res) => {
-//   console.log('in post redis');
-//   return res.status(200).send(res.locals.graphqldata);
-// });
 
 app.use((req, res) => res.status(404).send('Cannot get route'));
 
