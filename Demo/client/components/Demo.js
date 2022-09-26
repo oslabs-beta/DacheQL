@@ -66,13 +66,13 @@ const Demo = () => {
       datasets: [
         {
           label: 'Response Times',
-          data: [timeToFetch[1],timeToFetch[0]],
+          data: [timeToFetch[1],cacheFetchTime],
           border: 'rgb(153,31,173)',
           backgroundColor: 'rgba(153,31,173,0.4)',
         }
       ]
     });
-  },[timeToFetch]);
+  },[timeToFetch,cacheFetchTime]);
 
 
   const config = {
