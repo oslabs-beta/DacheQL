@@ -159,6 +159,7 @@ const Demo = () => {
       endTime = performance.now();
       const totalRunTime = (endTime - startTime);
       setCacheFetchTime(totalRunTime);
+      setResult(JSON.stringify(cache[queryString,null,2]));
       return cache[queryString];
     }
     else{
