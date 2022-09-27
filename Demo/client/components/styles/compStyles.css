@@ -15,21 +15,19 @@
   /* background-color: rgb(133, 209, 234); */
   font-family: 'Commissioner', sans-serif;
   margin: 1px;
-  left: 50%;
-  transform: translateX(-50%);
-  position: absolute;
-  font-size: x-large;
-  width: fit-content;
- 
-  height: 80px;
-  /* margin-top: -80px; */
+  /* margin-bottom: 10vh; */
+  /* left: 50%; */
+  margin-left: 50vw;
+  transform: translateX(-70%);
+  font-size: large;
+  width: max-content;
+  
   display: flex;
   justify-content: center;
   align-items: center;
-  font: 1em;
-  position: sticky;
+  /* /* position: sticky; */
   top: 0;
-  z-index: 10px;
+  z-index: 5px;
   @media screen and (max-width:960px){
     transition: 0.8s all ease;
   }
@@ -38,10 +36,7 @@
   background-color: #FFF5E4;
 }
 .navbar-logo{
-  margin: 15px;
-  left: 10%;
   color: darkorange;
-  font-size: 1em;
   font-weight: bold;
   font-family: sans-serif;
   text-transform: uppercase;
@@ -60,6 +55,8 @@
   background-clip: border-box;
   background-size: 200% auto;
   color: #fff;
+  position: inherit;
+  left: 0%;
   background-clip: text;
   text-fill-color: transparent;
   -webkit-background-clip: text;
@@ -67,7 +64,7 @@
   animation: textclip 5s ease infinite;
   display: inline-block;
   font-family: 'Bungee';
-  font-size: 50px;
+  font-size: 2em;
 }
 
 /* @keyframes textclip {

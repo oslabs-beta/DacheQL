@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Navbar, Nav, Row } from 'react-bootstrap';
+import { Navbar, Nav, Col } from 'react-bootstrap';
 import './styles/compStyles.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse, faLaptopCode, faAddressCard} from '@fortawesome/free-solid-svg-icons';
@@ -13,10 +13,10 @@ const Navigation = () => {
     <div>
       <Navbar className='navbar fw-bold' expand="lg">
         
-        <Row>
+        <Col>
           <Navbar.Brand className='navbar navbar-logo'href="/"><img src={logo} width={100} height={100}></img><a id='brand-name'>DacheQL</a></Navbar.Brand>
-        </Row>
-        <Row>
+        </Col>
+        <Col>
           <Navbar.Toggle aria-controls='navbar-nav'></Navbar.Toggle>
           <Navbar.Collapse id='navbar-nav'>
             <Nav
@@ -30,7 +30,7 @@ const Navigation = () => {
               <Nav.Link className='nav-item' href='https://github.com/oslabs-beta/DacheQL' target="_blank" rel="noreferrer"><FontAwesomeIcon icon={faGithub} />&nbsp;&nbsp;GitHub</Nav.Link>
             </Nav>
           </Navbar.Collapse>
-        </Row>
+        </Col>
         
       </Navbar>
     </div>

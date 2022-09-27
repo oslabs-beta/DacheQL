@@ -2,9 +2,10 @@
 $enable-grid-classes: false;
 $primary: #bde9e2;
 $secondary: #f6c4ea;
+$secondary-hover: #f6c4eab4;
 $third: #ECB390;
 $success: #198754;
-$danger: #dc3545;
+$danger: #c64e9c;
 $info: #BEAEE2;
 $warning: #ffc107;
 $light: #FFF5E4;
@@ -18,7 +19,7 @@ $btn-border-radius: .25rem;
     background-color: $secondary;
     text-align: center;
     margin: auto;
-    border-color: $info;
+    border-color: $secondary;
     font-size: 40px;
     position: relative;
     top: 40vh;
@@ -28,6 +29,10 @@ $btn-border-radius: .25rem;
     transform: translateY(-50%);
     left: 37vw;
 }
+.btn-secondary:hover {
+    opacity: 0.6;
+    background-color: #198754;
+}
 
 .enterbutton span {
     font-family: 'Alfa Slab One', cursive;
@@ -35,30 +40,27 @@ $btn-border-radius: .25rem;
     display: inline-block;
     color: #fff;
     text-transform: uppercase;
-    animation: waviy 5s infinite;
-    animation-delay: calc(.4s * var((--i)));
+    animation: waviy 3s infinite;
+    animation-delay: calc(.1s * var((--i)));
 }
 
-// @keyframes waviy{
-//     0%,
-//     40%,
-//     100% {
-//         transform: translateY(0)
-//     }
-//     20% {
-//         transform: translateY(-20px)
-//     } 
-// }
-@keyframes waviy {
-
+@keyframes waviy{
     0%,
-    10% {
-            transform: rotateY(360deg)
-        }
-    80% {
-        transform: rotateY(360deg)
+    40%,
+    100% {
+        transform: translateY(0)
     }
+    20% {
+        transform: translateY(-20px)
+    } 
 }
+// @keyframes waviy {
+
+//     0%,
+//     80% {
+//         transform: rotateY(360deg)
+//     }
+// }
 
 .landingpagetitle {
     font-family: 'Commissioner', sans-serif;
@@ -67,12 +69,10 @@ $btn-border-radius: .25rem;
     align-items: center;
     position: relative;
     top: 30vh;
-    
 }
 
 #logo {
     animation: fill 0.5s ease forwards 2.9s;
-    color: darkblue;
 }
 
 body {
@@ -164,31 +164,35 @@ body {
     margin: 10px 0px 0px 10px;
 }
 .demo-query{
-    margin-top: 30px;
     flex-direction: column;
     // background-color: $info;
+    position: absolute;
+    top: 20vh;
     border-radius: 10%;
+    left: -20vw;
     border: 4mm ridge rgba(211, 220, 50, .6);
     width: min-content;
 }
 .demo-query-btn{
-    background-color: $light;
+    background-color: $info;
     border-color: $primary;
-    color: $dark;
 }
+// .demo-query-btn:hover {
+//     background-color: $secondary-hover
+// }
 #runQueBtn{
-    background-color: #c64e9c;
+    background-color: $danger;
     margin-top: 50px;
 }
-.demo-query-btns btn-group-vertical:hover{
-    background-color: $secondary;
-    border-color: $info;
-}
+
 .card-container{
     // background-color: #212529;
-    top: 12vh;
     left: 30%;
-    position: absolute;
-    width:fit-content
+    top: -100vh;
+    position: sticky;
+    width:fit-content;
+    margin-left: 0.5vw;
+    // margin: .5em;
+    margin-bottom: 0.5vh;
 }
 
