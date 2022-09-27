@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, Col } from 'react-bootstrap';
-import './styles/compStyles.css';
+import './styles/navbarStyles.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse, faLaptopCode, faAddressCard} from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
@@ -11,7 +11,7 @@ const Navigation = () => {
   
   return (
     <div>
-      <Navbar className='navbar fw-bold' expand="lg">
+      <Navbar id='navbar' className='navbar fw-bold' expand="lg">
         
         <Col>
           <Navbar.Brand className='navbar navbar-logo'href="/"><img src={logo} width={100} height={100}></img><a id='brand-name'>DacheQL</a></Navbar.Brand>
