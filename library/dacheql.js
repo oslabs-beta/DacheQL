@@ -14,7 +14,7 @@ async function DacheQL(endpoint, options) {
   }
 
   const newOpts = { ...options, method: 'GET' };
-
+ 
   return new Promise((resolve, reject) => {
     fetch(endpoint, newOpts)
       .then((data) => {

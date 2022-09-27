@@ -2,6 +2,14 @@ const path = require('path');
 const express = require('express');
 const expressGraphQL = require('express-graphql').graphqlHTTP;
 const schema = require('./schema/schema.js');
+const cors = require('cors');
+// const Redis = require('ioredis');
+// const redisController = require('./controllers/redisController');
+
+// const redis = new Redis({
+//   'port': 6379,
+//   'host': '127.0.0.1'
+// });
 
 const PORT = 3000;
 
@@ -11,7 +19,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/dist', express.static(path.join(__dirname, '../dist')));
-
+app.use(cors());
 
 app.get('/', (req, res) => {
   console.log('getting index.html');
@@ -20,7 +28,7 @@ app.get('/', (req, res) => {
 
 app.use('/graphql', expressGraphQL({
   schema: schema,
-  graphiql: true
+  graphiql: true,
 }));
 
 app.use((req, res) => res.status(404).send('Cannot get route'));
@@ -37,6 +45,5 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(PORT,  () => console.log(`listening on port ${PORT}...`));
-
 
 module.exports = app;
