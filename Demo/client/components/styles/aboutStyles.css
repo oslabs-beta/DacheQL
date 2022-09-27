@@ -7,10 +7,7 @@
   width: 20rem;
   border-radius: 0.6em;
   overflow: hidden;
-  /* margin: 0.2em; */
   margin-top: 1em;
-  /* margin-left: 5px; */
-  /* cursor: pointer; */
   box-shadow: 0 20px 45px 5px hsla(240, 60%, 40%, 0.50), 0 8px 16px -8px hsla(0, 0%, 0%, 0.3), 0 -6px 16px -6px hsla(0, 0%, 0%, 0.03);
   transition: all ease 200ms;
   
@@ -24,10 +21,7 @@
   height: 400px;
   object-fit: cover;
 }
-/* .team-picture{
-  width: 200px;
-  height: 200px;
-} */
+
 .contact-icon{
   width: 30px;
   height: 30px;

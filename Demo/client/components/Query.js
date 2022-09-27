@@ -6,7 +6,6 @@ const Query = (props) => {
   const ob = '{';
   const cb = '}';
   const tab = <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>;
-  const eighted = <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>;
   const space = <span>&nbsp;</span>;
 
   if (output === 'Query For Valorant') {

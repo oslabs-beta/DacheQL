@@ -98,7 +98,6 @@ const LandingPage = () => {
             <span style={{ '--i': '8' }}>t</span>
             <span style={{ '--i': '9' }}>e</span>
             <span style={{ '--i': '10' }}>d</span>
-            {/* <span style="--i:1">Z</span> */}
           </Button>
         </Link>
       </div>
