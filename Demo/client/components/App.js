@@ -15,6 +15,20 @@ import Team from './Team.js';
 const App = () => {
   // const logo = document.querySelectorAll('#logo path');
   // console.log(logo);
+  window.onscroll = function() {myFunction();};
+
+  var navbar = document.getElementsByClassName('navbar');
+  var sticky = navbar.offsetTop;
+
+  function myFunction() {
+    console.log('scrolling');
+    console.log('sticky', window.pageYOffset);
+    // if (window.pageYOffset >= sticky) {
+    //   navbar.classList.add('sticky');
+    // } else {
+    //   navbar.classList.remove('sticky');
+    // }
+  }
   return (
     <BrowserRouter>
       <Routes>

@@ -1,29 +1,66 @@
-@import url('https://fonts.googleapis.com/css2?family=Commissioner:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
+$enable-grid-classes: false;
+$primary: #bde9e2;
+$secondary: #F7DBF0;
+$third: #ECB390;
+$success: #198754;
+$danger: #dc3545;
+$info: #BEAEE2;
+$warning: #ffc107;
+$light: #FFF5E4;
+$dark: #212529;
+$spacer: 1rem;
+$border-width: 1px;
+$btn-border-radius: .25rem;
 
 .enterbutton {
-    color: black;
+    color: $dark;
+    background-color: $secondary;
     text-align: center;
     text-decoration: none;
     margin: auto;
-    display: grid;
-    height:27px;
-    width: 75px;
-    font-size: 17px;
+    left: 45%;
+    border-color: $info;
+    // height:27px;
+    // width: 75px;
+    font-size: 20px;
     position: relative;
     top: 420px;
-
+    position: relative;
+    -webkit-box-reflect: below -20px linear-gradient(transparent, rgba(0, 0, 0, .2));
 }
 
 .enterbutton:hover {
     text-decoration: none;
-    background-color: blue;
+    background-color: $info;
     
 }
 .result-query {
-    overflow-y: scroll
+    resize: none;
+    margin: 0px 0px 10px 10px;
+    border: none;
+    outline: none;
+    background-color: $dark;
+    font-family: Monospace;
+    width: calc(100% - 20px);
+    overflow: scroll;
+    color: #63de00;
+    margin: 10px 0px 0px 10px;
+}
+.selected-query{
+    resize: none;
+    margin: 0px 0px 10px 10px;
+    border: none;
+    outline: none;
+    background-color: $dark;
+    color: rgb(255, 255, 255);
+    font-family: Monospace;
+    width: calc(100% - 20px);
+    overflow: hidden;
+    margin: 10px 0px 0px 10px;
 }
 .landingpagetitle {
-    // font-family: 'Commissioner', sans-serif;
+    font-family: 'Commissioner', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,7 +76,7 @@
 body {
     width: 100%;
     height: 100vh;
-    background-color: rgba(36, 42, 235, 0.618);
+    background-color: $primary;
 }
 
 #logo path:nth-child(2){
@@ -94,6 +131,68 @@ body {
         fill: transparent;
     }
     to{
-        fill: white;
+        fill: $dark;
     }
+}
+.nav-link {
+    color: rgb(84, 92, 107);
+}
+
+.navbar-brand {
+    font-family: 'Commissioner', sans-serif;
+    font-size: x-large;
+}
+.demo-query{
+    margin-top: 30px;
+    flex-direction: column;
+    // background-color: $info;
+    border-radius: 10%;
+    border: 4mm ridge rgba(211, 220, 50, .6);
+    width: min-content;
+}
+.demo-query-btn{
+    background-color: $light;
+    border-color: $primary;
+    color: $dark;
+}
+#runQueBtn{
+    background-color: #c64e9c;
+    margin-top: 50px;
+}
+.demo-query-btns btn-group-vertical:hover{
+    background-color: $secondary;
+    border-color: $info;
+}
+.card-container{
+    // background-color: #212529;
+    top: 12vh;
+    left: 30%;
+    position: absolute;
+    width:fit-content
+}
+.enterbutton span {
+    font-family: 'Alfa Slab One', cursive;
+    position: relative;
+    display: inline-block;
+    color: #fff;
+    text-transform: uppercase;
+    animation: waviy 1s infinite;
+    animation-delay: calc(.1s * var(--i));
+
+}
+
+@keyframes waviy{
+
+    0%,
+    40%,
+    100% {
+        transform: translateY(0)
+    }
+
+    20% {
+        transform: translateY(-20px)
+    }
+    
+    
+    
 }

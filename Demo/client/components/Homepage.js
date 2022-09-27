@@ -6,7 +6,7 @@ const Homepage = () => {
   return (
     <div>
       <Container className='homepage-container'>
-        <Row>
+        <Row id = 'navbar'>
           <Col><Navigation></Navigation></Col>
         </Row>
         <Row>

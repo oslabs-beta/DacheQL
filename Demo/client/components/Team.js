@@ -48,7 +48,10 @@ const Team = () => {
    
   return (
     <div className='team'>
-      <Navigation></Navigation>
+      <div id='navbar'>
+        <Navigation></Navigation>
+      </div>
+      
       {memberElements}
     </div>
   );

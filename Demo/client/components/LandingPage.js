@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles.scss';
+import { Button } from 'react-bootstrap';
 
 const LandingPage = () => {
   
@@ -31,8 +32,20 @@ const LandingPage = () => {
 
 
       </div>
+      
       <Link to='/homepage'>
-        <button className='enterbutton'>Enter</button>
+        <Button variant="secondary" className='enterbutton'>
+          <span id=' --i:1'>G</span>
+          <span id='--i:2'>e</span>
+          <span id='--i:2'>t</span>
+          <span id='--i:2'>&nbsp;S</span>
+          <span id='--i:2'>t</span>
+          <span id='--i:2'>a</span>
+          <span id='--i:2'>r</span>
+          <span id='--i:2'>ted</span>
+          {/* <span style="--i:1">Z</span> */}
+     
+        </Button>
       </Link>
     </div>
   );

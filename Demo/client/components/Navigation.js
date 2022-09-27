@@ -8,12 +8,13 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import logo from './assets/logo.png';
 
 const Navigation = () => {
+  
   return (
     <div>
       <Navbar className='navbar fw-bold' expand="lg">
         
         <Row>
-          <Navbar.Brand className='navbar navbar-logo'href="/"><img src={logo} width={150} height={100}></img>DacheQL</Navbar.Brand>
+          <Navbar.Brand className='navbar navbar-logo'href="/"><img src={logo} width={100} height={100}></img><a id='brand-name'>DacheQL</a></Navbar.Brand>
         </Row>
         <Row>
           <Navbar.Toggle aria-controls='navbar-nav'></Navbar.Toggle>

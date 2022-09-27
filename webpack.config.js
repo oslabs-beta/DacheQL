@@ -46,6 +46,26 @@ module.exports = {
         }
       },
       {
+        test: /\.mp4$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'public/videos/[name].[ext]',
+              outputPath: 'video'
+            }
+          }
+        ]
+      },
+      {test: /\.html$/,
+        use: {
+          loader: 'html-loader',
+          options: {
+            attrs: [':src']
+          }
+        }
+      },
+      {
         test: /\.s?[ac]ss$/,
         use: [
           {
