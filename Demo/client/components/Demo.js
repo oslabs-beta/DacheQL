@@ -5,32 +5,32 @@ import { DropdownButton, Dropdown, Button, Card, Container } from 'react-bootstr
 import Query from './Query';
 import Metrics from './Metrics';
 import DacheQL from '../../../library/dacheql';
-import { Bar  } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
-  CategoryScale, 
-  LinearScale, 
-  BarElement, 
-  Title, 
-  Tooltip, 
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
   Legend,
 } from 'chart.js';
 
-
-
-// import Redis from 'ioredis';
-// import fs from './fs';
-const cache = {};
-
 ChartJS.register(
-  CategoryScale, 
-  LinearScale, 
-  BarElement, 
-  Title, 
-  Tooltip, 
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
   Legend
 );
 
+
+const cache = {/*query: queried result => 10 most recent ones*/};
+//counter to keep track for our incrementer function globally declared
+let counter = 0;
 
 const Demo = () => {
   
@@ -47,56 +47,148 @@ const Demo = () => {
   const [timeToFetch, setTimeToFetch] = useState([0,0]);
 
   //cache fetch time 
-  const [cacheFetchTime, setCacheFetchTime] = useState(0);
+  const [cacheFetchTime, setCacheFetchTime] = useState([0]);
 
   //react hook for storing the state of whatever was fetched (will use to render on resulting query)
   const [result, setResult] = useState('');
 
-  //react hook for data for chartjs
+  //react hook for building the chartjs graph
   const [chartData, setChartData] = useState({
     datasets: [],
   });
 
+  //this is gon hold all values of the times so that the line chart can know how to structure itself (data area)
 
-  //useffect hook on dom content loaded the chart will be created
-  useEffect(() => {
-    setChartData({
-      // type: 'horizontalBar',
-      labels: ['Uncached Data (ms)', 'Cached Data (ms)'],
-      datasets: [
-        {
-          label: 'Response Times',
-          data: [timeToFetch[1],cacheFetchTime],
-          border: 'rgb(153,31,173)',
-          backgroundColor: 'rgba(153,31,173,0.4)',
-        }
-      ]
-    });
-  },[timeToFetch,cacheFetchTime]);
+  const [timeArray, setTimeArray] = useState([0]);
 
-
-  const config = {
-    indexAxis: 'y',
-    elements: {
-      bar: {
-        borderWidth: 2,
-      },
-    },
-    responsive: true,
+  //options for line chart
+  const options = {
+    responsive: false, 
+    maintainAspectRatio: false, 
     plugins: {
       legend: {
-        position: 'right',
+        position:'top',
       },
-      title: {
-        display: true,
-        text: 'Chart.js Horizontal Bar Chart',
+    },
+    scales: {
+      yAxes: {
+        beginAtZero: true,
       },
     },
   };
 
+
+  //everytime the timearray length changes we are rerendering the chart to account for that with new labels for nodes
+
+  useEffect(() => {
+
+    const labels = [];
+    
+    //dynamically updates the label for each node on line chart after the first uncached node
+    for (let i = 0; i < timeArray.length; i++) {
+
+      if (i === 0) {
+        labels.push('Starting Point');
+      }
+      else if(i === 1) {
+        labels.push('Uncached Data');
+      }
+
+      else {
+        labels.push('Cached data');
+      }
+    }
+    
+    setChartData({
+      labels: labels,
+      datasets: [
+        {
+          label: 'Response Times',
+          data: timeArray,
+          border: 'rgb(153,31,173)',
+          backgroundColor: 'rgba(153,31,173,0.4)', 
+        }
+      ]
+    });
+    console.log('useEffect timearray: ', timeArray);
+    console.log('chartdata length: ', Object.keys(chartData).length);
+  },[timeArray]);
+  
+  //instead of calling incremeneter inside the runquery we just call it everytime either of the times change
+
+  useEffect( () => {
+    // console.log('time to fetch: ', timeToFetch);
+    // console.log('cache fetch time: ', cacheFetchTime);
+    incrementer(timeToFetch[1], cacheFetchTime[0]);
+  },[timeToFetch]);
+
+  useEffect( () => {
+    // console.log('time to fetch: ', timeToFetch);
+    // console.log('cache fetch time: ', cacheFetchTime);
+    incrementer(timeToFetch[1], cacheFetchTime[0]);
+  },[cacheFetchTime]);
+
+
+  console.log('chartdata: ', chartData);
+
+  //function to incremement a counter so that the first element of the array 
+  //is the uncached time and it isnt ever repeated 
+  const incrementer = (uncachedData, cachedData) => {
+    // console.log('counter ', counter);
+    // console.log('cache data: ', cachedData, 'uncache data: ', uncachedData);
+    // console.log(typeof cachedData);
+    if(counter <= 2) {
+      counter++;
+    }else if(counter === 3) {
+      setTimeArray((timeArray) => [...timeArray, uncachedData ]);
+      //console.log('timeArrayIncrementor: ', timeArray);
+      counter++;
+    } else {
+      setTimeArray((timeArray) => [...timeArray, cachedData]);
+      //console.log('timeArrayIncrementor: ', timeArray);
+      counter++;
+    }
+  };
+
+  //useffect hook on dom content loaded the chart will be created
+  // useEffect(() => {
+  //   setChartData({
+  //     // type: 'horizontalBar',
+  //     labels: ['Uncached Data (ms)', 'Cached Data (ms)'],
+  //     datasets: [
+  //       {
+  //         label: 'Response Times',
+  //         data: [timeToFetch[1],cacheFetchTime],
+  //         border: 'rgb(153,31,173)',
+  //         backgroundColor: 'rgba(153,31,173,0.4)',
+  //       }
+  //     ]
+  //   });
+  // },[timeToFetch,cacheFetchTime]);
+
+
+  // const config = {
+  //   indexAxis: 'y',
+  //   elements: {
+  //     bar: {
+  //       borderWidth: 2,
+  //     },
+  //   },
+  //   responsive: true,
+  //   plugins: {
+  //     legend: {
+  //       position: 'right',
+  //     },
+  //     title: {
+  //       display: true,
+  //       text: 'Chart.js Horizontal Bar Chart',
+  //     },
+  //   },
+  // };
+
   //upon change of drop down after selection set new values for react states for etc...
   const handleChangeValorant = (event) => {
-    console.log(event.target.innerHTML);
+    //console.log(event.target.innerHTML);
     setQuery(event.target.innerHTML);
     setOutput('Query For Valorant');
     setQueryString(`
@@ -110,12 +202,12 @@ const Demo = () => {
     }
     `);
     setTimeToFetch([0, 0]);
-    setCacheFetchTime(0);
+    // setCacheFetchTime([0]);
     
   };
 
   const handleChangePokemon = (event) => {
-    console.log(event.target.innerHTML);
+    //console.log(event.target.innerHTML);
     setQuery(event.target.innerHTML);
     setOutput('Query For Pokemon');
     setQueryString(`
@@ -128,11 +220,11 @@ const Demo = () => {
       }
     }`);
     setTimeToFetch([0, 0]);
-    setCacheFetchTime(0);
+    // setCacheFetchTime([0]);
   };
 
   const handleChangeCities = (event) => {
-    console.log(event.target.innerHTML);
+    //console.log(event.target.innerHTML);
     setQuery(event.target.innerHTML);
     setOutput('Query For Cities');
     setQueryString(`
@@ -145,7 +237,7 @@ const Demo = () => {
       }
     }`);
     setTimeToFetch([0, 0]);
-    setCacheFetchTime(0);
+    // setCacheFetchTime([0]);
     
   };
 
@@ -155,18 +247,20 @@ const Demo = () => {
     startTime = performance.now();
 
     if(cache[queryString]){
-      console.log('accessing from local cache');
-      endTime = performance.now();
-      const totalRunTime = (endTime - startTime);
-      setCacheFetchTime(totalRunTime);
+      //console.log('accessing from local cache');
       setResult(JSON.stringify(cache[queryString,null,2]));
+      // incrementer(timeToFetch[1], cacheFetchTime);
+      endTime = performance.now();
+      console.log('startTime: ', startTime, 'endTime: ', endTime);
+      const totalRunTime = (endTime - startTime);
+      setCacheFetchTime([totalRunTime]);
       return cache[queryString];
     }
     else{
       // console.log('running query!');
     // console.log('queryString: ', queryString);
     // console.log('json ver: ', JSON.stringify(queryString));
-      console.log('not from cache');
+      //console.log('not from cache');
       await fetch('http://localhost:3000/graphql', {
         method: 'POST', 
         headers: {
@@ -184,24 +278,27 @@ const Demo = () => {
         .then((data) => {
         //update the second timer variable once fetch is finished 
           cache[queryString] = data;
-          console.log('cache:', cache);
+          //console.log('cache:', cache);
           // console.log('data: ', data);
           endTime = performance.now();
           const totalRunTime = (endTime - startTime);
           //update the react hook state for timetofetch
           setTimeToFetch([timeToFetch, totalRunTime]);
+          // setTimeToFetch([timeToFetch, totalRunTime]);
           //react hook for updating the new jsonified resulting query for render purposes
           // const space = JSON.stringify(data, null, 2);
           // console.log('space: ', space);
           // console.log(JSON.stringify(data, null, 2));
           setResult(JSON.stringify(data, null, 2));
-        // console.log('result',result);
+          // console.log('result',result);
+          // console.log('time to fetch at else statement: ',timeToFetch);
+          // incrementer(timeToFetch[1], cacheFetchTime);
+          // console.log('timeArray: ', timeArray);
         })
         .catch((err) => console.log('error on demo runQuery', err));
     }
-
-    
   };
+
 
   return (
     <div>
@@ -257,7 +354,7 @@ const Demo = () => {
 
 
       
-      <Bar options={config} data={chartData} />
+      <Line options={options} data={chartData} />
     
     </div>
   ); 
