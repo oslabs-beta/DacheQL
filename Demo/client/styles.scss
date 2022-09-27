@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
 $enable-grid-classes: false;
 $primary: #bde9e2;
-$secondary: #F7DBF0;
+$secondary: #f6c4ea;
 $third: #ECB390;
 $success: #198754;
 $danger: #dc3545;
@@ -14,63 +14,65 @@ $border-width: 1px;
 $btn-border-radius: .25rem;
 
 .enterbutton {
-    color: $dark;
+    color: white;
     background-color: $secondary;
     text-align: center;
-    text-decoration: none;
     margin: auto;
-    left: 45%;
     border-color: $info;
-    // height:27px;
-    // width: 75px;
-    font-size: 20px;
+    font-size: 40px;
     position: relative;
-    top: 420px;
+    top: 40vh;
     position: relative;
     -webkit-box-reflect: below -20px linear-gradient(transparent, rgba(0, 0, 0, .2));
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    left: 37vw;
 }
 
-.enterbutton:hover {
-    text-decoration: none;
-    background-color: $info;
-    
+.enterbutton span {
+    font-family: 'Alfa Slab One', cursive;
+    position: relative;
+    display: inline-block;
+    color: #fff;
+    text-transform: uppercase;
+    animation: waviy 5s infinite;
+    animation-delay: calc(.4s * var((--i)));
 }
-.result-query {
-    resize: none;
-    margin: 0px 0px 10px 10px;
-    border: none;
-    outline: none;
-    background-color: $dark;
-    font-family: Monospace;
-    width: calc(100% - 20px);
-    overflow: scroll;
-    color: #63de00;
-    margin: 10px 0px 0px 10px;
+
+// @keyframes waviy{
+//     0%,
+//     40%,
+//     100% {
+//         transform: translateY(0)
+//     }
+//     20% {
+//         transform: translateY(-20px)
+//     } 
+// }
+@keyframes waviy {
+
+    0%,
+    10% {
+            transform: rotateY(360deg)
+        }
+    80% {
+        transform: rotateY(360deg)
+    }
 }
-.selected-query{
-    resize: none;
-    margin: 0px 0px 10px 10px;
-    border: none;
-    outline: none;
-    background-color: $dark;
-    color: rgb(255, 255, 255);
-    font-family: Monospace;
-    width: calc(100% - 20px);
-    overflow: hidden;
-    margin: 10px 0px 0px 10px;
-}
+
 .landingpagetitle {
     font-family: 'Commissioner', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    top: 350px;
+    top: 30vh;
     
 }
 
 #logo {
     animation: fill 0.5s ease forwards 2.9s;
+    color: darkblue;
 }
 
 body {
@@ -83,6 +85,7 @@ body {
     stroke-dasharray: 590px;
     stroke-dashoffset: 590px;
     animation: line-anim 2s ease forwards;
+    background-color: #198754;
 }
 
 #logo path:nth-child(3){
@@ -126,14 +129,7 @@ body {
     }
 }
 
-@keyframes fill {
-    from{
-        fill: transparent;
-    }
-    to{
-        fill: $dark;
-    }
-}
+
 .nav-link {
     color: rgb(84, 92, 107);
 }
@@ -141,6 +137,31 @@ body {
 .navbar-brand {
     font-family: 'Commissioner', sans-serif;
     font-size: x-large;
+}
+.result-query {
+    resize: none;
+    margin: 0px 0px 10px 10px;
+    border: none;
+    outline: none;
+    background-color: $dark;
+    font-family: Monospace;
+    width: calc(100% - 20px);
+    overflow: scroll;
+    color: #63de00;
+    margin: 10px 0px 0px 10px;
+}
+
+.selected-query {
+    resize: none;
+    margin: 0px 0px 10px 10px;
+    border: none;
+    outline: none;
+    background-color: $dark;
+    color: rgb(255, 255, 255);
+    font-family: Monospace;
+    width: calc(100% - 20px);
+    overflow: hidden;
+    margin: 10px 0px 0px 10px;
 }
 .demo-query{
     margin-top: 30px;
@@ -170,29 +191,4 @@ body {
     position: absolute;
     width:fit-content
 }
-.enterbutton span {
-    font-family: 'Alfa Slab One', cursive;
-    position: relative;
-    display: inline-block;
-    color: #fff;
-    text-transform: uppercase;
-    animation: waviy 1s infinite;
-    animation-delay: calc(.1s * var(--i));
 
-}
-
-@keyframes waviy{
-
-    0%,
-    40%,
-    100% {
-        transform: translateY(0)
-    }
-
-    20% {
-        transform: translateY(-20px)
-    }
-    
-    
-    
-}
