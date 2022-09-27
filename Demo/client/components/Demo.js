@@ -33,6 +33,10 @@ const Demo = () => {
 
   //react hook for storing the state of whatever was fetched (will use to render on resulting query)
   const [result, setResult] = useState('');
+  
+  const clearCache = () => {
+
+  };
 
   //upon change of drop down after selection set new values for react states for etc...
   const handleChangeValorant = (event) => {
@@ -51,6 +55,11 @@ const Demo = () => {
     `);
     setTimeToFetch([0, 0]);
     setCacheFetchTime(0);
+    for(const key in cache){
+      if(cache[key]){
+        delete cache[key];
+      }
+    }
     
   };
 
@@ -69,6 +78,11 @@ const Demo = () => {
     }`);
     setTimeToFetch([0, 0]);
     setCacheFetchTime(0);
+    for(const key in cache){
+      if(cache[key]){
+        delete cache[key];
+      }
+    }
   };
 
   const handleChangeCities = (event) => {
@@ -86,7 +100,11 @@ const Demo = () => {
     }`);
     setTimeToFetch([0, 0]);
     setCacheFetchTime(0);
-    
+    for(const key in cache){
+      if(cache[key]){
+        delete cache[key];
+      }
+    }
   };
 
   let startTime; 
