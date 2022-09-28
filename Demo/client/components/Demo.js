@@ -31,6 +31,8 @@ ChartJS.register(
 const cache = {/*query: queried result => 10 most recent ones*/};
 //counter to keep track for our incrementer function globally declared
 let counter = 0;
+//global variable for labels 
+// let labels = [];
 
 const Demo = () => {
   
@@ -61,6 +63,12 @@ const Demo = () => {
 
   const [timeArray, setTimeArray] = useState([0]);
 
+  //react hook for a boolean value that the incrementor will accept 
+  const [booleanVal, setBooleanVal] = useState(false);
+
+  // //label hook 
+  // const [label, setLabel] = useState([]);
+
   //options for line chart
   const options = {
     responsive: false, 
@@ -89,13 +97,16 @@ const Demo = () => {
 
       if (i === 0) {
         labels.push('Starting Point');
+        // setLabel((label) => [...label, 'Starting Point']);
       }
       else if(i === 1) {
         labels.push('Uncached Data');
+        // setLabel((label) => [...label, 'Uncached Data']);
       }
 
       else {
         labels.push('Cached data');
+        // setLabel((label) => [...label, 'Cached Data']);
       }
     }
     
@@ -111,7 +122,7 @@ const Demo = () => {
       ]
     });
     console.log('useEffect timearray: ', timeArray);
-    console.log('chartdata length: ', Object.keys(chartData).length);
+    //console.log('chartdata length: ', Object.keys(chartData).length);
   },[timeArray]);
   
   //instead of calling incremeneter inside the runquery we just call it everytime either of the times change
@@ -119,13 +130,13 @@ const Demo = () => {
   useEffect( () => {
     // console.log('time to fetch: ', timeToFetch);
     // console.log('cache fetch time: ', cacheFetchTime);
-    incrementer(timeToFetch[1], cacheFetchTime[0]);
+    incrementer(timeToFetch[1], cacheFetchTime[0],booleanVal);
   },[timeToFetch]);
 
   useEffect( () => {
     // console.log('time to fetch: ', timeToFetch);
     // console.log('cache fetch time: ', cacheFetchTime);
-    incrementer(timeToFetch[1], cacheFetchTime[0]);
+    incrementer(timeToFetch[1], cacheFetchTime[0],booleanVal);
   },[cacheFetchTime]);
 
 
@@ -133,13 +144,19 @@ const Demo = () => {
 
   //function to incremement a counter so that the first element of the array 
   //is the uncached time and it isnt ever repeated 
-  const incrementer = (uncachedData, cachedData) => {
-    // console.log('counter ', counter);
+  const incrementer = (uncachedData, cachedData, bool) => {
     // console.log('cache data: ', cachedData, 'uncache data: ', uncachedData);
     // console.log(typeof cachedData);
-    if(counter <= 2) {
+    //control flow to check the state of the booleanval hook and then if its switched i will reassign counter to 0 to begin again
+    console.log('boolean after setting: ', bool);
+    if(bool === true) {
+      counter = 0;
+      setBooleanVal(false);
+    }
+    console.log('counter ', counter);
+    if(counter < 1) {
       counter++;
-    }else if(counter === 3) {
+    }else if(counter === 1) {
       setTimeArray((timeArray) => [...timeArray, uncachedData ]);
       //console.log('timeArrayIncrementor: ', timeArray);
       counter++;
@@ -202,7 +219,16 @@ const Demo = () => {
     }
     `);
     setTimeToFetch([0, 0]);
-    // setCacheFetchTime([0]);
+    setCacheFetchTime([0]);
+    //resets the time array when switching queries
+    setTimeArray([0]);
+    // setLabel([]);
+    //reset the chart render to its original state 
+    setChartData({
+      datasets: [],
+    });
+    setBooleanVal(true);
+    // labels = [];
     
   };
 
@@ -220,7 +246,16 @@ const Demo = () => {
       }
     }`);
     setTimeToFetch([0, 0]);
-    // setCacheFetchTime([0]);
+    setCacheFetchTime([0]);
+    //resets the time array when switching queries
+    setTimeArray([0]);
+    //reset the chart render to its original state 
+    setChartData({
+      datasets: [],
+    });
+    setBooleanVal(true);
+    // setLabel([]);
+    // labels = [];
   };
 
   const handleChangeCities = (event) => {
@@ -237,7 +272,16 @@ const Demo = () => {
       }
     }`);
     setTimeToFetch([0, 0]);
-    // setCacheFetchTime([0]);
+    setCacheFetchTime([0]);
+    //resets the time array when switching queries
+    setTimeArray([0]);
+    //reset the chart render to its original state 
+    setChartData({
+      datasets: [],
+    });
+    setBooleanVal(true);
+    // setLabel([]);
+    // labels = [];
     
   };
 
