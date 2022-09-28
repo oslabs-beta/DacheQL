@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.10.5](https://github.com/humanwhocodes/config-array/compare/v0.10.4...v0.10.5) (2022-09-21)
+
+
+### Bug Fixes
+
+* Improve caching to improve performance ([#50](https://github.com/humanwhocodes/config-array/issues/50)) ([8a7e8ab](https://github.com/humanwhocodes/config-array/commit/8a7e8ab499bcbb10d7cbdd676197fc686966a64e))
+
 ### [0.10.4](https://www.github.com/humanwhocodes/config-array/compare/v0.10.3...v0.10.4) (2022-07-29)
 
 
