@@ -3,15 +3,15 @@ const express = require('express');
 const expressGraphQL = require('express-graphql').graphqlHTTP;
 const schema = require('./schema/schema.js');
 const cors = require('cors');
-// const Redis = require('ioredis');
-// const redisController = require('./controllers/redisController');
+const Redis = require('ioredis');
 
-// const redis = new Redis({
-//   'port': 6379,
-//   'host': '127.0.0.1'
-// });
 
 const PORT = 3000;
+
+const redis = new Redis({
+  'port': 6379,
+  'host': '127.0.0.1'
+});
 
 const app = express();
 

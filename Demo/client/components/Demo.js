@@ -121,9 +121,6 @@ const Demo = () => {
       return cache[queryString];
     }
     else{
-      // console.log('running query!');
-    // console.log('queryString: ', queryString);
-    // console.log('json ver: ', JSON.stringify(queryString));
       console.log('not from cache');
       await fetch('http://localhost:3000/graphql', {
         method: 'POST', 
@@ -143,17 +140,11 @@ const Demo = () => {
         //update the second timer variable once fetch is finished 
           cache[queryString] = data;
           console.log('cache:', cache);
-          // console.log('data: ', data);
           endTime = performance.now();
           const totalRunTime = (endTime - startTime);
           //update the react hook state for timetofetch
           setTimeToFetch([timeToFetch, totalRunTime]);
-          //react hook for updating the new jsonified resulting query for render purposes
-          // const space = JSON.stringify(data, null, 2);
-          // console.log('space: ', space);
-          // console.log(JSON.stringify(data, null, 2));
           setResult(JSON.stringify(data, null, 2));
-        // console.log('result',result);
         })
         .catch((err) => console.log('error on demo runQuery', err));
     }
