@@ -15,7 +15,7 @@ const Homepage = () => {
       <Navigation id='navbar'></Navigation>
       <Row>
         <Col><div className='fs-1'>Introduction<Info /></div></Col>
-        <Col><Image className='img-fluid shadow-4' src={logo} width={'400vw'} height={'400vh'}></Image></Col>
+        <Col><Image className='img-fluid hover-shadow' src={logo} width={'400vw'} height={'400vh'}></Image></Col>
       </Row>
     </div>
   );

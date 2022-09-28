@@ -7,21 +7,6 @@ import LandingPage from './LandingPage.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
-  document.addEventListener('DOMContentLoaded', function(){
-    window.addEventListener('scroll', function () {
-      if (window.scrollY > 230) {
-        console.log('scrolling navbar sticking on top');
-        document.getElementById('navbar').classList.add('fixed-top');
-        // add padding top to show content behind navbar
-        const navbar_height = document.querySelector('.navbar').offsetHeight;
-        document.body.style.paddingTop = navbar_height + 'px';
-      } else {
-        document.getElementById('navbar').classList.remove('fixed-top');
-        // remove padding top from body
-        document.body.style.paddingTop = '0';
-      } 
-    });
-  }); 
 
   return (
     <BrowserRouter>
