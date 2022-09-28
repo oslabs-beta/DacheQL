@@ -1,39 +1,23 @@
 .homepage-container{
   font-family: 'Commissioner', sans-serif;
 }
-.fs-1{
-  text-align: center;
-  font-family: 'Commissioner', sans-serif;
-}
-.npm-logo{
-  height: 60px;
-  width: 120px;
-  text-align: center;
-}
 
 .navbar {
   /* background-color: rgb(133, 209, 234); */
   font-family: 'Commissioner', sans-serif;
   margin: 1px;
   /* margin-bottom: 10vh; */
-  /* left: 50%; */
-  margin-left: 50vw;
-  transform: translateX(-70%);
   font-size: large;
-  width: max-content;
-  
   display: flex;
-  justify-content: center;
+  justify-content: center; 
   align-items: center;
-  /* /* position: sticky; */
-  top: 0;
-  z-index: 5px;
+  position: sticky;
   @media screen and (max-width:960px){
     transition: 0.8s all ease;
   }
 }
 #navbar{
-  background-color: #FFF5E4;
+  background-color: #ffffff;
 }
 .navbar-logo{
   color: darkorange;
@@ -42,7 +26,6 @@
   text-transform: uppercase;
   /* opacity: 0; */
   transition: opacity .5s;
-
 }
 #brand-name{
   text-transform: uppercase;
@@ -64,7 +47,7 @@
   animation: textclip 5s ease infinite;
   display: inline-block;
   font-family: 'Bungee';
-  font-size: 2em;
+  font-size: 1em;
 }
 
 /* @keyframes textclip {

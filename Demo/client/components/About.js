@@ -7,13 +7,11 @@ import './styles/aboutStyles.css';
 import sandy from './assets/sandy.jpg';
 import andrew from './assets/andrew.png';
 import chunhao from './assets/chunhao.png';
-
+import ethan from './assets/ethan.png';
 const About = (props) => {
   return (
     <div className='member'>
-      <div id='navbar'>
-        <Navigation></Navigation>
-      </div>
+      <Navigation id='navbar'></Navigation>
       <Row >
         <Col>
           <Card className='team-card'>
@@ -35,7 +33,7 @@ const About = (props) => {
         </Col>
         <Col>
           <Card className='team-card'>
-            <Card.Img className='team-picture' src={sandy}></Card.Img>
+            <Card.Img className='team-picture' src={ethan}></Card.Img>
             <Card.Body>
 
               <Card.Link className='contact-icon' href='https://github.com/EthanChuang16'target="_blank" rel="noreferrer">

@@ -124,11 +124,8 @@ const Demo = () => {
 
   return (
     <div>
-      <div id='navbar'>
-        <Navigation></Navigation>
-      </div>
-
-      <Container className='card-container'>
+      <Navigation id='navbar'></Navigation>
+      <div className='card-container'>
         <div className='demo-query'>
           <Card.Text style={{ 'width': 'max-content','flex-direction': 'row', textShadow: '1px 1px 1px rgba(46, 46, 46, 0.62)' }}>Choose A Demo Query</Card.Text>
           <div className='demo-query-btns btn-group-vertical'>
@@ -199,7 +196,7 @@ const Demo = () => {
             </Card>
           </Col>
         </Row>
-      </Container>
+      </div>
 
     </div>
   ); 

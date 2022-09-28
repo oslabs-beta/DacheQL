@@ -2,12 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles.scss';
 import { Button } from 'react-bootstrap';
-
+import background from './assets/background-image.jpg'
+    
 const LandingPage = () => {
-  const letterStyle = () => {
-    return <span style="--i:1">G</span>;
-  };
-
+  // background image in body
+  document.body.style.backgroundImage = `url(${background})`
   return (
     <div className = "landingpage">
       <div className = 'landingpagetitle'>
@@ -51,7 +50,7 @@ const LandingPage = () => {
      
         </Button>
       </Link>
-    </div>
+      </div>
   );
 };
 
