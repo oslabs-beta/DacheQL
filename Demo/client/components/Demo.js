@@ -66,9 +66,6 @@ const Demo = () => {
   //react hook for a boolean value that the incrementor will accept 
   const [booleanVal, setBooleanVal] = useState(false);
 
-  // //label hook 
-  // const [label, setLabel] = useState([]);
-
   //options for line chart
   const options = {
     responsive: false, 
@@ -97,16 +94,13 @@ const Demo = () => {
 
       if (i === 0) {
         labels.push('Starting Point');
-        // setLabel((label) => [...label, 'Starting Point']);
       }
       else if(i === 1) {
         labels.push('Uncached Data');
-        // setLabel((label) => [...label, 'Uncached Data']);
       }
 
       else {
         labels.push('Cached data');
-        // setLabel((label) => [...label, 'Cached Data']);
       }
     }
     
@@ -148,7 +142,7 @@ const Demo = () => {
     // console.log('cache data: ', cachedData, 'uncache data: ', uncachedData);
     // console.log(typeof cachedData);
     //control flow to check the state of the booleanval hook and then if its switched i will reassign counter to 0 to begin again
-    console.log('boolean after setting: ', bool);
+    // console.log('boolean after setting: ', bool);
     if(bool === true) {
       counter = 0;
       setBooleanVal(false);
@@ -228,7 +222,6 @@ const Demo = () => {
       datasets: [],
     });
     setBooleanVal(true);
-    // labels = [];
     
   };
 
@@ -254,8 +247,6 @@ const Demo = () => {
       datasets: [],
     });
     setBooleanVal(true);
-    // setLabel([]);
-    // labels = [];
   };
 
   const handleChangeCities = (event) => {
@@ -280,9 +271,6 @@ const Demo = () => {
       datasets: [],
     });
     setBooleanVal(true);
-    // setLabel([]);
-    // labels = [];
-    
   };
 
   let startTime; 
