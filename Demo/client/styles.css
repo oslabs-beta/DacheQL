@@ -16,7 +16,7 @@
 
 .enterbutton:hover {
     text-decoration: none;
-    background-color: blue;
+    background-color: #1F3C88;
     
 }
 
@@ -37,7 +37,8 @@
 body {
     width: 100%;
     height: 100vh;
-    background-color: rgba(36, 42, 235, 0.618);
+    /* background-color: rgb(255, 255, 255); */
+    background-color: #1F3C88;
 }
 
 #logo path:nth-child(2){

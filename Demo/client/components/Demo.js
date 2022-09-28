@@ -5,6 +5,10 @@ import { DropdownButton, Dropdown, Button, Card, Container } from 'react-bootstr
 import Query from './Query';
 import Metrics from './Metrics';
 import DacheQL from '../../../library/dacheql';
+// import { Line } from 'react-chartjs-2';
+// import { Chart, registerables } from 'chart.js';
+// Chart.register(...registerables);
+// import Trend from 'react-trend';
 
 
 // import Redis from 'ioredis';
@@ -12,7 +16,6 @@ import DacheQL from '../../../library/dacheql';
 const cache = {};
 
 const Demo = () => {
-  
   //react hook for whatever displaying the query in Selected query box but in html format
   const [query, setQuery] = useState('Select Query');
 
@@ -30,6 +33,10 @@ const Demo = () => {
 
   //react hook for storing the state of whatever was fetched (will use to render on resulting query)
   const [result, setResult] = useState('');
+  
+  const clearCache = () => {
+
+  };
 
   //upon change of drop down after selection set new values for react states for etc...
   const handleChangeValorant = (event) => {
@@ -48,6 +55,11 @@ const Demo = () => {
     `);
     setTimeToFetch([0, 0]);
     setCacheFetchTime(0);
+    for(const key in cache){
+      if(cache[key]){
+        delete cache[key];
+      }
+    }
     
   };
 
@@ -66,6 +78,11 @@ const Demo = () => {
     }`);
     setTimeToFetch([0, 0]);
     setCacheFetchTime(0);
+    for(const key in cache){
+      if(cache[key]){
+        delete cache[key];
+      }
+    }
   };
 
   const handleChangeCities = (event) => {
@@ -83,7 +100,11 @@ const Demo = () => {
     }`);
     setTimeToFetch([0, 0]);
     setCacheFetchTime(0);
-    
+    for(const key in cache){
+      if(cache[key]){
+        delete cache[key];
+      }
+    }
   };
 
   let startTime; 
@@ -96,12 +117,10 @@ const Demo = () => {
       endTime = performance.now();
       const totalRunTime = (endTime - startTime);
       setCacheFetchTime(totalRunTime);
+      setResult(JSON.stringify(cache[queryString], null, 2));
       return cache[queryString];
     }
     else{
-      // console.log('running query!');
-    // console.log('queryString: ', queryString);
-    // console.log('json ver: ', JSON.stringify(queryString));
       console.log('not from cache');
       await fetch('http://localhost:3000/graphql', {
         method: 'POST', 
@@ -121,22 +140,14 @@ const Demo = () => {
         //update the second timer variable once fetch is finished 
           cache[queryString] = data;
           console.log('cache:', cache);
-          // console.log('data: ', data);
           endTime = performance.now();
           const totalRunTime = (endTime - startTime);
           //update the react hook state for timetofetch
           setTimeToFetch([timeToFetch, totalRunTime]);
-          //react hook for updating the new jsonified resulting query for render purposes
-          // const space = JSON.stringify(data, null, 2);
-          // console.log('space: ', space);
-          // console.log(JSON.stringify(data, null, 2));
           setResult(JSON.stringify(data, null, 2));
-        // console.log('result',result);
         })
         .catch((err) => console.log('error on demo runQuery', err));
     }
-
-    
   };
 
   return (
