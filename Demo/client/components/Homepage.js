@@ -1,18 +1,22 @@
 import React from 'react';
 import Navigation from './Navigation.js';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Image } from 'react-bootstrap';
 import Info from './homepageComps/Info.js';
+import logo from './assets/logo.png';
+
 const Homepage = () => {
+
+  // removing background image when entered
+  console.log('entered homepage');
+  document.body.style.backgroundImage = '';
+  
   return (
     <div>
-      <Container className='homepage-container'>
-        <Row>
-          <Col><Navigation></Navigation></Col>
-        </Row>
-        <Row>
-          <Col><div className='fs-1'>Introduction<Info></Info></div></Col>
-        </Row>
-      </Container>
+      <Navigation id='navbar'></Navigation>
+      <Row>
+        <Col><div className='fs-1'>Introduction<Info /></div></Col>
+        <Col><Image className='img-fluid hover-shadow' src={logo} width={'400vw'} height={'400vh'}></Image></Col>
+      </Row>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Navigation from './Navigation';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { DropdownButton, Dropdown, Button, Card, Container } from 'react-bootstrap';
+import { DropdownButton, Dropdown, Button, Card, Container, Row, Col, Text } from 'react-bootstrap';
 import Query from './Query';
 import Metrics from './Metrics';
 import DacheQL from '../../../library/dacheql';
@@ -37,6 +37,8 @@ const Demo = () => {
   const clearCache = () => {
 
   };
+
+  const [isLoading, setIsLoading] = useState(false);
 
   //upon change of drop down after selection set new values for react states for etc...
   const handleChangeValorant = (event) => {
@@ -152,55 +154,82 @@ const Demo = () => {
 
   return (
     <div>
-      <Navigation></Navigation>
-      <Button onClick = {runQuery}>Run Query</Button>
-      <Card style={{color: '#000', width: '20rem', height: '20rem'}}>
-        <Card.Body>
-          <Card.Title>
-            Selected Query:
-          </Card.Title>
-          <Card.Text>
-            <Query output = {output} />
-          </Card.Text>
-        </Card.Body>
-      </Card>
-      <Dropdown  >
-        <Dropdown.Toggle variant = "secondary" id ="query-dropdown">
-          {query}
-        </Dropdown.Toggle>
+      <Navigation id='navbar'></Navigation>
+      <div className='card-container'>
+        <div className='demo-query'>
+          <Card.Text style={{ 'width': 'max-content','flex-direction': 'row', textShadow: '1px 1px 1px rgba(46, 46, 46, 0.62)' }}>Choose A Demo Query</Card.Text>
+          <div className='demo-query-btns btn-group-vertical'>
+            <Button   
+              className='demo-query-btn' href = "#/action-1" onClick = {handleChangeValorant} style={{boxShadow: '2px 2px 2px rgba(46, 46, 46, 0.62)'}}>Query For Valorant</Button>
+            <Button  
+              className='demo-query-btn' href = "#/action-2" onClick = {handleChangePokemon} style={{boxShadow: '2px 2px 2px rgba(46, 46, 46, 0.62)'}}>Query For Pokemon</Button>
+            <Button  
+              className='demo-query-btn' href="#/action-3" onClick={handleChangeCities} style={{boxShadow: '2px 2px 2px rgba(46, 46, 46, 0.62)'}}>Query For Cities</Button>
+            <Button  
+              className='demo-query-btn' id='runQueBtn' onClick={runQuery}style={{boxShadow: '2px 2px 2px rgba(46, 46, 46, 0.62)'}}>{isLoading ? 'Loading…' : 'Run Query'}</Button>
+          </div>
+        </div>
+        <Row>
+          <Col>
+            <Card style={{ color: '#000', width: '20rem', height: '20rem' }} className='selected-query'>
+              <Card.Body>
+                <Card.Title className='selected-query'>
+                  Selected Query:
+                </Card.Title>
+              
+                <Card.Text className='selected-query'>
+                  <Query output = {output} />
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col>
+            <Card className='result-query'style={{color: '#000', width: '25rem', height: '20rem'}}>
+              <Card.Body>
+                <Card.Title className='result-query'>
+                  Resulting Query:
+                </Card.Title>
+                <Card.Text className='result-query'>
+                  <pre>
+                    <code>{result}</code>
+                  </pre>
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
 
-        <Dropdown.Menu>
-          <Dropdown.Item href = "#/action-1" onClick = {handleChangeValorant} >Query For Valorant</Dropdown.Item>
-          <Dropdown.Item href = "#/action-2" onClick = {handleChangePokemon} >Query For Pokemon</Dropdown.Item>
-          <Dropdown.Item href = "#/action-3" onClick = {handleChangeCities} >Query For Cities</Dropdown.Item>
-        </Dropdown.Menu>
-      </Dropdown>
+        <Row>
+          <Col>
+            <Card style={{color: '#000', width: '20rem', height: '20rem'}}>
+              <Card.Body>
+                <Card.Title>
+                    Metrics
+                </Card.Title>
+                <Card.Text>
+                  <Metrics
+                    timeToFetch={timeToFetch}
+                    cacheFetchTime = {cacheFetchTime}
+                  />
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col>
+            <Card style={{color: '#000', width: '25rem', height: '20rem'}}>
+              <Card.Body>
+                <Card.Title>
+                    Graph
+                </Card.Title>
+                <Card.Text>
+                  Graph
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      </div>
 
-      <Card style={{color: '#000', width: '20rem', height: '20rem'}}>
-        <Card.Body>
-          <Card.Title>
-            Metrics
-          </Card.Title>
-          <Card.Text>
-            <Metrics
-              timeToFetch = {timeToFetch}
-              cacheFetchTime = {cacheFetchTime} />
-          </Card.Text>
-        </Card.Body>
-      </Card>
-
-      <Card className='result-query'style={{color: '#000', width: '20rem', height: '20rem'}}>
-        <Card.Body>
-          <Card.Title>
-            Resulting Query
-          </Card.Title>
-          <Card.Text>
-            <pre>
-              <code>{result}</code>
-            </pre>
-          </Card.Text>
-        </Card.Body>
-      </Card>
     </div>
   ); 
 };

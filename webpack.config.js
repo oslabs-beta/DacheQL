@@ -42,9 +42,22 @@ module.exports = {
           loader: 'file-loader',
           options: {
             name: 'public/icons/[name].[ext]'
-          }
+          },
         }
       },
+      {
+        test: /\.mp4$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'public/videos/[name].[ext]',
+              outputPath: 'video'
+            }
+          }
+        ]
+      },
+    
       {
         test: /\.s?[ac]ss$/,
         use: [
