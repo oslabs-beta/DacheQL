@@ -160,6 +160,7 @@ body {
     overflow: scroll;
     color: #63de00;
     margin: 10px 0px 0px 10px;
+    text-align: left;
 }
 
 .selected-query {
@@ -173,6 +174,7 @@ body {
     width: calc(100% - 20px);
     overflow: hidden;
     margin: 10px 0px 0px 10px;
+    text-align: left;
 }
 .demo-query{
     flex-direction: column;

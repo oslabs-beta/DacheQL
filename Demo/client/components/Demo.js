@@ -154,7 +154,7 @@ const Demo = () => {
             </Card>
           </Col>
           <Col>
-            <Card className='result-query'style={{color: '#000', width: '30rem', height: '20rem'}}>
+            <Card className='result-query'style={{color: '#000', width: '25rem', height: '20rem'}}>
               <Card.Body>
                 <Card.Title className='result-query'>
                   Resulting Query:
@@ -184,7 +184,7 @@ const Demo = () => {
             </Card>
           </Col>
           <Col>
-            <Card style={{color: '#000', width: '30rem', height: '20rem'}}>
+            <Card style={{color: '#000', width: '25rem', height: '20rem'}}>
               <Card.Body>
                 <Card.Title>
                     Gragh
