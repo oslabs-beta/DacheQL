@@ -1,6 +1,4 @@
-const pokemon = require('./pokemonData');
-const valorant = require('./valorantData');
-const cities = require('./cityData');
+const db = require('../models/models');
 
 const { 
   GraphQLSchema, 
@@ -43,27 +41,39 @@ const Pokemon = new GraphQLObjectType({
     name:  { type: GraphQLNonNull(GraphQLString)},
     type:  { type: GraphQLNonNull(GraphQLString)},
     ability:  { type: GraphQLNonNull(GraphQLString)},
-    entryNumber:  { type: GraphQLNonNull(GraphQLString)},
   })
 });
 
 const RootQueryType = new GraphQLObjectType({
   name: 'Query', 
   description: 'Root Query', 
+  type: 'Query',
   fields: () => ({
     valorant: {
       type: new GraphQLList(Valorant), 
-      resolve: () => valorant
+      resolve: async (parentValue, args) => {
+        const query = `SELECT * FROM valorant`;
+        const data = await db.query(query);
+        return data.rows;
+      }
     },
     cities: {
       type: new GraphQLList(City), 
-      resolve: () => cities
+      resolve: async (parentValue, args) => {
+        const query = `SELECT * FROM cities`;
+        const data = await db.query(query);
+        return data.rows;
+      }
     },
     pokemon: {
       type: new GraphQLList(Pokemon), 
-      resolve: () => pokemon
+      resolve: async (parentValue, args) => {
+        const query = `SELECT * FROM pokemon`;
+        const data = await db.query(query);
+        return data.rows;
+      }
     }
-  })
+  }),
 });
 
 const schema = new GraphQLSchema({

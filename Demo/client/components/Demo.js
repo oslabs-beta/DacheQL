@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Navigation from './Navigation';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { DropdownButton, Dropdown, Button, Card, Container } from 'react-bootstrap';
+import { DropdownButton, Dropdown, Button, Card, Container, Row, Col, Text } from 'react-bootstrap';
 import Query from './Query';
 import Metrics from './Metrics';
 import DacheQL from '../../../library/dacheql';
@@ -35,7 +35,6 @@ let counter = 0;
 // let labels = [];
 
 const Demo = () => {
-  
   //react hook for whatever displaying the query in Selected query box but in html format
   const [query, setQuery] = useState('Select Query');
 
@@ -53,6 +52,12 @@ const Demo = () => {
 
   //react hook for storing the state of whatever was fetched (will use to render on resulting query)
   const [result, setResult] = useState('');
+  
+  const clearCache = () => {
+
+  };
+
+  const [isLoading, setIsLoading] = useState(false);
 
   //react hook for building the chartjs graph
   const [chartData, setChartData] = useState({
@@ -222,6 +227,11 @@ const Demo = () => {
       datasets: [],
     });
     setBooleanVal(true);
+    for(const key in cache){
+      if(cache[key]){
+        delete cache[key];
+      }
+    }
     
   };
 
@@ -247,6 +257,11 @@ const Demo = () => {
       datasets: [],
     });
     setBooleanVal(true);
+    for(const key in cache){
+      if(cache[key]){
+        delete cache[key];
+      }
+    }
   };
 
   const handleChangeCities = (event) => {
@@ -271,6 +286,11 @@ const Demo = () => {
       datasets: [],
     });
     setBooleanVal(true);
+    for(const key in cache){
+      if(cache[key]){
+        delete cache[key];
+      }
+    }
   };
 
   let startTime; 
@@ -286,13 +306,11 @@ const Demo = () => {
       console.log('startTime: ', startTime, 'endTime: ', endTime);
       const totalRunTime = (endTime - startTime);
       setCacheFetchTime([totalRunTime]);
+      setResult(JSON.stringify(cache[queryString], null, 2));
       return cache[queryString];
     }
     else{
-      // console.log('running query!');
-    // console.log('queryString: ', queryString);
-    // console.log('json ver: ', JSON.stringify(queryString));
-      //console.log('not from cache');
+      console.log('not from cache');
       await fetch('http://localhost:3000/graphql', {
         method: 'POST', 
         headers: {
@@ -310,22 +328,12 @@ const Demo = () => {
         .then((data) => {
         //update the second timer variable once fetch is finished 
           cache[queryString] = data;
-          //console.log('cache:', cache);
-          // console.log('data: ', data);
+          console.log('cache:', cache);
           endTime = performance.now();
           const totalRunTime = (endTime - startTime);
           //update the react hook state for timetofetch
           setTimeToFetch([timeToFetch, totalRunTime]);
-          // setTimeToFetch([timeToFetch, totalRunTime]);
-          //react hook for updating the new jsonified resulting query for render purposes
-          // const space = JSON.stringify(data, null, 2);
-          // console.log('space: ', space);
-          // console.log(JSON.stringify(data, null, 2));
           setResult(JSON.stringify(data, null, 2));
-          // console.log('result',result);
-          // console.log('time to fetch at else statement: ',timeToFetch);
-          // incrementer(timeToFetch[1], cacheFetchTime);
-          // console.log('timeArray: ', timeArray);
         })
         .catch((err) => console.log('error on demo runQuery', err));
     }
@@ -334,60 +342,82 @@ const Demo = () => {
 
   return (
     <div>
-      <Navigation></Navigation>
-      <Button onClick = {runQuery}>Run Query</Button>
-      <Card style={{color: '#000', width: '20rem', height: '20rem'}}>
-        <Card.Body>
-          <Card.Title>
-            Selected Query:
-          </Card.Title>
-          <Card.Text>
-            <Query output = {output} />
-          </Card.Text>
-        </Card.Body>
-      </Card>
-      <Dropdown  >
-        <Dropdown.Toggle variant = "secondary" id ="query-dropdown">
-          {query}
-        </Dropdown.Toggle>
+      <Navigation id='navbar'></Navigation>
+      <div className='card-container'>
+        <div className='demo-query'>
+          <Card.Text style={{ 'width': 'max-content','flex-direction': 'row', textShadow: '1px 1px 1px rgba(46, 46, 46, 0.62)' }}>Choose A Demo Query</Card.Text>
+          <div className='demo-query-btns btn-group-vertical'>
+            <Button   
+              className='demo-query-btn' href = "#/action-1" onClick = {handleChangeValorant} style={{boxShadow: '2px 2px 2px rgba(46, 46, 46, 0.62)'}}>Query For Valorant</Button>
+            <Button  
+              className='demo-query-btn' href = "#/action-2" onClick = {handleChangePokemon} style={{boxShadow: '2px 2px 2px rgba(46, 46, 46, 0.62)'}}>Query For Pokemon</Button>
+            <Button  
+              className='demo-query-btn' href="#/action-3" onClick={handleChangeCities} style={{boxShadow: '2px 2px 2px rgba(46, 46, 46, 0.62)'}}>Query For Cities</Button>
+            <Button  
+              className='demo-query-btn' id='runQueBtn' onClick={runQuery}style={{boxShadow: '2px 2px 2px rgba(46, 46, 46, 0.62)'}}>{isLoading ? 'Loading…' : 'Run Query'}</Button>
+          </div>
+        </div>
+        <Row>
+          <Col>
+            <Card style={{ color: '#000', width: '20rem', height: '20rem' }} className='selected-query'>
+              <Card.Body>
+                <Card.Title className='selected-query'>
+                  Selected Query:
+                </Card.Title>
+              
+                <Card.Text className='selected-query'>
+                  <Query output = {output} />
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col>
+            <Card className='result-query'style={{color: '#000', width: '25rem', height: '20rem'}}>
+              <Card.Body>
+                <Card.Title className='result-query'>
+                  Resulting Query:
+                </Card.Title>
+                <Card.Text className='result-query'>
+                  <pre>
+                    <code>{result}</code>
+                  </pre>
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
 
-        <Dropdown.Menu>
-          <Dropdown.Item href = "#/action-1" onClick = {handleChangeValorant} >Query For Valorant</Dropdown.Item>
-          <Dropdown.Item href = "#/action-2" onClick = {handleChangePokemon} >Query For Pokemon</Dropdown.Item>
-          <Dropdown.Item href = "#/action-3" onClick = {handleChangeCities} >Query For Cities</Dropdown.Item>
-        </Dropdown.Menu>
-      </Dropdown>
+        <Row>
+          <Col>
+            <Card style={{color: '#000', width: '20rem', height: '20rem'}}>
+              <Card.Body>
+                <Card.Title>
+                    Metrics
+                </Card.Title>
+                <Card.Text>
+                  <Metrics
+                    timeToFetch={timeToFetch}
+                    cacheFetchTime = {cacheFetchTime}
+                  />
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col>
+            <Card style={{color: '#000', width: '25rem', height: '20rem'}}>
+              <Card.Body>
+                <Card.Title>
+                  <Line options = {options} data = {chartData}/>
+                </Card.Title>
+                <Card.Text>
+                  Graph
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      </div>
 
-      <Card style={{color: '#000', width: '20rem', height: '20rem'}}>
-        <Card.Body>
-          <Card.Title>
-            Metrics
-          </Card.Title>
-          <Card.Text>
-            <Metrics
-              timeToFetch = {timeToFetch}
-              cacheFetchTime = {cacheFetchTime} />
-          </Card.Text>
-        </Card.Body>
-      </Card>
-
-      <Card className='result-query'style={{color: '#000', width: '20rem', height: '20rem'}}>
-        <Card.Body>
-          <Card.Title>
-            Resulting Query
-          </Card.Title>
-          <Card.Text>
-            <pre>
-              <code>{result}</code>
-            </pre>
-          </Card.Text>
-        </Card.Body>
-      </Card>
-
-
-      
-      <Line options={options} data={chartData} />
-    
     </div>
   ); 
 };
