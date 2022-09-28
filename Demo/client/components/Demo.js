@@ -113,43 +113,68 @@ const Demo = () => {
   let endTime;
   const runQuery = async() =>{
     startTime = performance.now();
-
-    if(cache[queryString]){
-      console.log('accessing from local cache');
-      endTime = performance.now();
-      const totalRunTime = (endTime - startTime);
-      setCacheFetchTime(totalRunTime);
-      setResult(JSON.stringify(cache[queryString], null, 2));
-      return cache[queryString];
-    }
-    else{
-      console.log('not from cache');
-      await fetch('http://localhost:3000/graphql', {
-        method: 'POST', 
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-        },
-        body: JSON.stringify({
-          query: queryString,
-        })
+    await fetch('http://localhost:3000/graphql', {
+      method: 'POST', 
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify({
+        query: queryString,
       })
-        .then((res) => {
-          return res.json();
-        })
+    })
+      .then((res) => {
+        return res.json();
+      })
   
-        .then((data) => {
+      .then((data) => {
         //update the second timer variable once fetch is finished 
-          cache[queryString] = data;
-          console.log('cache:', cache);
-          endTime = performance.now();
-          const totalRunTime = (endTime - startTime);
-          //update the react hook state for timetofetch
-          setTimeToFetch([timeToFetch, totalRunTime]);
-          setResult(JSON.stringify(data, null, 2));
-        })
-        .catch((err) => console.log('error on demo runQuery', err));
-    }
+        cache[queryString] = data;
+        console.log('cache:', cache);
+        endTime = performance.now();
+        const totalRunTime = (endTime - startTime);
+        //update the react hook state for timetofetch
+        setTimeToFetch([timeToFetch, totalRunTime]);
+        setResult(JSON.stringify(data, null, 2));
+      })
+      .catch((err) => console.log('error on demo runQuery', err));
+
+    // if(cache[queryString]){
+    //   console.log('accessing from local cache');
+    //   endTime = performance.now();
+    //   const totalRunTime = (endTime - startTime);
+    //   setCacheFetchTime(totalRunTime);
+    //   setResult(JSON.stringify(cache[queryString], null, 2));
+    //   return cache[queryString];
+    // }
+    // else{
+    //   console.log('not from cache');
+    //   await fetch('http://localhost:3000/graphql', {
+    //     method: 'POST', 
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //       'Accept': 'application/json',
+    //     },
+    //     body: JSON.stringify({
+    //       query: queryString,
+    //     })
+    //   })
+    //     .then((res) => {
+    //       return res.json();
+    //     })
+  
+    //     .then((data) => {
+    //     //update the second timer variable once fetch is finished 
+    //       cache[queryString] = data;
+    //       console.log('cache:', cache);
+    //       endTime = performance.now();
+    //       const totalRunTime = (endTime - startTime);
+    //       //update the react hook state for timetofetch
+    //       setTimeToFetch([timeToFetch, totalRunTime]);
+    //       setResult(JSON.stringify(data, null, 2));
+    //     })
+    //     .catch((err) => console.log('error on demo runQuery', err));
+    // }
   };
 
   return (
