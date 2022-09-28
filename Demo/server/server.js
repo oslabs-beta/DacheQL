@@ -5,7 +5,6 @@ const schema = require('./schema/schema.js');
 const cors = require('cors');
 // const Redis = require('ioredis');
 
-
 const PORT = 3000;
 
 // const redis = new Redis({
