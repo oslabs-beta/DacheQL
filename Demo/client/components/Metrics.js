@@ -2,8 +2,9 @@ import React from 'react';
 
 const Metrics = (props) =>{
   const { timeToFetch, cacheFetchTime } = props;
-  console.log('props' ,props);
-  console.log('timetofetch',timeToFetch);
+  //console.log('props' ,props);
+  //console.log('timetofetch',timeToFetch);
+  console.log('cache fetchTime', cacheFetchTime);
   return(
     <>
       <div>
@@ -14,7 +15,7 @@ const Metrics = (props) =>{
           </div>
         </div>
         <div className='cache-cleared-div'>
-                  Cached Runtime: {cacheFetchTime.toFixed(2)} ms
+                  Cached Runtime: {cacheFetchTime[0].toFixed(2)} ms
         </div>
       </div>
     </>
