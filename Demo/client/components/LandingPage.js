@@ -2,11 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles.scss';
 import { Button } from 'react-bootstrap';
-import background from './assets/background-image.jpg'
+import background from './assets/background-image.jpg';
     
 const LandingPage = () => {
   // background image in body
-  document.body.style.backgroundImage = `url(${background})`
+  document.body.style.backgroundImage = `url(${background})`;
   return (
     <div className = "landingpage">
       <div className = 'landingpagetitle'>

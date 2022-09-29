@@ -354,12 +354,12 @@ const Demo = () => {
             <Button  
               className='demo-query-btn' href="#/action-3" onClick={handleChangeCities} style={{boxShadow: '2px 2px 2px rgba(46, 46, 46, 0.62)'}}>Query For Cities</Button>
             <Button  
-              className='demo-query-btn' id='runQueBtn' onClick={runQuery}style={{boxShadow: '2px 2px 2px rgba(46, 46, 46, 0.62)'}}>{isLoading ? 'Loading…' : 'Run Query'}</Button>
+              className='demo-query-btn' id='runQueBtn' onClick={runQuery}style={{boxShadow: '2px 2px 2px #E65C4F'}}>{isLoading ? 'Loading…' : 'Run Query'}</Button>
           </div>
         </div>
         <Row>
           <Col>
-            <Card style={{ color: '#000', width: '20rem', height: '20rem' }} className='selected-query'>
+            <Card style={{ color: '#000', width: '20rem', height: '20rem', right: '10px' }} className='selected-query'>
               <Card.Body>
                 <Card.Title className='selected-query'>
                   Selected Query:
@@ -372,7 +372,7 @@ const Demo = () => {
             </Card>
           </Col>
           <Col>
-            <Card className='result-query'style={{color: '#000', width: '25rem', height: '20rem'}}>
+            <Card className='result-query'style={{color: '#000', width: '25rem', height: '20rem', top: '10px'}}>
               <Card.Body>
                 <Card.Title className='result-query'>
                   Resulting Query:
@@ -389,7 +389,7 @@ const Demo = () => {
 
         <Row>
           <Col>
-            <Card style={{color: '#000', width: '20rem', height: '20rem'}}>
+            <Card style={{color: '#000', width: '20rem', height: '20rem', top:'40px'}}>
               <Card.Body>
                 <Card.Title>
                     Metrics
@@ -404,7 +404,7 @@ const Demo = () => {
             </Card>
           </Col>
           <Col>
-            <Card style={{color: '#000', width: '25rem', height: '20rem'}}>
+            <Card style={{color: '#000', width: '25rem', height: '20rem', top:'40px'}}>
               <Card.Body>
                 <Card.Title>
                   <Line options = {options} data = {chartData}/>
