@@ -1,5 +1,5 @@
 import { Container, Row, Col, Image } from 'react-bootstrap';
-import logo from '../assets/logo.png';
+import runpig from '../assets/runpig.png';
 import { Link } from 'react-router-dom';
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -20,17 +20,20 @@ const Info = () => {
         <Col id='intro'>
           {/* <img src={logoPic}></img> */}
           <h1>Introducing DacheQL </h1>
-          <h5>An open-source developer tool that leverages the pinpoint accuracy of GraphQL’s queries and combines it with LRU and LFU caching to further expedite your website’s query efficiency</h5>
-          <h2>Blazingly Fast</h2>
-          <h5>Our caching methods provide fast access to information in constant time - O(1)</h5>
-          <h2>Efficient Memory Usage</h2>
-          <h5>We store your cached information for you in our own database and prevent excessive information from being called from the API</h5>
-          <h2>Ease of Use</h2>
-          <h5>Our tool is easy to install and apply to your coding base</h5>
+          <h5>An open-source developer tool that leverages the pinpoint accuracy of GraphQL’s queries and implements caching to improve your website’s query efficiency</h5>
+          <div id='underintro'>
+            <h2>Blazingly Fast</h2>
+            <h5>Our caching methods provide fast access to information in constant time - O(1)</h5>
+            <h2>Efficient Memory Usage</h2>
+            <h5>We store your cached information for you in our own database and prevent excessive information from being called from the API</h5>
+            <h2>Ease of Use</h2>
+            <h5>Our tool is easy to install and apply to your coding base</h5>
+          </div>
+          
           {/* <div className='introtext'>DacheQL is an open source, lightweight JavaScript library providing a client/server side caching
             solution and cache invalidation for GraphQL.</div> */}
         </Col>
-        <Col><Image className='img-fluid hover-shadow' src={logo} width={'500vw'} height={'500vh'}></Image></Col>
+        <Col className='piglogo'><Image className='img-fluid hover-shadow' src={runpig} width={'500vw'} height={'500vh'}></Image></Col>
       </Row>
       {/* <Row>
           <div className='fs-4'>

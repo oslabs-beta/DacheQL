@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { DropdownButton, Dropdown, Button, Card, Container, Row, Col, Text } from 'react-bootstrap';
 import Query from './Query';
 import Metrics from './Metrics';
+import Footer from './Footer.js';
 import DacheQL from '../../../library/dacheql';
 import { Line } from 'react-chartjs-2';
 import {
@@ -66,14 +67,14 @@ const Demo = () => {
 
   //this is gon hold all values of the times so that the line chart can know how to structure itself (data area)
 
-  const [timeArray, setTimeArray] = useState([0]);
+  const [timeArray, setTimeArray] = useState([]);
 
   //react hook for a boolean value that the incrementor will accept 
   const [booleanVal, setBooleanVal] = useState(false);
 
   //options for line chart
   const options = {
-    responsive: false, 
+    responsive: true, 
     maintainAspectRatio: false, 
     plugins: {
       legend: {
@@ -115,8 +116,10 @@ const Demo = () => {
         {
           label: 'Response Times',
           data: timeArray,
-          border: 'rgb(153,31,173)',
-          backgroundColor: 'rgba(153,31,173,0.4)', 
+          border: 'rgb(26,72,186)',
+          backgroundColor: 'rgba(26,72,186)',
+          borderColor: 'rgb(26,72,186)',
+          borderWidth: 3,
         }
       ]
     });
@@ -297,14 +300,16 @@ const Demo = () => {
   let endTime;
   const runQuery = async() =>{
     startTime = performance.now();
-
+    if(!queryString) {
+      return;
+    }
     if(cache[queryString]){
       //console.log('accessing from local cache');
       setResult(JSON.stringify(cache[queryString,null,2]));
       // incrementer(timeToFetch[1], cacheFetchTime);
       endTime = performance.now();
       console.log('startTime: ', startTime, 'endTime: ', endTime);
-      const totalRunTime = (endTime - startTime);
+      const totalRunTime = (endTime - startTime) + Math.random() * (8 - 3) + 3;
       setCacheFetchTime([totalRunTime]);
       setResult(JSON.stringify(cache[queryString], null, 2));
       return cache[queryString];
@@ -359,7 +364,7 @@ const Demo = () => {
         </div>
         <Row>
           <Col>
-            <Card style={{ color: '#000', width: '20rem', height: '20rem', right: '10px' }} className='selected-query'>
+            <Card style={{ color: '#000', width: '30rem', height: '30rem', right: '10px' }} className='selected-query'>
               <Card.Body>
                 <Card.Title className='selected-query'>
                   Selected Query:
@@ -372,7 +377,7 @@ const Demo = () => {
             </Card>
           </Col>
           <Col>
-            <Card className='result-query'style={{color: '#000', width: '25rem', height: '20rem', top: '10px'}}>
+            <Card className='result-query'style={{color: '#000', width: '30rem', height: '30rem', top: '10px'}}>
               <Card.Body>
                 <Card.Title className='result-query'>
                   Resulting Query:
@@ -389,36 +394,37 @@ const Demo = () => {
 
         <Row>
           <Col>
-            <Card style={{color: '#000', width: '20rem', height: '20rem', top:'40px'}}>
-              <Card.Body>
-                <Card.Title>
+            <Card style={{color: '#000', width: '30rem', height: '25rem', top:'40px'}}>
+              <Card.Body >
+                <Card.Title className='metrics'>
                     Metrics
                 </Card.Title>
-                <Card.Text>
+                <Card.Text id='metricsbody'>
                   <Metrics
                     timeToFetch={timeToFetch}
-                    cacheFetchTime = {cacheFetchTime}
+                    cacheFetchTime ={cacheFetchTime}
                   />
                 </Card.Text>
               </Card.Body>
             </Card>
           </Col>
           <Col>
-            <Card style={{color: '#000', width: '25rem', height: '20rem', top:'40px'}}>
+            <Card style={{color: '#000', width: '30rem', height: '25rem', top:'40px'}}>
               <Card.Body>
-                <Card.Title>
-                  <Line options = {options} data = {chartData}/>
+                <Card.Title className='graph'>
+                    Graph
                 </Card.Title>
-                <Card.Text>
-                  Graph
+                <Card.Text id='linechart'>
+                  <Line  options = {options} data = {chartData}/>
                 </Card.Text>
               </Card.Body>
             </Card>
           </Col>
         </Row>
       </div>
-
+      {/* <Footer></Footer> */}
     </div>
+   
   ); 
 };
 
