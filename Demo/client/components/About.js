@@ -27,7 +27,7 @@ const About = (props) => {
               </Card.Link>
 
               <Card.Title>Sandy Liu</Card.Title>
-              <Card.Text> Text Placeholder</Card.Text>
+              <Card.Text>Software Engineer</Card.Text>
             </Card.Body>
           </Card>
         </Col>
@@ -45,7 +45,7 @@ const About = (props) => {
               </Card.Link>
 
               <Card.Title>Ethan Chuang</Card.Title>
-              <Card.Text> Text Placeholder</Card.Text>
+              <Card.Text>Software Engineer</Card.Text>
                 
           
             </Card.Body>
@@ -67,7 +67,7 @@ const About = (props) => {
               </Card.Link>
 
               <Card.Title>Andrew Moy</Card.Title>
-              <Card.Text> Text Placeholder</Card.Text>
+              <Card.Text>Software Engineer</Card.Text>
             </Card.Body>
           </Card>
           
@@ -86,7 +86,7 @@ const About = (props) => {
               </Card.Link>
 
               <Card.Title>ChunHao Zheng</Card.Title>
-              <Card.Text> Text Placeholder</Card.Text>
+              <Card.Text>Software Engineer</Card.Text>
             </Card.Body>
           </Card>
         </Col>

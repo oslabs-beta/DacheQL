@@ -3,6 +3,7 @@ import Navigation from './Navigation.js';
 import { Container, Row, Col, Image } from 'react-bootstrap';
 import Info from './homepageComps/Info.js';
 import logo from './assets/logo.png';
+import Footer from './Footer.js';
 
 const Homepage = () => {
 
@@ -14,9 +15,9 @@ const Homepage = () => {
     <div>
       <Navigation id='navbar'></Navigation>
       <Row>
-        <Col><div className='fs-1'>Introduction<Info /></div></Col>
-        <Col><Image className='img-fluid hover-shadow' src={logo} width={'400vw'} height={'400vh'}></Image></Col>
+        <div className='fs-1'><Info /></div>
       </Row>
+      <Footer></Footer>
     </div>
   );
 };
