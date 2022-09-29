@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Navigation from './Navigation';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { DropdownButton, Dropdown, Button, Card, Container, Row, Col, Text } from 'react-bootstrap';
+import { DropdownButton, Dropdown, Button, Card, Container, Row, Col, Form, FormLabel } from 'react-bootstrap';
 import Query from './Query';
 import Metrics from './Metrics';
 import Footer from './Footer.js';
@@ -17,7 +17,8 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faPiggyBank} from '@fortawesome/free-solid-svg-icons';
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -58,8 +59,9 @@ const Demo = () => {
 
   };
 
-  const [isLoading, setIsLoading] = useState(false);
-
+  const [selectValorant, setSelectValorant] = useState(false);
+  const [selectPokemon, setSelectPokemon] = useState(false);
+  const [selectCities, setSelectCities] = useState(false);
   //react hook for building the chartjs graph
   const [chartData, setChartData] = useState({
     datasets: [],
@@ -210,6 +212,10 @@ const Demo = () => {
     //console.log(event.target.innerHTML);
     setQuery(event.target.innerHTML);
     setOutput('Query For Valorant');
+    //set selectValorant to be true, to display the selected effect in button
+    setSelectValorant(true);
+    // set the rest of select hook to be false
+    setSelectCities(false); setSelectPokemon(false);
     setQueryString(`
     query  {
       valorant  {
@@ -242,6 +248,11 @@ const Demo = () => {
     //console.log(event.target.innerHTML);
     setQuery(event.target.innerHTML);
     setOutput('Query For Pokemon');
+    //set selectValorant to be true, to display the selected effect in button
+    setSelectPokemon(true);
+    // set the rest of select hook to be false
+    setSelectCities(false); setSelectValorant(false);
+    
     setQueryString(`
     query {
       pokemon  {
@@ -271,6 +282,10 @@ const Demo = () => {
     //console.log(event.target.innerHTML);
     setQuery(event.target.innerHTML);
     setOutput('Query For Cities');
+    //set selectValorant to be true, to display the selected effect in button
+    setSelectCities(true);
+    // set the rest of select hook to be false
+    setSelectPokemon(false); setSelectValorant(false);
     setQueryString(`
     query {
       cities  {
@@ -349,17 +364,25 @@ const Demo = () => {
     <div>
       <Navigation id='navbar'></Navigation>
       <div className='card-container'>
-        <div className='demo-query'>
-          <Card.Text style={{ 'width': 'max-content','flex-direction': 'row', textShadow: '1px 1px 1px rgba(46, 46, 46, 0.62)' }}>Choose A Demo Query</Card.Text>
+        <div className='demo-query-container'>
+         
           <div className='demo-query-btns btn-group-vertical'>
-            <Button   
-              className='demo-query-btn' href = "#/action-1" onClick = {handleChangeValorant} style={{boxShadow: '2px 2px 2px rgba(46, 46, 46, 0.62)'}}>Query For Valorant</Button>
-            <Button  
-              className='demo-query-btn' href = "#/action-2" onClick = {handleChangePokemon} style={{boxShadow: '2px 2px 2px rgba(46, 46, 46, 0.62)'}}>Query For Pokemon</Button>
-            <Button  
-              className='demo-query-btn' href="#/action-3" onClick={handleChangeCities} style={{boxShadow: '2px 2px 2px rgba(46, 46, 46, 0.62)'}}>Query For Cities</Button>
-            <Button  
-              className='demo-query-btn' id='runQueBtn' onClick={runQuery}style={{boxShadow: '2px 2px 2px #E65C4F'}}>{isLoading ? 'Loading…' : 'Run Query'}</Button>
+            <Form>
+              
+              <FormLabel style={{ 'width': 'max-content', 'flex-direction': 'row', textShadow: '1px 1px 1px rgba(46, 46, 46, 0.62)' }}></FormLabel>
+              <h4>Choose A Demo Query</h4>
+              <FormLabel   
+                className='demo-query-btn' href = "#/action-1" onClick = {handleChangeValorant} style={{boxShadow: '2px 2px 2px rgba(46, 46, 46, 0.62)'}}><Form.Check label="Query For Valorant" type="radio" checked={selectValorant}></Form.Check></FormLabel>
+              <FormLabel  
+                className='demo-query-btn' href = "#/action-2" onClick = {handleChangePokemon} style={{boxShadow: '2px 2px 2px rgba(46, 46, 46, 0.62)'}}><Form.Check label="Query For Pokemon" type="radio" checked={selectPokemon}></Form.Check></FormLabel>
+              <FormLabel  
+                className='demo-query-btn' href="#/action-3" onClick={handleChangeCities} style={{boxShadow: '2px 2px 2px rgba(46, 46, 46, 0.62)'}}><Form.Check label="Query For Cities" type="radio" checked={selectCities}></Form.Check></FormLabel>
+              <FormLabel  
+                id='runQueBtn' onClick={runQuery} style={{ boxShadow: '2px 2px 2px rgba(46, 46, 46, 0.62)' }}>
+                {/* <img src={piggyIcon} width={25} height={40} /> */}
+                <FontAwesomeIcon icon={faPiggyBank}></FontAwesomeIcon>
+                &nbsp;&nbsp;Run Query</FormLabel>
+            </Form>
           </div>
         </div>
         <Row>
