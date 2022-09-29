@@ -24,7 +24,7 @@ $btn-border-radius: .25rem;
 }
 .enterbutton {
     color: white;
-    background: linear-gradient(to bottom, $fifth 0%, $fourth 70%);
+    background: linear-gradient(to bottom, $secondary-hover, $secondary);
     text-align: center;
     margin: auto;
     border-color: $secondary;
@@ -32,13 +32,9 @@ $btn-border-radius: .25rem;
     position: relative;
     top: 40vh;
     position: relative;
-    -webkit-box-reflect: below -20px linear-gradient(transparent, rgba(0, 0, 0, .2));
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
 }
 .btn-secondary:hover {
     opacity: 0.6;
-    background-color: #198754;
 }
 
 .enterbutton span {
@@ -87,14 +83,15 @@ $btn-border-radius: .25rem;
 }
 
 body {
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     // background-color: $primary;
-    background-color: #ffffff;
-    // background-color: #1F3C88 ;
+    background-color: #FFFFFF;
     // background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Cdefs%3E%3ClinearGradient id='a' x1='0' x2='0' y1='1' y2='0'%3E%3Cstop offset='0' stop-color='%230FF'/%3E%3Cstop offset='1' stop-color='%23CF6'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' x1='0' x2='0' y1='0' y2='1'%3E%3Cstop offset='0' stop-color='%23F00'/%3E%3Cstop offset='1' stop-color='%23FC0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill='%23FFF' fill-opacity='0' stroke-miterlimit='10'%3E%3Cg stroke='url(%23a)' stroke-width='2'%3E%3Cpath transform='translate(0 0)' d='M1409 581 1450.35 511 1490 581z'/%3E%3Ccircle stroke-width='4' transform='rotate(0 800 450)' cx='500' cy='100' r='40'/%3E%3Cpath transform='translate(0 0)' d='M400.86 735.5h-83.73c0-23.12 18.74-41.87 41.87-41.87S400.86 712.38 400.86 735.5z'/%3E%3C/g%3E%3Cg stroke='url(%23b)' stroke-width='4'%3E%3Cpath transform='translate(0 0)' d='M149.8 345.2 118.4 389.8 149.8 434.4 181.2 389.8z'/%3E%3Crect stroke-width='8' transform='rotate(0 1089 759)' x='1039' y='709' width='100' height='100'/%3E%3Cpath transform='rotate(0 1400 132)' d='M1426.8 132.4 1405.7 168.8 1363.7 168.8 1342.7 132.4 1363.7 96 1405.7 96z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    background-attachment: fixed;
+    // background-attachment: fixed;
     background-size: cover;
+    background-position: center;
+    // background-size: 100% auto;
 }
 
 #logo path:nth-child(2){
@@ -173,6 +170,7 @@ body {
   width: 120px;
 }
 
+// styling result query to command interface like
 .result-query {
     // resize: none;
     // margin: 0px 0px 10px 10px;
@@ -183,11 +181,19 @@ body {
     // width: calc(100% - 20px);
     overflow: auto;
     color: #78A6C8;
+    resize: none;
+    // margin: 0px 0px 10px 10px;
+    border: none;
+    outline: none;
+    background-color: $dark;
+    font-family: Monospace;
+    // width: calc(100% - 20px);
     // margin: 10px 0px 0px 10px;
     text-align: left;
     font-size: 25px;
 }
 
+// styling selected query to command interface like
 .selected-query {
     resize: none;
     margin: 0px 0px 10px 10px;
@@ -202,27 +208,78 @@ body {
     margin: 10px 0px 0px 10px;
     text-align: left;
 }
-.demo-query{
+
+// Selecting Demo query button container
+.demo-query-container{
     flex-direction: column;
-    // background-color: $info;
     position: absolute;
-    // top: 5vh;
+    top: 5vh;
     border-radius: 10%;
     left: -20vw;
-    border: 2mm solid #326789;
-    width: min-content;
+    // border: 2mm solid #326789;
+    width: 10vw;
+    justify-content: center;
 }
+// Styling demo query buttons
 .demo-query-btn{
     background-color: $info;
     border-color: $primary;
+    display: flex;
+    flex-shrink: 0;
+    width: 250px;
+    height: 50px;
+    border-radius: 10px;
+    margin-right: 0.375em;
+    transition: 0.25s ease;
+    box-shadow: inset 0 0 0 0.125em black;
+
 }
-// .demo-query-btn:hover {
-//     background-color: $secondary-hover
-// }
+// Styling demo query buttons
+label{
+  display: flex;
+  cursor: pointer;
+  font-weight: 500;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 0.375em;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+    &:checked + span {
+      background-color: mix(#fff, $info, 84%);
+      &:before {
+        box-shadow: inset 0 0 0 0.4375em $info;
+        
+      }
+    }
+}
+// Styling run query button
 #runQueBtn{
     background-color: $danger;
-    margin-top: 50px;
+    // margin-top: 50px;
+    color: $light;
+    border-color: $primary;
+    display: flex;
+    flex-shrink: 0;
+    width: 250px;
+    height: 50px;
+    border-radius: 10px;
+    margin-right: 0.375em;
+    transition: 0.25s ease;
+    box-shadow: inset 0 0 0 0.125em black;
+    display: flex;
+    align-items: center;
+    padding: 0.375em 0.75em 0.375em 0.375em;
+    border-radius: 99em; // or something higher...
+    transition: 0.25s ease;
+    &:hover{
+        background-color: mix($danger,black, 70%);
+    }
 }
+// Styling demo query buttons
+.demo-query-btns{
+    border-radius: 15px;
+    border: solid 2px;
 
 #runQueBtn:hover {
     background-color: #1F3C88 ;
@@ -250,10 +307,11 @@ body {
     width: 100%;
 }
 
+}
+// // Styling 4 displayers in demo page
 .card-container{
-    // background-color: #212529;
     left: 30%;
-    top: -100vh;
+    // top: -100vh;
     position: sticky;
     width:fit-content;
     margin-left: 0.5vw;

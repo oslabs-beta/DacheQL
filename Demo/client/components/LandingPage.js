@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles.scss';
 import { Button } from 'react-bootstrap';
-import background from './assets/background-image.jpg';
+import background from './assets/background-image.png';
     
 const LandingPage = () => {
   // background image in body
@@ -50,7 +50,7 @@ const LandingPage = () => {
      
         </Button>
       </Link>
-      </div>
+    </div>
   );
 };
 
