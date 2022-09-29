@@ -4,6 +4,7 @@ import {Button, Card, Container, Row, Col, Link } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import './styles/aboutStyles.css';
+import Footer from './Footer.js';
 import sandy from './assets/sandy.jpg';
 import andrew from './assets/andrew.png';
 import chunhao from './assets/chunhao.png';
@@ -91,6 +92,7 @@ const About = (props) => {
           </Card>
         </Col>
       </Row>
+      {/* <Footer></Footer> */}
     </div>
   );
 };

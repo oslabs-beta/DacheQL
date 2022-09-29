@@ -11,8 +11,8 @@ const Navigation = () => {
   
   return (
     <Navbar fixed='top' style={{position: 'sticky'}} className='navbar shadow-sm p-3 mb-5 bg-white rounded' id='navbar' collapseOnSelect expand="lg" >
-      {/* <Navbar.Brand className='navbar-logo'href="/"><a id='brand-name'>DacheQL</a></Navbar.Brand> */}
-      {/* <Navbar.Brand><img src={templogo}></img></Navbar.Brand> */}
+      <Navbar.Brand className='navbar-logo'href="/"><a id='brand-name'>DacheQL</a></Navbar.Brand>
+      {/* <Navbar.Brand href="/">DacheQL</Navbar.Brand> */}
       <Navbar.Toggle aria-controls="navbar-nav" />
       <Navbar.Collapse id='navbar-nav'>
         <Nav className="ml.auto">

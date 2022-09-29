@@ -30,13 +30,24 @@
   transition: opacity .5s;
 }
 
-#brand-name{
+#brand-name {
   text-transform: uppercase;
   background-image: linear-gradient(0.25turn,
-  #7162a9 0%,
-  #7bd297 29%,
-  #16d8d5 67%,
-  #f9f22b 100%);
+  #9dcae5 0%,
+  #9993f3 29%,
+  #E9EEF4 67%,
+  #e6a1c3 100%);
+
+  /* #326789 0%,
+  #78A6C8 29%,
+  #E9EEF4 67%,
+  #E65c4F 100%); */
+
+  /* #8FA5B2 0%,
+  #C4DOC6 29%,
+  #E3E9E9 67%,
+  #EAE9E7 100%); */
+
   background-size: auto auto;
   background-clip: border-box;
   background-size: 200% auto;
@@ -47,7 +58,7 @@
   /* text-fill-color: transparent; */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  /* animation: textclip 5s ease infinite; */
+  animation: textclip 5s ease infinite;
   display: inline-block;
   font-family: 'Bungee';
   font-size: 1em;
