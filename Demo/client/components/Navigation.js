@@ -15,7 +15,7 @@ const Navigation = () => {
       paddingLeft: '40px',
       paddingRight: '100px',
       minWidth: '300px'
-    }} className='navbar shadow-sm p-3 mb-5 bg-white rounded' id='navbar' collapseOnSelect expand="lg" >
+    }} className='navbar shadow-sm p-3 mb-5 bg-white rounded' variant='light' id='navbar' collapseOnSelect expand="lg" >
       <Navbar.Brand className='navbar-logo'href="/"><a id='brand-name'>DacheQL</a></Navbar.Brand>
       {/* <Navbar.Brand href="/">DacheQL</Navbar.Brand> */}
       <Navbar.Toggle aria-controls="navbar-nav" />
