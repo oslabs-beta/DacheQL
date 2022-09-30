@@ -72,7 +72,7 @@ const Demo = () => {
   const [timeArray, setTimeArray] = useState([]);
 
   //react hook for a boolean value that the incrementor will accept 
-  const [booleanVal, setBooleanVal] = useState(false);
+  const [booleanVal, setBooleanVal] = useState(true);
 
   //options for line chart
   const options = {
@@ -92,11 +92,11 @@ const Demo = () => {
 
 
   //everytime the timearray length changes we are rerendering the chart to account for that with new labels for nodes
-
+  // useEffect for timeArray
   useEffect(() => {
 
     const labels = [];
-    
+    // if (timeArray[2] === 0) return;
     //dynamically updates the label for each node on line chart after the first uncached node
     for (let i = 0; i < timeArray.length; i++) {
 
@@ -210,13 +210,15 @@ const Demo = () => {
   //upon change of drop down after selection set new values for react states for etc...
   const handleChangeValorant = (event) => {
     //console.log(event.target.innerHTML);
+    // setTimeArray([]);
     setQuery(event.target.innerHTML);
     setOutput('Query For Valorant');
-    //set selectValorant to be true, to display the selected effect in button
+    // set selectValorant to be true, to display the selected effect in button
     setSelectValorant(true);
     // set the rest of select hook to be false
     setSelectCities(false); setSelectPokemon(false);
     setQueryString(`
+
     query  {
       valorant  {
         id
@@ -246,6 +248,7 @@ const Demo = () => {
 
   const handleChangePokemon = (event) => {
     //console.log(event.target.innerHTML);
+    // setTimeArray([]);
     setQuery(event.target.innerHTML);
     setOutput('Query For Pokemon');
     //set selectValorant to be true, to display the selected effect in button
@@ -371,17 +374,17 @@ const Demo = () => {
               
               <FormLabel style={{ 'width': 'max-content', 'flex-direction': 'row', textShadow: '1px 1px 1px rgba(46, 46, 46, 0.62)' }}></FormLabel>
               <h4>Choose A Demo Query</h4>
-              <FormLabel   
-                className='demo-query-btn' href = "#/action-1" onClick = {handleChangeValorant} style={{boxShadow: '2px 2px 2px rgba(46, 46, 46, 0.62)'}}><Form.Check label="Query For Valorant" type="radio" checked={selectValorant}></Form.Check></FormLabel>
-              <FormLabel  
-                className='demo-query-btn' href = "#/action-2" onClick = {handleChangePokemon} style={{boxShadow: '2px 2px 2px rgba(46, 46, 46, 0.62)'}}><Form.Check label="Query For Pokemon" type="radio" checked={selectPokemon}></Form.Check></FormLabel>
-              <FormLabel  
-                className='demo-query-btn' href="#/action-3" onClick={handleChangeCities} style={{boxShadow: '2px 2px 2px rgba(46, 46, 46, 0.62)'}}><Form.Check label="Query For Cities" type="radio" checked={selectCities}></Form.Check></FormLabel>
-              <FormLabel  
+              <Button   
+                className='demo-query-btn' href = "#/action-1" onClick = {handleChangeValorant} style={{boxShadow: '2px 2px 2px rgba(46, 46, 46, 0.62)'}}><Form.Check label="Query For Valorant" type="radio" checked={selectValorant}></Form.Check></Button>
+              <Button  
+                className='demo-query-btn' href = "#/action-2" onClick = {handleChangePokemon} style={{boxShadow: '2px 2px 2px rgba(46, 46, 46, 0.62)'}}><Form.Check label="Query For Pokemon" type="radio" checked={selectPokemon}></Form.Check></Button>
+              <Button  
+                className='demo-query-btn' href="#/action-3" onClick={handleChangeCities} style={{boxShadow: '2px 2px 2px rgba(46, 46, 46, 0.62)'}}><Form.Check label="Query For Cities" type="radio" checked={selectCities}></Form.Check></Button>
+              <Button  
                 id='runQueBtn' onClick={runQuery} style={{ boxShadow: '2px 2px 2px rgba(46, 46, 46, 0.62)' }}>
                 {/* <img src={piggyIcon} width={25} height={40} /> */}
-                <FontAwesomeIcon icon={faPiggyBank}></FontAwesomeIcon>
-                &nbsp;&nbsp;Run Query</FormLabel>
+                <FontAwesomeIcon icon={faPiggyBank}></FontAwesomeIcon>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Run Query
+              </Button>
             </Form>
           </div>
         </div>

@@ -1,13 +1,14 @@
 .homepage-container {
   font-family: 'Commissioner', sans-serif;
 }
-
+/* #2a4faa */
 .navbar {
   /* background-color: rgb(133, 209, 234); */
   font-family: 'Commissioner', sans-serif;
   /* margin: 1px; */
   /* margin-bottom: 10vh; */
   font-size: large;
+  color:#2a4faa ;
   display: flex;
   justify-content: space-between; 
   align-items: center;
@@ -15,14 +16,16 @@
   @media screen and (max-width:960px){
     transition: 0.8s all ease;
   }
+  
 }
 
 #navbar {
-  background: linear-gradient(to bottom, #2a4faa 0%, #5893D4 95%);
+  background: linear-gradient(to bottom, #b0c2e5 0%, #1f4988 75%);
 }
-
+.nav-item nav-link{
+  
+}
 .navbar-logo {
-  color: darkorange;
   font-weight: bold;
   font-family: sans-serif;
   text-transform: uppercase;

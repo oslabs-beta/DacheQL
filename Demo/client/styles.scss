@@ -24,7 +24,7 @@ $btn-border-radius: .25rem;
 }
 .enterbutton {
     color: white;
-    background: linear-gradient(to bottom, $secondary-hover, $secondary);
+    background: linear-gradient(to bottom, #FFF6BF, #ABD9FF);
     text-align: center;
     margin: auto;
     border-color: $secondary;
@@ -228,7 +228,7 @@ body {
     flex-shrink: 0;
     width: 250px;
     height: 50px;
-    border-radius: 10px;
+    border-radius: 99em;
     margin-right: 0.375em;
     transition: 0.25s ease;
     box-shadow: inset 0 0 0 0.125em black;
@@ -261,15 +261,15 @@ label{
     border-color: $primary;
     display: flex;
     flex-shrink: 0;
-    width: 250px;
     height: 50px;
-    border-radius: 10px;
+    // border-radius: 10px;
+    width: 250px;
     margin-right: 0.375em;
     transition: 0.25s ease;
     box-shadow: inset 0 0 0 0.125em black;
-    display: flex;
     align-items: center;
-    padding: 0.375em 0.75em 0.375em 0.375em;
+    padding: 0.75em 0.75em 0.75em 0.5em;
+    padding: 10px;
     border-radius: 99em; // or something higher...
     transition: 0.25s ease;
     &:hover{
@@ -281,9 +281,9 @@ label{
     border-radius: 15px;
     border: solid 2px;
 
-#runQueBtn:hover {
-    background-color: #1F3C88 ;
-}
+// #runQueBtn:hover {
+//     background-color: #1F3C88 ;
+// }
 
 .metrics {
     font-size: 27px;
