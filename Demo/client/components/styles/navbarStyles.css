@@ -54,7 +54,7 @@
   background-size: 200% auto;
   color: #fff;
   position: inherit;
-  left: 0%;
+  /* left: 0%; */
   background-clip: text;
   /* text-fill-color: transparent; */
   -webkit-background-clip: text;

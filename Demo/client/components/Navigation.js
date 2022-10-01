@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Navbar, Nav} from 'react-bootstrap';
+import { Navbar, Nav, Image} from 'react-bootstrap';
 import './styles/navbarStyles.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse, faLaptopCode, faAddressCard, faDownload} from '@fortawesome/free-solid-svg-icons';
 import { faGithub, faNpm } from '@fortawesome/free-brands-svg-icons';
-import templogo from './assets/templogo.png';
+import logo from './assets/logo.png';
 
 const Navigation = () => {
   
@@ -16,7 +16,7 @@ const Navigation = () => {
       paddingRight: '100px',
       minWidth: '300px'
     }} className='navbar shadow-sm p-3 mb-5 bg-white rounded' variant='light' id='navbar' collapseOnSelect expand="lg" >
-      <Navbar.Brand className='navbar-logo'href="/"><a id='brand-name'>DacheQL</a></Navbar.Brand>
+      <Navbar.Brand className='navbar-logo'href="/"><a id='brand-name'>DacheQL</a> <Image src={logo} width={60} height={50}></Image></Navbar.Brand>
       {/* <Navbar.Brand href="/">DacheQL</Navbar.Brand> */}
       <Navbar.Toggle aria-controls="navbar-nav" />
       <Navbar.Collapse id='navbar-nav'>
