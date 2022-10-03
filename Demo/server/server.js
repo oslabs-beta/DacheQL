@@ -3,14 +3,15 @@ const express = require('express');
 const expressGraphQL = require('express-graphql').graphqlHTTP;
 const schema = require('./schema/schema.js');
 const cors = require('cors');
-// const Redis = require('ioredis');
+const redis = require('redis');
+const func = require('./controllers/redisController');
+
 
 const PORT = 3000;
 
-// const redis = new Redis({
-//   'port': 6379,
-//   'host': '127.0.0.1'
-// });
+const REDIS_PORT = process.env.PORT || 6379;
+const client = redis.createClient(REDIS_PORT);
+client.connect();
 
 const app = express();
 
@@ -25,7 +26,7 @@ app.get('/', (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
 });
 
-app.use('/graphql', expressGraphQL({
+app.use('/graphql', func.dacheQL({redis: client}), expressGraphQL({
   schema: schema,
   graphiql: true,
 }));
