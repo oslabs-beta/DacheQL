@@ -4,8 +4,8 @@ const expressGraphQL = require('express-graphql').graphqlHTTP;
 const schema = require('./schema/schema.js');
 const cors = require('cors');
 const redis = require('redis');
-const func = require('./controllers/redisController');
-
+const dacheQL = require('./controllers/redisController');
+const fetch = require('node-fetch');
 
 
 const PORT = 3000;
@@ -27,7 +27,7 @@ app.get('/', (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
 });
 
-app.use('/graphql', func.dacheQL({redis: client}, 'http://localhost:3000/graphql2', 300), expressGraphQL({
+app.use('/graphql', dacheQL({redis: client}, 'http://localhost:3000/graphql2', 300), expressGraphQL({
   schema: schema,
   graphiql: true,
 }));

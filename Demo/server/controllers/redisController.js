@@ -1,8 +1,4 @@
-/* eslint-disable indent */
 const fetch = require('node-fetch');
-const { graphql } = require('graphql');
-
-
 
 function dacheQL({ redis } = {}, endpoint = '', TTL){
   //if the user is using redis
@@ -15,33 +11,33 @@ function dacheQL({ redis } = {}, endpoint = '', TTL){
          
           //if the query is not in redis, follow this control flow
           if(!query){
-          console.log('setting the key in redis');
-          console.log('req.body.query', req.body.query);
+          // console.log('setting the key in redis');
+          // console.log('req.body.query', req.body.query);
           //fetch the graphql response to the user's specified endpoint
-          const fetchedData = await fetch(endpoint, {
-            method: 'POST', 
-            headers: {
-              'Content-Type': 'application/json',
-              'Accept': 'application/json',
-            },
-            body: JSON.stringify({
-              query: req.body.query,
+            const fetchedData = await fetch(endpoint, {
+              method: 'POST', 
+              headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+              },
+              body: JSON.stringify({
+                query: req.body.query,
+              })
             })
-          })
-          .then((res) => {
-            console.log('res',res);
-            return res.json();
-          })
-          .then((data) => {
-            console.log('data: ', JSON.stringify(data));
-            return JSON.stringify(data);
-          })
-            .catch((err) => console.log('err in fetch server'));
+              .then((res) => {
+                // console.log('res',res);
+                return res.json();
+              })
+              .then((data) => {
+                // console.log('data: ', JSON.stringify(data));
+                return JSON.stringify(data);
+              })
+              .catch((err) => console.log('err in fetch server'));
          
-          // console.log('response:', fetchedData);
-          //set the key as the query in Redis with the value as the GraphQL response
-          const obj = await redis.SETEX(req.body.query, TTL, fetchedData);
-          console.log('response:', obj);
+            // console.log('response:', fetchedData);
+            //set the key as the query in Redis with the value as the GraphQL response
+            const obj = await redis.SETEX(req.body.query, TTL, fetchedData);
+          // console.log('response:', obj);
           }
         }
         return next();
@@ -56,19 +52,5 @@ function dacheQL({ redis } = {}, endpoint = '', TTL){
   }
 }
 
-function httpCache(customHeaders) {
-  const defaultHeaders = {
-    'Cache-Control': 'max-age=10',
-  };
 
-  const finalHeaders = { ...defaultHeaders, ...customHeaders };
-
-  return function setHeaders(req, res, next) {
-    if (Object.hasOwn(res.locals, 'cached')) {
-      res.set(finalHeaders);
-    }
-    return next();
-  };
-}
-
-module.exports = {dacheQL, httpCache};
+module.exports = dacheQL;
