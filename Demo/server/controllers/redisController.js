@@ -4,7 +4,7 @@ const { graphql } = require('graphql');
 
 
 
-function dacheQL({ redis } = {}, endpoint = ''){
+function dacheQL({ redis } = {}, endpoint = '', TTL){
   //if the user is using redis
   if(redis){
     return async function redisCache(req, res, next) {
@@ -40,7 +40,7 @@ function dacheQL({ redis } = {}, endpoint = ''){
          
           // console.log('response:', fetchedData);
           //set the key as the query in Redis with the value as the GraphQL response
-          const obj = await redis.SETEX(req.body.query, 10, fetchedData);
+          const obj = await redis.SETEX(req.body.query, TTL, fetchedData);
           console.log('response:', obj);
           }
         }

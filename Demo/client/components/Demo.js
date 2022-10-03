@@ -29,8 +29,6 @@ ChartJS.register(
   Legend
 );
 
-
-const cache = {/*query: queried result => 10 most recent ones*/};
 //counter to keep track for our incrementer function globally declared
 let counter = 0;
 //global variable for labels 
@@ -55,7 +53,10 @@ const Demo = () => {
   //react hook for storing the state of whatever was fetched (will use to render on resulting query)
   const [result, setResult] = useState('');
   
- 
+  //states to see if the info was cached or not
+  const [valorantCount, setValorantCount] = useState(0);
+  const [pokemonCount, setPokemonCount] = useState(0);
+  const [citiesCount, setCitiesCount] = useState(0);
 
   const [selectValorant, setSelectValorant] = useState(false);
   const [selectPokemon, setSelectPokemon] = useState(false);
@@ -172,6 +173,7 @@ const Demo = () => {
   const handleChangeValorant = (event) => {
     //console.log(event.target.innerHTML);
     // setTimeArray([]);
+    
     setQuery(event.target.innerHTML);
     setOutput('Query For Valorant');
     // set selectValorant to be true, to display the selected effect in button
@@ -199,11 +201,6 @@ const Demo = () => {
       datasets: [],
     });
     setBooleanVal(true);
-    for(const key in cache){
-      if(cache[key]){
-        delete cache[key];
-      }
-    }
     
   };
 
@@ -235,11 +232,7 @@ const Demo = () => {
       datasets: [],
     });
     setBooleanVal(true);
-    for(const key in cache){
-      if(cache[key]){
-        delete cache[key];
-      }
-    }
+
   };
 
   const handleChangeCities = (event) => {
@@ -268,61 +261,20 @@ const Demo = () => {
       datasets: [],
     });
     setBooleanVal(true);
-    for(const key in cache){
-      if(cache[key]){
-        delete cache[key];
-      }
-    }
   };
 
   let startTime; 
   let endTime;
-  // const runQuery = async() =>{
-  //   startTime = performance.now();
-  //   if(!queryString) {
-  //     return;
-  //   }
-  //   if(cache[queryString]){
-  //     //console.log('accessing from local cache');
-  //     setResult(JSON.stringify(cache[queryString,null,2]));
-  //     // incrementer(timeToFetch[1], cacheFetchTime);
-  //     endTime = performance.now();
-  //     console.log('startTime: ', startTime, 'endTime: ', endTime);
-  //     const totalRunTime = (endTime - startTime) + Math.random() * (8 - 3) + 3;
-  //     setCacheFetchTime([totalRunTime]);
-  //     setResult(JSON.stringify(cache[queryString], null, 2));
-  //     return cache[queryString];
-  //   }
-  //   else{
-  //     console.log('not from cache');
-  //     await fetch('http://localhost:3000/graphql', {
-  //       method: 'POST', 
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //         'Accept': 'application/json',
-  //       },
-  //       body: JSON.stringify({
-  //         query: queryString,
-  //       })
-  //     })
-  //       .then((res) => {
-  //         return res.json();
-  //       })
-  
-  //       .then((data) => {
-  //       //update the second timer variable once fetch is finished 
-  //         // cache[queryString] = data;
-  //         // console.log('cache:', cache);
-  //         endTime = performance.now();
-  //         const totalRunTime = (endTime - startTime);
-  //         //update the react hook state for timetofetch
-  //         setTimeToFetch([timeToFetch, totalRunTime]);
-  //         setResult(JSON.stringify(data, null, 2));
-  //       })
-  //       .catch((err) => console.log('error on demo runQuery', err));
-  //   }
-  // };
   const runQuery = async() => {
+    if(selectValorant === true){
+      setValorantCount(valorantCount + 1);
+    }
+    if(selectPokemon === true){
+      setPokemonCount(pokemonCount + 1);
+    }
+    if(selectCities === true){
+      setCitiesCount(citiesCount + 1);
+    }
     startTime = performance.now();
     await fetch('http://localhost:3000/graphql', {
       method: 'POST', 
@@ -345,7 +297,26 @@ const Demo = () => {
         endTime = performance.now();
         const totalRunTime = (endTime - startTime);
         //update the react hook state for timetofetch
-        setTimeToFetch([timeToFetch, totalRunTime]);
+        
+
+        if(selectValorant === true && valorantCount >= 1){
+          console.log(valorantCount);
+          setCacheFetchTime([totalRunTime]);
+          return;
+        }
+
+        if(selectPokemon === true && pokemonCount >= 1){
+          setCacheFetchTime([totalRunTime]);
+          return;
+        }
+
+        if(selectCities === true && citiesCount >= 1){
+          setCacheFetchTime([totalRunTime]);
+          return;
+        }
+    
+        setTimeToFetch([timeToFetch, totalRunTime]);        
+  
         setResult(JSON.stringify(data, null, 2));
       })
       .catch((err) => console.log('error on demo runQuery', err));
