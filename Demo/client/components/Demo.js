@@ -55,9 +55,7 @@ const Demo = () => {
   //react hook for storing the state of whatever was fetched (will use to render on resulting query)
   const [result, setResult] = useState('');
   
-  const clearCache = () => {
-
-  };
+ 
 
   const [selectValorant, setSelectValorant] = useState(false);
   const [selectPokemon, setSelectPokemon] = useState(false);
@@ -170,43 +168,6 @@ const Demo = () => {
       counter++;
     }
   };
-
-  //useffect hook on dom content loaded the chart will be created
-  // useEffect(() => {
-  //   setChartData({
-  //     // type: 'horizontalBar',
-  //     labels: ['Uncached Data (ms)', 'Cached Data (ms)'],
-  //     datasets: [
-  //       {
-  //         label: 'Response Times',
-  //         data: [timeToFetch[1],cacheFetchTime],
-  //         border: 'rgb(153,31,173)',
-  //         backgroundColor: 'rgba(153,31,173,0.4)',
-  //       }
-  //     ]
-  //   });
-  // },[timeToFetch,cacheFetchTime]);
-
-
-  // const config = {
-  //   indexAxis: 'y',
-  //   elements: {
-  //     bar: {
-  //       borderWidth: 2,
-  //     },
-  //   },
-  //   responsive: true,
-  //   plugins: {
-  //     legend: {
-  //       position: 'right',
-  //     },
-  //     title: {
-  //       display: true,
-  //       text: 'Chart.js Horizontal Bar Chart',
-  //     },
-  //   },
-  // };
-
   //upon change of drop down after selection set new values for react states for etc...
   const handleChangeValorant = (event) => {
     //console.log(event.target.innerHTML);
@@ -316,51 +277,80 @@ const Demo = () => {
 
   let startTime; 
   let endTime;
-  const runQuery = async() =>{
-    startTime = performance.now();
-    if(!queryString) {
-      return;
-    }
-    if(cache[queryString]){
-      //console.log('accessing from local cache');
-      setResult(JSON.stringify(cache[queryString,null,2]));
-      // incrementer(timeToFetch[1], cacheFetchTime);
-      endTime = performance.now();
-      console.log('startTime: ', startTime, 'endTime: ', endTime);
-      const totalRunTime = (endTime - startTime) + Math.random() * (8 - 3) + 3;
-      setCacheFetchTime([totalRunTime]);
-      setResult(JSON.stringify(cache[queryString], null, 2));
-      return cache[queryString];
-    }
-    else{
-      console.log('not from cache');
-      await fetch('http://localhost:3000/graphql', {
-        method: 'POST', 
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-        },
-        body: JSON.stringify({
-          query: queryString,
-        })
-      })
-        .then((res) => {
-          return res.json();
-        })
+  // const runQuery = async() =>{
+  //   startTime = performance.now();
+  //   if(!queryString) {
+  //     return;
+  //   }
+  //   if(cache[queryString]){
+  //     //console.log('accessing from local cache');
+  //     setResult(JSON.stringify(cache[queryString,null,2]));
+  //     // incrementer(timeToFetch[1], cacheFetchTime);
+  //     endTime = performance.now();
+  //     console.log('startTime: ', startTime, 'endTime: ', endTime);
+  //     const totalRunTime = (endTime - startTime) + Math.random() * (8 - 3) + 3;
+  //     setCacheFetchTime([totalRunTime]);
+  //     setResult(JSON.stringify(cache[queryString], null, 2));
+  //     return cache[queryString];
+  //   }
+  //   else{
+  //     console.log('not from cache');
+  //     await fetch('http://localhost:3000/graphql', {
+  //       method: 'POST', 
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         'Accept': 'application/json',
+  //       },
+  //       body: JSON.stringify({
+  //         query: queryString,
+  //       })
+  //     })
+  //       .then((res) => {
+  //         return res.json();
+  //       })
   
-        .then((data) => {
+  //       .then((data) => {
+  //       //update the second timer variable once fetch is finished 
+  //         // cache[queryString] = data;
+  //         // console.log('cache:', cache);
+  //         endTime = performance.now();
+  //         const totalRunTime = (endTime - startTime);
+  //         //update the react hook state for timetofetch
+  //         setTimeToFetch([timeToFetch, totalRunTime]);
+  //         setResult(JSON.stringify(data, null, 2));
+  //       })
+  //       .catch((err) => console.log('error on demo runQuery', err));
+  //   }
+  // };
+  const runQuery = async() => {
+    startTime = performance.now();
+    await fetch('http://localhost:3000/graphql', {
+      method: 'POST', 
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify({
+        query: queryString,
+      })
+    })
+      .then((res) => {
+        return res.json();
+      })
+      
+      .then((data) => {
         //update the second timer variable once fetch is finished 
-          cache[queryString] = data;
-          console.log('cache:', cache);
-          endTime = performance.now();
-          const totalRunTime = (endTime - startTime);
-          //update the react hook state for timetofetch
-          setTimeToFetch([timeToFetch, totalRunTime]);
-          setResult(JSON.stringify(data, null, 2));
-        })
-        .catch((err) => console.log('error on demo runQuery', err));
-    }
+        // cache[queryString] = data;
+        // console.log('cache:', cache);
+        endTime = performance.now();
+        const totalRunTime = (endTime - startTime);
+        //update the react hook state for timetofetch
+        setTimeToFetch([timeToFetch, totalRunTime]);
+        setResult(JSON.stringify(data, null, 2));
+      })
+      .catch((err) => console.log('error on demo runQuery', err));
   };
+  
 
 
   return (

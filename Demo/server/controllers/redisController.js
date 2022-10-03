@@ -2,39 +2,23 @@
 const fetch = require('node-fetch');
 const { graphql } = require('graphql');
 
-function dacheQL({ redis } = {}){
+
+
+function dacheQL({ redis } = {}, endpoint = ''){
+  //if the user is using redis
   if(redis){
     return async function redisCache(req, res, next) {
-      // console.log(req.body);
       try{
-        // if(req.method === 'GET'){
-        //   Object.defineProperty(res.locals, 'cached', {
-        //     enumerable: false,
-        //     writable: false,
-        //     configurable: false,
-        //     value: true,
-        //   });
-        //   const query = await redis.get(req.body.query, (err,data) => {
-        //     if(err) throw err;
-        //     else return next();
-        //   });
-        //   // console.log('query', query);
-        //   if(!query){
-        //     return res.sendStatus(303);
-        //   }
-        //   req.method = 'POST';
-        //   req.body = JSON.parse(query);
-        //   console.log('got the key in redis');
-        //   return next();
-        // }
         if(req.method === 'POST'){
+          //check to see if the query is already in redis
           const query = await redis.get(req.body.query);
-          // console.log('query', query);
+         
+          //if the query is not in redis, follow this control flow
           if(!query){
-            console.log('setting the key in redis');
+          console.log('setting the key in redis');
           console.log('req.body.query', req.body.query);
-          // let fetchedData;
-          const fetchedData = await fetch('http://localhost:3000/graphql2', {
+          //fetch the graphql response to the user's specified endpoint
+          const fetchedData = await fetch(endpoint, {
             method: 'POST', 
             headers: {
               'Content-Type': 'application/json',
@@ -44,9 +28,6 @@ function dacheQL({ redis } = {}){
               query: req.body.query,
             })
           })
-          // console.log('right after fetch',fetchedData);
-          // .then(res => res.json())
-          // .then(data => fetchedData = data)
           .then((res) => {
             console.log('res',res);
             return res.json();
@@ -58,7 +39,8 @@ function dacheQL({ redis } = {}){
             .catch((err) => console.log('err in fetch server'));
          
           // console.log('response:', fetchedData);
-          const obj = await redis.SETEX(req.body.query, 10000, fetchedData);
+          //set the key as the query in Redis with the value as the GraphQL response
+          const obj = await redis.SETEX(req.body.query, 10, fetchedData);
           console.log('response:', obj);
           }
         }
