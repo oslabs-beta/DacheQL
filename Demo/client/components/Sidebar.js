@@ -10,10 +10,13 @@ import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
+import ImageList from '@mui/material/ImageList';
 import { DropdownButton, Dropdown, Button, Card, Container, Row, Col, Form, FormLabel } from 'react-bootstrap';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import '../styles.scss';
 const drawerWidth = 240;
+import logo from './assets/runpig.png';
+
 
 const Sidebar = () => {
   const string1 = 'dacheQL({ redis } = {}, endpoint = \'\', TTL)';
@@ -37,9 +40,10 @@ const Sidebar = () => {
           ['& .MuiDrawer-paper']: { width: drawerWidth, boxSizing: 'border-box', height:'100%', zIndex:'-1' }, //z-index
         }}
       >
-        <Toolbar />
-        <Box sx={{ overflow: 'hidden' }}>
-          <List sx={{marginTop: '20px'}}>
+        <Toolbar /> 
+        <img src={logo} id="doclogo"></img>
+        <Box sx={{ overflow: 'hidden'}} className = 'list'>
+          <List sx={{marginTop: '20px'}} >
             {['DacheQL', 'Using DacheQL', 'Getting Started', 'DacheQL with Redis', 'DacheQL with HTTP cache'].map((text, index) => (
               <ListItem key={text} disablePadding>
                 <ListItemButton>
@@ -96,7 +100,7 @@ const Sidebar = () => {
                 </CopyToClipboard>
               </Card.Text>
             </Card>
-            <p id = 'below'>In your server file, you want require in the our middleware to handle GraphQL request using the CommonJS format.</p>
+            <p id = 'below'>In your server file, you want to require our middleware to handle GraphQL request using the CommonJS format.</p>
             <Card className='code-box'style={{color: '#000', width: '50rem', height: '3rem', top: '10px'}}>
               <Card.Text className='code-text'>
                 <pre>
@@ -136,7 +140,7 @@ const Sidebar = () => {
           <div>
             <h1>Using DacheQL with Redis</h1>
             <p>
-          DacheQL lets you decide if you would like to use Redis as your cache, or an HTTP cache. If you are using Redis, make sure you have Redis installed and your Redis server is running. To Run Redis, type the following command in your terminal:
+          DacheQL lets you decide if you would like to use Redis as your cache, or an HTTP cache. If you are using Redis, make sure you have Redis installed and your Redis server is running. To run Redis, type the following command in your terminal:
             </p>
             <Card className='code-box'style={{color: '#000', width: '50rem', height: '3rem', top: '10px'}}>
               <Card.Text className='code-text'>

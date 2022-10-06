@@ -476,7 +476,7 @@ label{
 }
 
 .code-text{
-    color: rgb(190, 190, 190);
+    color: rgb(99, 207, 247);
     display:flex;
     align-items: center;
     justify-content: center;
@@ -518,7 +518,7 @@ label{
     }
 
     code {
-        color:rgb(30, 26, 240)
+        color:rgb(30, 26, 240);
     }
 
     #below {
@@ -526,12 +526,13 @@ label{
     }
 
     h1 {
+        font-size: 35px;
         margin-top: 70px;
         font-weight: bold;
     }
 
     h2 {
-        font-size:55px;
+        font-size: 45px;
         font-weight: bold;
     }
 
@@ -540,6 +541,11 @@ label{
     }
 }
 
-.drawer {
+.list {
     font-family: 'Commissioner', sans-serif;
 }
+
+#doclogo {
+    margin-bottom: -60px;
+}
+
