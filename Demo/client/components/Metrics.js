@@ -15,7 +15,7 @@ const Metrics = (props) =>{
           </div>
         </div>
         <div className='cache-cleared-div'>
-                  Cached Runtime: {cacheFetchTime[0].toFixed(2)} ms
+                  Cached Runtime: {cacheFetchTime[0].toFixed(1)} ms
         </div>
       </div>
     </>

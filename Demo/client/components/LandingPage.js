@@ -33,23 +33,24 @@ const LandingPage = () => {
 
 
       </div>
-      
-      <Link to='/homepage'>
-        <Button className='enterbutton btn btn-secondary' style={{boxShadow: '2px 2px 2px rgba(46, 46, 46, 0.62)'}}>
-          <span style={{ '--i': '1' }}>G</span>
-          <span style={{'--i': '2' }}>e</span>
-          <span style={{'--i': '3' }}>t</span>
-          <span style={{'--i': '4' }}>&nbsp;&nbsp;&nbsp;S</span>
-          <span style={{'--i': '5' }}>t</span>
-          <span style={{'--i': '6' }}>a</span>
-          <span style={{'--i': '7' }}>r</span>
-          <span style={{ '--i': '8' }}>t</span>
-          <span style={{ '--i': '9' }}>e</span>
-          <span style={{'--i': '10' }}>d</span>
-          {/* <span style="--i:1">Z</span> */}
+      <div className = 'landingpagebutton'>
+        <Link to='/homepage'>
+          <Button className='enterbutton btn btn-secondary' style={{boxShadow: '2px 2px 2px rgba(46, 46, 46, 0.62)'}}>
+            <span style={{ '--i': '1' }}>G</span>
+            <span style={{'--i': '2' }}>e</span>
+            <span style={{'--i': '3' }}>t</span>
+            <span style={{'--i': '4' }}>&nbsp;&nbsp;&nbsp;S</span>
+            <span style={{'--i': '5' }}>t</span>
+            <span style={{'--i': '6' }}>a</span>
+            <span style={{'--i': '7' }}>r</span>
+            <span style={{ '--i': '8' }}>t</span>
+            <span style={{ '--i': '9' }}>e</span>
+            <span style={{'--i': '10' }}>d</span>
+            {/* <span style="--i:1">Z</span> */}
      
-        </Button>
-      </Link>
+          </Button>
+        </Link>
+      </div>
     </div>
   );
 };

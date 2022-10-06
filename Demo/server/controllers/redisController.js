@@ -8,12 +8,12 @@ function dacheQL({ redis } = {}, endpoint = '', TTL){
         if(req.method === 'POST'){
           //check to see if the query is already in redis
           const query = await redis.get(req.body.query);
-           
+         
           //if the query is not in redis, follow this control flow
           if(!query){
-            // console.log('setting the key in redis');
-            // console.log('req.body.query', req.body.query);
-            //fetch the graphql response to the user's specified endpoint
+          // console.log('setting the key in redis');
+          // console.log('req.body.query', req.body.query);
+          //fetch the graphql response to the user's specified endpoint
             const fetchedData = await fetch(endpoint, {
               method: 'POST', 
               headers: {
@@ -25,19 +25,19 @@ function dacheQL({ redis } = {}, endpoint = '', TTL){
               })
             })
               .then((res) => {
-              // console.log('res',res);
+                // console.log('res',res);
                 return res.json();
               })
               .then((data) => {
-              // console.log('data: ', JSON.stringify(data));
+                // console.log('data: ', JSON.stringify(data));
                 return JSON.stringify(data);
               })
               .catch((err) => console.log('err in fetch server'));
-           
+         
             // console.log('response:', fetchedData);
             //set the key as the query in Redis with the value as the GraphQL response
             const obj = await redis.SETEX(req.body.query, TTL, fetchedData);
-            // console.log('response:', obj);
+          // console.log('response:', obj);
           }
         }
         return next();
@@ -51,6 +51,6 @@ function dacheQL({ redis } = {}, endpoint = '', TTL){
     };
   }
 }
-  
-  
+
+
 module.exports = dacheQL;
