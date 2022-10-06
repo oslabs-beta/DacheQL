@@ -212,7 +212,7 @@ const Sidebar = () => {
                 </Card.Text>
               </Card>
               <p id='below'>
-            The first parameter is to let the function know where you are using Redis or not as your cache. If you are, you will have to pass Redis into the function as <code> {string4} </code> like so. The second parameter is the endpoint at which you are actually using GraphQL. For example, this endpoint may be <code>http://localhost:3000/graphql.</code> Our last paramter is the Time to Live, or how long you want this specific query to last in your cache for. This parameter is given in seconds, so make sure to convert the time you want the query to last in your Redis cache for into seconds. Now you are good to cache your GraphQL responses!
+            The first parameter is to let the function know where you are using Redis or not as your cache. If you are, you will have to pass Redis into the function as <code> {string4} </code> like so. The second parameter is the endpoint at which you are actually using GraphQL. For example, this endpoint may be <code>http://localhost:3000/graphql.</code> Our last parameter is the Time to Live, or how long you want this specific query to last in your cache for. This parameter is given in seconds, so make sure to convert the time you want the query to last in your Redis cache for into seconds. Now you are good to cache your GraphQL responses!
               </p>
             </div>
           </div>
@@ -230,7 +230,7 @@ const Sidebar = () => {
                 </CopyToClipboard>
               </Card.Text>
             </Card>
-            <p id='below'>Use the following HTTPcache middleware prior to sending a response, so that the responses are cacheable.</p>    
+            <p id='below'>Use the following HTTPcache middleware prior to sending a response, so that the responses are cacheable:</p>    
             <Card className='code-box'style={{color: '#000', width: '50rem', height: '12rem', top: '10px'}}>
               <Card.Text className='code-text'>
                 <pre> 

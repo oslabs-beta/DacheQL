@@ -300,24 +300,27 @@ const Demo = () => {
         
 
         if(selectValorant === true && valorantCount >= 1){
-          console.log(valorantCount);
           setCacheFetchTime([totalRunTime]);
+          setResult(JSON.stringify(data, null, 2));
           return;
         }
 
         if(selectPokemon === true && pokemonCount >= 1){
           setCacheFetchTime([totalRunTime]);
+          setResult(JSON.stringify(data, null, 2));
           return;
         }
 
         if(selectCities === true && citiesCount >= 1){
           setCacheFetchTime([totalRunTime]);
+          setResult(JSON.stringify(data, null, 2));
           return;
         }
     
         setTimeToFetch([timeToFetch, totalRunTime]);        
   
         setResult(JSON.stringify(data, null, 2));
+        console.log('result', result);
       })
       .catch((err) => console.log('error on demo runQuery', err));
   };
@@ -370,7 +373,9 @@ const Demo = () => {
                   Resulting Query:
                 </Card.Title>
                 <Card.Text className='result-query'>
-                  <code>{result}</code>
+                  <pre>
+                    <code>{result}</code>
+                  </pre>
                 </Card.Text>
               </Card.Body>
             </Card>
