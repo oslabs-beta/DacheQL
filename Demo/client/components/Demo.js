@@ -370,9 +370,7 @@ const Demo = () => {
                   Resulting Query:
                 </Card.Title>
                 <Card.Text className='result-query'>
-                  <pre>
-                    <code>{result}</code>
-                  </pre>
+                  <code>{result}</code>
                 </Card.Text>
               </Card.Body>
             </Card>

@@ -142,18 +142,6 @@ body {
     }
 }
 
-// .navbar {
-//     background: linear-gradient(to bottom, #2a4faa 0%, $secondary 95%);
-//     height: 80px;
-//     display: flex;
-//     overflow: auto;
-//     position: fixed;
-// }
-
-// .navbar-logo {
-//     flex: 1 1 200px;
-// }
-
 .piglogo {
     margin-top: 80px;
 }
@@ -490,5 +478,39 @@ label{
             padding: -30px;
         }
     }
+}
+
+.code-box {
+    text-align: left;
+    background-color: $dark;
+    font-family: Monospace;
+    font-size: 20px;
+    width: calc(100% - 20px);
+    display: flex;
+    // text-align: left;
+    justify-content: space-between;
+    // display: grid;
+;
+    
+}
+
+.code-text{
+    color: rgb(190, 190, 190);
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.copy-button {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+pre {
+    display: flex;
+    // justify-content: center;
+    align-items: center;
 }
 
