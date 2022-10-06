@@ -24,7 +24,7 @@ $btn-border-radius: .25rem;
 }
 .enterbutton {
     color: white;
-    background: linear-gradient(to bottom, #FFF6BF, #ABD9FF);
+    background: linear-gradient(to bottom, #5da8de, #4b4bc7);
     text-align: center;
     margin: auto;
     border-color: $secondary;
@@ -193,15 +193,14 @@ body {
 .demo-query-btn{
     background-color: $info;
     border-color: $primary;
-    display: flex;
     flex-shrink: 0;
     width: 250px;
     height: 50px;
     border-radius: 99em;
     margin-right: 0.375em;
+    margin-bottom: 8px;
     transition: 0.25s ease;
     box-shadow: inset 0 0 0 0.125em black;
-
 }
 // Styling demo query buttons
 label{

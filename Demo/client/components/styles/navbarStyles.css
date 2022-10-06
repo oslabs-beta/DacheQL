@@ -22,25 +22,22 @@
 #navbar {
   background: linear-gradient(to bottom, #b0c2e5 0%, #1f4988 75%);
 }
-.nav-item nav-link{
-  
-}
-.navbar-logo {
+
+/* .navbar-logo {
   font-weight: bold;
   font-family: sans-serif;
   text-transform: uppercase;
   /* opacity: 0; */
-  transition: opacity .5s;
-}
+  /* transition: opacity .5s; */
 
 #brand-name {
   text-transform: uppercase;
-  background-image: linear-gradient(0.25turn,
+  /* background-image: linear-gradient(0.25turn,
   #9dcae5 0%,
   #9993f3 29%,
   #E9EEF4 67%,
-  #e6a1c3 100%);
-
+  #e6a1c3 100%); */
+ 
   /* #326789 0%,
   #78A6C8 29%,
   #E9EEF4 67%,
@@ -51,17 +48,17 @@
   #E3E9E9 67%,
   #EAE9E7 100%); */
 
-  background-size: auto auto;
+  /* background-size: auto auto;
   background-clip: border-box;
-  background-size: 200% auto;
-  color: #fff;
+  background-size: 200% auto; */
+  color: rgb(255, 255, 255);
   position: inherit;
-  left: 0%;
-  background-clip: text;
+  /* left: 0%; */
+  /* background-clip: text; */
   /* text-fill-color: transparent; */
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: textclip 5s ease infinite;
+  /* -webkit-background-clip: text; */
+  /* -webkit-text-fill-color: transparent; */
+  /* animation: textclip 5s ease infinite; */
   display: inline-block;
   font-family: 'Bungee';
   font-size: 1em;
@@ -72,7 +69,7 @@
     background-position: 200% center;
   }
 } */
-@keyframes textclip {
+/* @keyframes textclip {
   0% {
     background-position: 0% 50%;
   }
@@ -84,5 +81,5 @@
   100% {
     background-position: 0% 50%;
   }
-}
+} */
 
