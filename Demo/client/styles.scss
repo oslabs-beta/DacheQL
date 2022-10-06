@@ -341,14 +341,6 @@ label{
     }
 }
 
-
-// .fs-4 {
-//     #package {
-//         font-size: 20px;
-//         margin-right: 10px;
-//     }
-// }
-
 .graphql {
     padding-top: 50px;
     padding-bottom: 50px;
@@ -477,15 +469,19 @@ label{
 }
 
 .textbox {
+    // margin: auto;
     background-color: #f7fbfd;
     margin-top: -100px;
+    margin-left: 30px;
+    width: 75%;
 
     p {
-        font-size: 20px;
+        font-size: 18px;
     }
 
     pre {
-        margin-top: 7px;
+        margin-top: 10px;
+        margin-left: 10px;
         padding: 3px;
     }
 
@@ -512,6 +508,10 @@ label{
         margin-top: 20px;
     }
 
+    li {
+        font-size:17px ;
+    }
+
     h1 {
         font-size: 35px;
         margin-top: 70px;
@@ -524,7 +524,7 @@ label{
     }
 
     ul {
-        font-size: 20px;
+        font-size: 2px;
     }
 }
 
@@ -537,3 +537,6 @@ label{
     margin-top: 20px;
 }
 
+#dacheql {
+    margin-top: 100px;
+}

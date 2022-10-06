@@ -27,6 +27,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.2.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@material/image-list": "^14.0.0",
+    "@mui/icons-material": "^5.10.6",
     "@mui/material": "^5.10.8",
     "@popperjs/core": "^2.11.6",
     "bootstrap": "^5.2.1",
