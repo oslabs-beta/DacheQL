@@ -19,7 +19,7 @@ $border-width: 1px;
 $btn-border-radius: .25rem;
 
 #root{
-    text-align: center;
+    // text-align: center;
     font-family: 'Commissioner', sans-serif;
 }
 .enterbutton {
@@ -32,6 +32,9 @@ $btn-border-radius: .25rem;
     position: relative;
     top: 40vh;
     position: relative;
+}
+.landingpagebutton {
+    text-align: center;
 }
 .btn-secondary:hover {
     opacity: 0.6;
@@ -57,13 +60,7 @@ $btn-border-radius: .25rem;
         transform: translateY(-20px)
     } 
 }
-// @keyframes waviy {
 
-//     0%,
-//     80% {
-//         transform: rotateY(360deg)
-//     }
-// }
 
 .landingpagetitle {
     font-family: 'Commissioner', sans-serif;
@@ -74,9 +71,6 @@ $btn-border-radius: .25rem;
     top: 30vh;
 }
 
-// .landingpage{
-//     background-color: #1F3C88 ;
-// }
 
 #logo {
     animation: fill 0.5s ease forwards 2.9s;
@@ -85,13 +79,9 @@ $btn-border-radius: .25rem;
 body {
     width: 100vw;
     height: 100vh;
-    // background-color: $primary;
     background-color: #FFFFFF;
-    // background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Cdefs%3E%3ClinearGradient id='a' x1='0' x2='0' y1='1' y2='0'%3E%3Cstop offset='0' stop-color='%230FF'/%3E%3Cstop offset='1' stop-color='%23CF6'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' x1='0' x2='0' y1='0' y2='1'%3E%3Cstop offset='0' stop-color='%23F00'/%3E%3Cstop offset='1' stop-color='%23FC0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill='%23FFF' fill-opacity='0' stroke-miterlimit='10'%3E%3Cg stroke='url(%23a)' stroke-width='2'%3E%3Cpath transform='translate(0 0)' d='M1409 581 1450.35 511 1490 581z'/%3E%3Ccircle stroke-width='4' transform='rotate(0 800 450)' cx='500' cy='100' r='40'/%3E%3Cpath transform='translate(0 0)' d='M400.86 735.5h-83.73c0-23.12 18.74-41.87 41.87-41.87S400.86 712.38 400.86 735.5z'/%3E%3C/g%3E%3Cg stroke='url(%23b)' stroke-width='4'%3E%3Cpath transform='translate(0 0)' d='M149.8 345.2 118.4 389.8 149.8 434.4 181.2 389.8z'/%3E%3Crect stroke-width='8' transform='rotate(0 1089 759)' x='1039' y='709' width='100' height='100'/%3E%3Cpath transform='rotate(0 1400 132)' d='M1426.8 132.4 1405.7 168.8 1363.7 168.8 1342.7 132.4 1363.7 96 1405.7 96z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    // background-attachment: fixed;
     background-size: cover;
     background-position: center;
-    // background-size: 100% auto;
 }
 
 #logo path:nth-child(2){
@@ -160,23 +150,15 @@ body {
 
 // styling result query to command interface like
 .result-query {
-    // resize: none;
-    // margin: 0px 0px 10px 10px;
-    // border: none;
-    // outline: none;
     background-color: $dark;
     font-family: Monospace;
-    // width: calc(100% - 20px);
     overflow: auto;
     color: #78A6C8;
     resize: none;
-    // margin: 0px 0px 10px 10px;
     border: none;
     outline: none;
     background-color: $dark;
     font-family: Monospace;
-    // width: calc(100% - 20px);
-    // margin: 10px 0px 0px 10px;
     text-align: left;
     font-size: 25px;
 }
@@ -204,7 +186,6 @@ body {
     top: 5vh;
     border-radius: 10%;
     left: -20vw;
-    // border: 2mm solid #326789;
     width: 10vw;
     justify-content: center;
 }
@@ -502,15 +483,63 @@ label{
     
 }
 
-.copy-button {
-    display: flex;
-    align-items: center;
-    margin-left: auto;
+
+.docsbg {
+    margin-top: -30px;
+    background-color: #f7fbfd;
 }
 
-pre {
-    display: flex;
-    // justify-content: center;
-    align-items: center;
+.textbox {
+    background-color: #f7fbfd;
+    margin-top: -100px;
+
+    p {
+        font-size: 20px;
+    }
+
+    pre {
+        margin-top: 7px;
+        padding: 3px;
+    }
+
+    .copy-button {
+        width: 50px;
+        height: auto;
+        margin-top: -7px;
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+        border-radius: 8px;
+        font-size: 15px;
+        margin-right: 5px;
+    }
+    .copy-button:hover {
+        background-color: rgb(177, 198, 245);
+    }
+
+    code {
+        color:rgb(30, 26, 240)
+    }
+
+    #below {
+        margin-top: 20px;
+    }
+
+    h1 {
+        margin-top: 70px;
+        font-weight: bold;
+    }
+
+    h2 {
+        font-size:55px;
+        font-weight: bold;
+    }
+
+    ul {
+        font-size: 20px;
+    }
 }
 
+.drawer {
+    font-family: 'Commissioner', sans-serif;
+}
