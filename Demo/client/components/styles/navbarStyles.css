@@ -1,82 +1,42 @@
-.homepage-container {
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+/* .homepage-container {
   font-family: 'Commissioner', sans-serif;
-}
+} */
 /* #2a4faa */
 .navbar {
-  font-family: 'Commissioner', sans-serif;
+  font-family:'Inter', sans-serif; 
   font-size: large;
   color:#2a4faa ;
   display: flex;
   justify-content: space-between; 
+  height: 70px;
   align-items: center;
   position: sticky;
-  @media screen and (max-width:960px){
+  @media screen and (max-width:1000px){
     transition: 0.8s all ease;
   }
   
 }
 
 #navbar {
-  background: linear-gradient(to bottom, #b0c2e5 0%, #1f4988 75%);
+  background: linear-gradient(to bottom, #fdfdfdea 0%, #fcfcfc 100%);
 }
 
-/* .navbar-logo {
-  font-weight: bold;
-  font-family: sans-serif;
-  text-transform: uppercase;
-  /* opacity: 0; */
-  /* transition: opacity .5s; */
+.nav-item {
+  color: black;
+}
 
-#brand-name {
-  text-transform: uppercase;
-  /* background-image: linear-gradient(0.25turn,
-  #9dcae5 0%,
-  #9993f3 29%,
-  #E9EEF4 67%,
-  #e6a1c3 100%); */
- 
-  /* #326789 0%,
-  #78A6C8 29%,
-  #E9EEF4 67%,
-  #E65c4F 100%); */
-
-  /* #8FA5B2 0%,
-  #C4DOC6 29%,
-  #E3E9E9 67%,
-  #EAE9E7 100%); */
-
-  /* background-size: auto auto;
-  background-clip: border-box;
-  background-size: 200% auto; */
-  color: rgb(255, 255, 255);
-  position: inherit;
-  /* left: 0%; */
-  /* background-clip: text; */
-  /* text-fill-color: transparent; */
-  /* -webkit-background-clip: text; */
-  /* -webkit-text-fill-color: transparent; */
-  /* animation: textclip 5s ease infinite; */
+#brandname {
+  /* text-transform: uppercase; */
+  color: rgb(46, 44, 44);
+  /* text-decoration: bold; */
+  position: fixed;
   display: inline-block;
-  font-family: 'Bungee';
-  font-size: 1em;
+  font-family:'Inter', sans-serif; 
+  font-size: 27px;
+  left: 75px;
+  top: 18px;
+  /* margin-top: 20px; */
+  
 }
-
-/* @keyframes textclip {
-  to {
-    background-position: 200% center;
-  }
-} */
-/* @keyframes textclip {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
-} */
-

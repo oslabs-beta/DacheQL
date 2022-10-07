@@ -10,14 +10,19 @@ import logo from './assets/logo.png';
 const Navigation = () => {
   
   return (
-    <Navbar fixed='top' style={{
-      position: 'sticky',
-      paddingLeft: '40px',
-      paddingRight: '100px',
-      minWidth: '300px'
-    }} className='navbar shadow-sm p-3 mb-5 bg-white rounded' variant='light' id='navbar' collapseOnSelect expand="lg" >
-      <Navbar.Brand className='navbar-logo'href="/"> <a id='brand-name'>DacheQL</a> <Image src={logo} width={50} height={40}/> </Navbar.Brand>
-      {/* <Navbar.Brand href="/">DacheQL</Navbar.Brand> */}
+    <Navbar 
+      fixed='top' 
+      style={{
+        position: 'sticky',
+        paddingLeft: '40px',
+        paddingRight: '100px',
+        minWidth: '300px'
+      }} 
+      className='navbar shadow-sm p-3 mb-5 bg-white rounded' variant='light' id='navbar' collapseOnSelect expand="lg" >
+      <Navbar.Brand className='navbar-logo' href="/"> 
+        <Image src={logo} width={50} height={40} />
+        <p id='brandname'>DacheQL</p> 
+      </Navbar.Brand>
       <Navbar.Toggle aria-controls="navbar-nav" />
       <Navbar.Collapse id='navbar-nav'>
         <Nav className="nav-items" navbarScroll style={{ justifyContent: 'center', right: '5vw',  position:'absolute'  }}>
