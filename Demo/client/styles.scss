@@ -389,6 +389,7 @@ label{
         .fs-5 {
             color: #666565;
             font-size: 10px;
+            width: 610px;
         }
         
         button {
@@ -396,7 +397,7 @@ label{
             background-color: white;
             color: #1d5cfa;
             display: grid;
-            margin: auto;
+            margin-left: 53%;
             border-radius: 25px;
             border: 1px solid white;
             padding: 7px;
@@ -421,7 +422,7 @@ label{
     background: linear-gradient(90deg, rgba(115,124,217,1) 0%, rgba(53,107,245,1) 100%);
     
     img {
-        margin-left: 80px;
+        margin-left: 25%;
         width: 400px;
         height: auto;
     }
@@ -445,7 +446,7 @@ label{
         }
 
         p {
-            margin-left: 135px;
+            margin-left: 34%;   
         }
     }
 }
@@ -507,6 +508,7 @@ label{
         color: #666565;
         font-size: 10px;
         margin-top:120px;
+        width:570px;
     }
 }
 
