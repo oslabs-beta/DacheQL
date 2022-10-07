@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Commissioner:wght@300&family=PT+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
 
 $enable-grid-classes: false;
 $primary: #bde9e2;
@@ -20,7 +22,7 @@ $btn-border-radius: .25rem;
 
 #root{
     // text-align: center;
-    font-family: 'Commissioner', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 .enterbutton {
     color: white;
@@ -299,19 +301,16 @@ label{
 }
 
 .introduction {
-    background-color: #f7fbfd;
+    // background-color: white;
+    // background-image: url(https://images6.alphacoders.com/775/775223.png);
+    // background-size: 1700px;
+    // background-repeat: no-repeat;
     border-radius: 20px;
-    padding-bottom: 50px;
-  
-    // padding: 15px;
-    // width: 100%;
-    // box-shadow: 0 0 5px 2px #dddddd;
+    
     
     #intro {
         margin-top: 100px;
-        // right: 200px;
-        // margin-left: 90px;
-        // margin: left;
+        margin-left: 90px;
 
         img {
             margin-bottom: 15px;
@@ -319,24 +318,41 @@ label{
 
         h1 {
             font-weight: bold;
-            // color: #121875;
-            color: #326789;
+            text-align: center;
+            // color: rgb(57, 57, 57);
+            color: black;
+            font-size: 50px;
+            
         }
         h2 {
             font-size: 25px;
             // color: #121875;
+            font-weight: bold;
         }
         h5 {
             font-size: 16px;
             font-style: italic;
             margin-bottom: 50px;
-            color: #78A6C8;
+            color: #589fd6;
             margin-left: -7px;
+            
+        }
+
+        h6 {
+            font-size: 16px;
+            text-align: center;
+            color: #78A6C8;
+            font-style: italic;
+            margin-top: 15px;
         }
 
         .introtext {
             font-size: 20px;
             color: dimgrey;
+        }
+
+        .introbody {
+            margin-top: 100px;
         }
     }
 }
@@ -344,11 +360,13 @@ label{
 .graphql {
     padding-top: 50px;
     padding-bottom: 50px;
-    margin-right: 90px;
+    background-color: #f7fbfd;
+    
     img {
         margin-top: 30px;
         width: 500px;
         height: auto;
+        margin-left: 90px;
     }
 
     div {
@@ -366,8 +384,8 @@ label{
 
 .caching {
     padding-top: 50px;
-    padding-bottom: 50px;
-    background-color: #f7fbfd;
+    padding-bottom: 100px;
+    background-color: white;
     
     img {
         width: 400px;
@@ -395,23 +413,27 @@ label{
 
 .techstack {
     padding-top: 50px;
-    padding-bottom: 50px;
+    padding-bottom: 100px;
+    background-color: #f7fbfd;
     
     #amazon {
         width: 220px;
         height: auto;
         position: relative;
         top:15px;
+        
     }
     #chartjs {
         position: relative;
         right: 25px;
         width: 200px;
         height:auto;
+        margin-left: 90px;
     }
     #graphqllogo {
         position: relative;
         right: 10px;
+        margin-left: 90px;
     }
     #redis {
         position: relative;
@@ -422,11 +444,9 @@ label{
     img{
         width: 175px;
         height: auto;
-
     }
-    padding-top: 50px;
-    margin-right: 90px;
     div {
+        
         padding: 15px;
         margin-bottom: -45px;
         margin-top: 40px;
@@ -535,8 +555,4 @@ label{
 #doclogo {
     margin-bottom: -60px;
     margin-top: 20px;
-}
-
-#dacheql {
-    margin-top: 100px;
 }

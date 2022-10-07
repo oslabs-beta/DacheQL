@@ -1,24 +1,18 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-import AppBar from '@mui/material/AppBar';
 import CssBaseline from '@mui/material/CssBaseline';
 import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
-import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ImageList from '@mui/material/ImageList';
 import { DropdownButton, Dropdown, Button, Card, Container, Row, Col, Form, FormLabel } from 'react-bootstrap';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import '../styles.scss';
 import logo from './assets/runpig.png';
 
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 
 const drawerWidth = 260;
 
@@ -69,16 +63,6 @@ const Sidebar = () => {
         <Toolbar /> 
         <img src={logo} id="doclogo"></img>
         <Box sx={{ overflow: 'hidden'}} className = 'list'>
-          {/* <List sx={{marginTop: '20px'}} >
-            {['DacheQL', 'Using DacheQL', 'Getting Started', 'DacheQL with Redis', 'DacheQL with HTTP cache'].map((text, index) => (
-              <ListItem key={text} disablePadding>
-                <ListItemButton href =  {text}>
-                 
-                  <ListItemText primary={text} />
-                </ListItemButton>
-              </ListItem>
-            ))}
-          </List> */}
           <List>
             {['DacheQL'].map((text, index) => (
               <ListItem key={text} disablePadding>
