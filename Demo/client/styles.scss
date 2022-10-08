@@ -514,30 +514,32 @@ label{
 
 .code-box {
     text-align: left;
-    background-color: #222222;
+    // background-color: #222222;
+    background-color: rgb(46, 46, 46);
     font-family: Monospace;
     font-size: 20px;
     width: calc(100% - 20px);
     display: flex;
-    // text-align: left;
+    border: none;
     justify-content: space-between;
     // display: grid;
-;
     
 }
 
 .code-text{
-    color: rgb(86, 179, 250);
+    color: rgb(141, 222, 236);
     display:flex;
     align-items: center;
     justify-content: center;
     margin-top: 5px;
+    font-weight: bold;
 }
 
 
 .docsbg {
-    margin-top: -30px;
-    background-color: #f7fbfd;
+    margin-top: -50px;
+    background: rgb(255,255,255);
+    background: linear-gradient(171deg, rgba(255,255,255,1) 0%, rgba(229,235,249,1) 100%);
 }
 
 .link{
@@ -545,8 +547,6 @@ label{
 }
 
 .textbox {
-    // margin: auto;
-    background-color: #f7fbfd;
     margin-top: -100px;
     margin-left: 30px;
     width: 75%;
@@ -583,7 +583,8 @@ label{
     }
 
     code {
-        color:rgb(30, 26, 240);
+        color:rgb(12, 36, 248);
+        font-size: 18px;
     }
 
     #below {
@@ -591,7 +592,7 @@ label{
     }
 
     li {
-        font-size:17px ;
+        font-size:17px;
     }
 
     h1 {
@@ -601,14 +602,24 @@ label{
     }
 
     h2 {
-        font-size: 45px;
+        font-size: 38px;
         font-weight: bold;
+        margin-top: 50px;
     }
 
     ul {
         font-size: 2px;
     }
 }
+
+#breakline {
+    margin-top: 90px;
+}
+
+#breakline2 {
+    margin-top: 60px;
+}
+
 
 .list {
     font-family: 'Inter', sans-serif;

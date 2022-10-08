@@ -50,19 +50,20 @@ const Sidebar = () => {
   return (
     <Box sx={{ display: 'fixed' }}>
       <CssBaseline />
-      <Drawer className = 'drawer'
+      <Drawer 
+        className = 'drawer'
         variant="permanent"
         open
         sx={{
           display: {xs: 'none', sm: 'block'},
           width: drawerWidth,
           flexShrink: 0,
-          ['& .MuiDrawer-paper']: { width: drawerWidth, boxSizing: 'border-box', height:'100%', zIndex:'0' }, 
+          ['& .MuiDrawer-paper']: { width: drawerWidth, boxSizing: 'border-box', height:'100%', zIndex:'0', fontFamily: 'Inter'}, 
         }}
       >
         <Toolbar /> 
         <img src={logo} id="doclogo"></img>
-        <Box sx={{ overflow: 'hidden'}} className = 'list'>
+        <Box sx={{ overflow: 'hidden' }} className = 'list' >
           <List>
             {['DacheQL'].map((text, index) => (
               <ListItem key={text} disablePadding>
@@ -125,12 +126,13 @@ const Sidebar = () => {
     
         <div className='textbox'>
           <div className = 'dacheqldocs'>
-            <h2 >DacheQL</h2>
+            <h2>DacheQL</h2>
             <p id = 'usingdacheql'>
             DacheQL is an open-source developer tool that leverages the pinpoint accuracy of GraphQL’s queries and implements caching to improve your website’s query efficiency
             </p>
           </div>
           <div>
+            <div id='breakline2' style={{ borderTop: "3px solid lightgrey", marginLeft: 0, marginRight: 0 }}></div>
             <h1>Using DacheQL</h1>
             <p>Prerequistes:
               <ul>
@@ -140,8 +142,9 @@ const Sidebar = () => {
               </ul>
             </p>
           </div>
-        
+         
           <div className='gettingstarted' >
+            <div id='breakline2' style={{ borderTop: "3px solid lightgrey", marginLeft: 0, marginRight: 0 }}></div>
             <h1>Getting Started</h1>
             <p>
           If this is your first time using DacheQL, run the following command in your terminal
@@ -194,6 +197,7 @@ const Sidebar = () => {
           </div>
         
           <div>
+            <div id='breakline' style={{ borderTop: "3px solid lightgrey", marginLeft: 0, marginRight: 0 }}></div>
             <h1 >Using DacheQL with Redis</h1>
             <p>
           DacheQL lets you decide if you would like to use Redis as your cache, or an HTTP cache. If you are using Redis, make sure you have Redis installed and your Redis server is running. To run Redis, type the following command in your terminal:
@@ -274,6 +278,7 @@ const Sidebar = () => {
           </div>
         
           <div className='httpcache'>
+            <div id='breakline2' style={{ borderTop: "3px solid lightgrey", marginLeft: 0, marginRight: 0 }}></div>
             <h1>Using DacheQL with HTTP cache</h1>
             <p>If you are not using Redis caching, DacheQL provides a middleware for caching using the server's memory.</p>
             <Card className='code-box'style={{color: '#000', width: '100%', height: '100%', top: '10px'}}>
@@ -300,6 +305,7 @@ const Sidebar = () => {
             <p id = 'below'>Now, you have properly set up the middleware functions in order to use DacheQL's caching tools!</p>
           </div>
           <div className='built-with'>
+            <div id='breakline2' style={{ borderTop: "3px solid lightgrey", marginLeft: 0, marginRight: 0 }}></div>
             <h1 id = 'techstack'>Technology Stack</h1>
             <ul>
               <li>GraphQL</li>
