@@ -1,9 +1,8 @@
 import React from 'react';
 import Navigation from './Navigation.js';
 import { Container, Row, Col, Image } from 'react-bootstrap';
-import Info from './homepageComps/Info.js';
 import Footer from './Footer.js';
-import Info2 from './Info2.js';
+import Info from './Info.js';
 
 const Homepage = () => {
   
@@ -15,8 +14,7 @@ const Homepage = () => {
     <div>
       <Navigation id='navbar'></Navigation>
       <Row>
-        {/* <div className='fs-1'><Info /></div> */}
-        <div className='info2'><Info2 /> </div>
+        <div className='info2'><Info /> </div>
       </Row>
       <Footer></Footer>
     </div>

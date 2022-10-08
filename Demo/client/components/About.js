@@ -14,7 +14,7 @@ const About = (props) => {
     <div className='member'>
       <Navigation id='navbar'></Navigation>
       <Row >
-  
+
         <Col>
           <Card className='team-card'>
             <Card.Img className='team-picture' src={andrew}></Card.Img>
@@ -87,9 +87,6 @@ const About = (props) => {
             </Card.Body>
           </Card>
         </Col>
-
-        
-        
       </Row>
       {/* <Footer></Footer> */}
     </div>

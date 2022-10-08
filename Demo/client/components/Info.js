@@ -9,7 +9,7 @@ import GraphQLlogo from './assets/GraphQLlogo.png';
 import { Link } from 'react-router-dom';
 import typescript from './assets/typescript.png';
 
-const Info2 = () => {
+const Info = () => {
   return(
     <Container className = 'homepagediv'>
       <div className='homepage'> 
@@ -109,4 +109,4 @@ const Info2 = () => {
   );
 };
 
-export default Info2;
+export default Info;
