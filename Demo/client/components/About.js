@@ -14,21 +14,37 @@ const About = (props) => {
     <div className='member'>
       <Navigation id='navbar'></Navigation>
       <Row >
+
         <Col>
           <Card className='team-card'>
-            <Card.Img className='team-picture' src={sandy} />
+            <Card.Img className='team-picture' src={andrew}></Card.Img>
             <Card.Body>
-
-              <Card.Link className='contact-icon' href='https://github.com/sandyliu31' target="_blank" rel="noreferrer">
+              <Card.Title>Andrew Moy</Card.Title>
+              <Card.Link className='contact-icon' href='https://github.com/Andrew-Moy' target="_blank" rel="noreferrer">
                 <FontAwesomeIcon className='contact-icon'icon={faGithub}  width={'10px'} height={'10px'}></FontAwesomeIcon>
               </Card.Link>
                 
-              <Card.Link className='contact-icon' href='https://www.linkedin.com/in/sandy-liu-1ba488160/' target="_blank" rel="noreferrer">
+              <Card.Link className='contact-icon' href='https://www.linkedin.com/in/andrewmoy/' target="_blank" rel="noreferrer">
                 <FontAwesomeIcon className='contact-icon'icon={faLinkedin}></FontAwesomeIcon>
               </Card.Link>
+              {/* <Card.Text>Software Engineer</Card.Text> */}
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col>
+          <Card className='team-card'>
+            <Card.Img className='team-picture' variant="top" src={chunhao}/>
+            <Card.Body>
 
-              <Card.Title>Sandy Liu</Card.Title>
-              <Card.Text>Software Engineer</Card.Text>
+              <Card.Title>ChunHao Zheng</Card.Title>
+              <Card.Link className='contact-icon' href='https://github.com/chunhz' target="_blank" rel="noreferrer">
+                <FontAwesomeIcon className='contact-icon'icon={faGithub}  width={'10px'} height={'10px'}></FontAwesomeIcon>
+              </Card.Link>
+                
+              <Card.Link className='contact-icon' href='https://www.linkedin.com/mwlite/in/chunhao-zheng-950a2718b' target="_blank" rel="noreferrer">
+                <FontAwesomeIcon className='contact-icon'icon={faLinkedin}></FontAwesomeIcon>
+              </Card.Link>
+              {/* <Card.Text>Software Engineer</Card.Text> */}
             </Card.Body>
           </Card>
         </Col>
@@ -37,6 +53,9 @@ const About = (props) => {
             <Card.Img className='team-picture' src={ethan}></Card.Img>
             <Card.Body>
 
+             
+
+              <Card.Title>Ethan Chuang</Card.Title>
               <Card.Link className='contact-icon' href='https://github.com/EthanChuang16'target="_blank" rel="noreferrer">
                 <FontAwesomeIcon className='contact-icon'icon={faGithub}  width={'10px'} height={'10px'}></FontAwesomeIcon>
               </Card.Link>
@@ -44,9 +63,7 @@ const About = (props) => {
               <Card.Link className='contact-icon' href='https://www.linkedin.com/in/ethan-chuang1/' target="_blank" rel="noreferrer">
                 <FontAwesomeIcon className='contact-icon'icon={faLinkedin}></FontAwesomeIcon>
               </Card.Link>
-
-              <Card.Title>Ethan Chuang</Card.Title>
-              <Card.Text>Software Engineer</Card.Text>
+              {/* <Card.Text>Software Engineer</Card.Text> */}
                 
           
             </Card.Body>
@@ -56,38 +73,17 @@ const About = (props) => {
 
         <Col>
           <Card className='team-card'>
-            <Card.Img className='team-picture' src={andrew}></Card.Img>
+            <Card.Img className='team-picture' src={sandy} />
             <Card.Body>
-
-              <Card.Link className='contact-icon' href='https://github.com/Andrew-Moy' target="_blank" rel="noreferrer">
+              <Card.Title>Sandy Liu</Card.Title>
+              <Card.Link className='contact-icon' href='https://github.com/sandyliu31' target="_blank" rel="noreferrer">
                 <FontAwesomeIcon className='contact-icon'icon={faGithub}  width={'10px'} height={'10px'}></FontAwesomeIcon>
               </Card.Link>
                 
-              <Card.Link className='contact-icon' href='https://www.linkedin.com/in/andrewmoy/' target="_blank" rel="noreferrer">
+              <Card.Link className='contact-icon' href='https://www.linkedin.com/in/sandy-liu-1ba488160/' target="_blank" rel="noreferrer">
                 <FontAwesomeIcon className='contact-icon'icon={faLinkedin}></FontAwesomeIcon>
               </Card.Link>
-
-              <Card.Title>Andrew Moy</Card.Title>
-              <Card.Text>Software Engineer</Card.Text>
-            </Card.Body>
-          </Card>
-          
-        </Col>
-        <Col>
-          <Card className='team-card'>
-            <Card.Img className='team-picture' variant="top" src={chunhao}/>
-            <Card.Body>
-
-              <Card.Link className='contact-icon' href='https://github.com/chunhz' target="_blank" rel="noreferrer">
-                <FontAwesomeIcon className='contact-icon'icon={faGithub}  width={'10px'} height={'10px'}></FontAwesomeIcon>
-              </Card.Link>
-                
-              <Card.Link className='contact-icon' href='https://www.linkedin.com/mwlite/in/chunhao-zheng-950a2718b' target="_blank" rel="noreferrer">
-                <FontAwesomeIcon className='contact-icon'icon={faLinkedin}></FontAwesomeIcon>
-              </Card.Link>
-
-              <Card.Title>ChunHao Zheng</Card.Title>
-              <Card.Text>Software Engineer</Card.Text>
+              {/* <Card.Text>Software Engineer</Card.Text> */}
             </Card.Body>
           </Card>
         </Col>
