@@ -156,7 +156,7 @@ body {
   width: 120px;
 }
 
-// styling result query to command interface like
+// styling result to command interface like
 .result-query {
     background-color: $dark;
     font-family: Monospace;
@@ -715,28 +715,16 @@ label{
     }
 
     .button1:hover {
-        // transform: scale(1.1);
-        // -webkit-transform: scale(1.1);
-        // -ms-transform: scale(1.1);
-        // box-shadow: 2px 5px;
         color: #1d5cfa;
         background-color: white;
     }
     .button2:hover {
-        // transform: scale(1.1);
-        // -webkit-transform: scale(1.1);
-        // -ms-transform: scale(1.1);
-        // box-shadow: 2px 5px;
         color: white;
         background-color: #1d5cfa;
     }
 }
 
 .secondbox {
-    // display: flex;
-    // justify-content: center;
-    // align-items: center;
-    
     text-align: center;
     padding-top: 15px;
     color: rgb(255, 255, 255);
@@ -764,8 +752,6 @@ label{
 
 .twobuttons {
     max-width: none;
-    // padding-left: 490px;
-    // padding-right: 490px;
     padding-bottom: 200px;
     display: flex;
     justify-content: center;
@@ -858,6 +844,7 @@ label{
 }
 
 .graphbox {
+    left: 5px;
     .graph {
         font-size: 25px;
         font-weight: 700;

@@ -40,13 +40,6 @@ const Sidebar = () => {
     }
   };
 
-  // const onNavClick = (event, id) => {
-  //   const element = document.getElementById(id);
-  //   event.preventDefault();
-  //   element.scrollIntoView();
-  //   window.history.pushState(id, id);
-  // };
-
   return (
     <Box sx={{ display: 'fixed' }}>
       <CssBaseline />

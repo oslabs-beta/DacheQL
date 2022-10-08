@@ -339,12 +339,12 @@ const Demo = () => {
               <h4>Choose A Demo Query</h4>
               <Button   
                 className='demo-query-btn' href = "#/action-1" onClick = {handleChangeValorant}>
-                <Form.Check id='queries' label="Query For Valorant" type="radio" checked={selectValorant}></Form.Check>
+                <Form.Check className='queries' label="Query For Valorant" type="radio" checked={selectValorant}></Form.Check>
               </Button>
               <Button  
-                className='demo-query-btn' href = "#/action-2" onClick = {handleChangePokemon}><Form.Check id='queries' label="Query For Pokemon" type="radio" checked={selectPokemon}></Form.Check></Button>
+                className='demo-query-btn' href = "#/action-2" onClick = {handleChangePokemon}><Form.Check className='queries' label="Query For Pokemon" type="radio" checked={selectPokemon}></Form.Check></Button>
               <Button  
-                className='demo-query-btn' href="#/action-3" onClick={handleChangeCities}><Form.Check id='queries' label="Query For Cities" type="radio" checked={selectCities}></Form.Check></Button>
+                className='demo-query-btn' href="#/action-3" onClick={handleChangeCities}><Form.Check className='queries' label="Query For Cities" type="radio" checked={selectCities}></Form.Check></Button>
               <Button  
                 id='runQueBtn' onClick={runQuery} >
                 {/* <img src={piggyIcon} width={25} height={40} /> */}
