@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Commissioner:wght@300&family=PT+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap');
 
 $enable-grid-classes: false;
 $primary: #bde9e2;
@@ -24,11 +24,12 @@ $btn-border-radius: .25rem;
     font-family: 'Inter', sans-serif;
 }
 .enterbutton {
-    color: white;
-    background: linear-gradient(to bottom, #5da8de, #4b4bc7);
+    color: #1d5cfa;
+    background: rgb(255,255,255);
+    background: linear-gradient(117deg, rgba(255,255,255,1) 0%, rgba(225,226,250,1) 23%, rgba(217,219,249,1) 48%, rgba(232,233,251,1) 78%, rgba(255,255,255,1) 100%);
     text-align: center;
     margin: auto;
-    border-color: $secondary;
+    // border-color: $secondary;
     font-size: 40px;
     position: relative;
     top: 40vh;
@@ -42,10 +43,11 @@ $btn-border-radius: .25rem;
 }
 
 .enterbutton span {
-    font-family: 'Alfa Slab One', cursive;
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
     position: relative;
     display: inline-block;
-    color: #fff;
+    color: #737CD9;
     text-transform: uppercase;
     animation: waviy 3s infinite;
     animation-delay: calc(.1s * var((--i)));
@@ -191,22 +193,33 @@ body {
     position: absolute;
     top: 5vh;
     border-radius: 10%;
-    left: -20vw;
-    width: 10vw;
+    left: -25vw;
+    width: 20vw;
     justify-content: center;
+    h4{
+        text-align: center;
+        font-weight: 700;
+    }
+    
 }
 // Styling demo query buttons
 .demo-query-btn{
     background-color: $info;
-    border-color: $primary;
+    border-color: $info;
+    // border-color: none;
     flex-shrink: 0;
-    width: 250px;
+    width: 220px;
     height: 50px;
     border-radius: 99em;
     margin-right: 0.375em;
     margin-bottom: 8px;
     transition: 0.25s ease;
-    box-shadow: inset 0 0 0 0.125em black;
+    // box-shadow: inset 0 0 0 0.125em black;
+    #queries {
+        margin-top: 10px;
+    }
+   
+    
 }
 // Styling demo query buttons
 label{
@@ -219,41 +232,51 @@ label{
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-    &:checked + span {
-      background-color: mix(#fff, $info, 84%);
-      &:before {
-        box-shadow: inset 0 0 0 0.4375em $info;
+    // &:checked + span {
+    //   background-color: mix(#fff, $info, 84%);
+    //   &:before {
+    //     box-shadow: inset 0 0 0 0.4375em $info;
         
-      }
-    }
+    //   }
+    // }
 }
 // Styling run query button
 #runQueBtn{
     background-color: $danger;
-    // margin-top: 50px;
+    border-color: $danger;
     color: $light;
-    border-color: $primary;
-    display: flex;
-    flex-shrink: 0;
-    height: 50px;
-    // border-radius: 10px;
-    width: 250px;
-    margin-right: 0.375em;
-    transition: 0.25s ease;
-    box-shadow: inset 0 0 0 0.125em black;
+    
+    // border-color: $primary;
     align-items: center;
+    height: 50px;
+    width: 220px;
+    margin-right: 0.375em;
+    margin-bottom: 20px;
+    transition: 0.25s ease;
     padding: 0.75em 0.75em 0.75em 0.5em;
     padding: 10px;
     border-radius: 99em; // or something higher...
     transition: 0.25s ease;
+    text-align: center;
     &:hover{
         background-color: mix($danger,black, 70%);
     }
+    p{
+        margin-top: 32px;
+        margin-left: -70px;
+        
+    }
+    #piggy {
+        margin-left: -45px;
+        margin-top: 32px;
+    }
+    
 }
 // Styling demo query buttons
 .demo-query-btns{
     border-radius: 15px;
     border: solid 2px;
+    text-align: center;
 
 // #runQueBtn:hover {
 //     background-color: #1F3C88 ;
@@ -287,6 +310,7 @@ label{
     left: 30%;
     // top: -100vh;
     position: sticky;
+   
     width:fit-content;
     margin-left: 0.5vw;
     // margin: .5em;
@@ -296,6 +320,7 @@ label{
 .info-container {
     margin-top: 0;
     position: relative;
+    max-height: none;
     top: -20px;
 }
 
@@ -451,21 +476,21 @@ label{
     }
 }
 
-
-
 .techstack {
     padding-top: 50px;
-    padding-bottom:200px;
+    padding-bottom: 220px;
+    margin-bottom: -70px;
     background: rgb(243,246,255);
     background: linear-gradient(90deg, rgba(243,246,255,1) 0%, rgba(175,205,255,1) 47%, rgba(243,246,255,1) 100%);
     // max-height: none;
 
     
-    #amazon {
-        width: 220px;
+    #typescript {
+        width: 160px;
         height: auto;
         position: relative;
-        top:15px;
+        left: 40px;
+        top: 10px;
         
     }
     #chartjs {
@@ -784,4 +809,79 @@ label{
   'opsz' 48
 }
 
+.linktodemo {
+    text-decoration: none;
+}
 
+.howto {
+    font-style: 'Inter', sans-serif;
+    text-align: center;
+    padding-bottom: 60px;
+    margin-left: 30px;
+    list-style-position: inside;
+
+    ol {
+        margin-top: 40px;
+        display: inline-block;
+        text-align: left;
+    }
+
+    h1 {
+        font-size: 50px;
+    }
+
+    li {
+        font-size: 20px;
+        color: #5e5d5d;
+    }
+
+    p {
+        font-weight: 700;
+        color: #5e5d5d;
+    }
+}
+
+.demopage {
+    background: rgb(255,255,255);
+    background: linear-gradient(171deg, rgba(255,255,255,1) 0%, rgba(229,235,249,1) 100%);
+}
+
+.metricsbox {
+    margin-bottom: 300px;
+
+    .metrics{
+        font-size: 25px;
+        font-weight: 700;
+        text-align: center;
+    }
+
+}
+
+.graphbox {
+    .graph {
+        font-size: 25px;
+        font-weight: 700;
+        text-align: center;
+    }
+}
+
+.metrics-div {
+    .metric-value{
+        margin-top: 50px;
+        font-size: 20px;
+        a {
+            font-weight: 700;
+            color: $danger;
+        }
+    }
+
+    .cache-cleared-div {
+        margin-top: 20px;
+        font-size: 20px;
+        a {
+            font-weight: 700;
+            color: $info;
+        }
+    }
+    
+}

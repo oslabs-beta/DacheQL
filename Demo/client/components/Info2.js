@@ -7,6 +7,7 @@ import chartjslogo from './assets/chartjslogo.svg';
 import redislogo from './assets/redislogo.png';
 import GraphQLlogo from './assets/GraphQLlogo.png';
 import { Link } from 'react-router-dom';
+import typescript from './assets/typescript.png';
 
 const Info2 = () => {
   return(
@@ -24,9 +25,9 @@ const Info2 = () => {
                   </a>
                 </Col>
                 <Col>
-                  <a className = 'link' href = 'https://github.com/oslabs-beta/DacheQL' target="_blank" rel="noreferrer">
-                    <button className='button2'>GitHub Star</button>
-                  </a>
+                  <Link className = 'linktodemo' to='/demo'>
+                    <button className='button2'>Demo</button>
+                  </Link>
                 </Col>
               </Row>
             </div>
@@ -91,7 +92,7 @@ const Info2 = () => {
           <Col>
             <Col>
               <img id='graphqllogo' src={GraphQLlogo}></img>
-              <img id='amazon' src={awslogo}></img>
+              <img id='typescript' src={typescript}></img>
             </Col>
             <Col>
               <img id = 'chartjs' src={chartjslogo}></img>

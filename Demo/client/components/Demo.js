@@ -31,8 +31,6 @@ ChartJS.register(
 
 //counter to keep track for our incrementer function globally declared
 let counter = 0;
-//global variable for labels 
-// let labels = [];
 
 const Demo = () => {
   //react hook for whatever displaying the query in Selected query box but in html format
@@ -131,14 +129,10 @@ const Demo = () => {
   //instead of calling incremeneter inside the runquery we just call it everytime either of the times change
 
   useEffect( () => {
-    // console.log('time to fetch: ', timeToFetch);
-    // console.log('cache fetch time: ', cacheFetchTime);
     incrementer(timeToFetch[1], cacheFetchTime[0],booleanVal);
   },[timeToFetch]);
 
   useEffect( () => {
-    // console.log('time to fetch: ', timeToFetch);
-    // console.log('cache fetch time: ', cacheFetchTime);
     incrementer(timeToFetch[1], cacheFetchTime[0],booleanVal);
   },[cacheFetchTime]);
 
@@ -148,10 +142,7 @@ const Demo = () => {
   //function to incremement a counter so that the first element of the array 
   //is the uncached time and it isnt ever repeated 
   const incrementer = (uncachedData, cachedData, bool) => {
-    // console.log('cache data: ', cachedData, 'uncache data: ', uncachedData);
-    // console.log(typeof cachedData);
     //control flow to check the state of the booleanval hook and then if its switched i will reassign counter to 0 to begin again
-    // console.log('boolean after setting: ', bool);
     if(bool === true) {
       counter = 0;
       setBooleanVal(false);
@@ -205,7 +196,6 @@ const Demo = () => {
   };
 
   const handleChangePokemon = (event) => {
-    //console.log(event.target.innerHTML);
     // setTimeArray([]);
     setQuery(event.target.innerHTML);
     setOutput('Query For Pokemon');
@@ -328,26 +318,41 @@ const Demo = () => {
 
 
   return (
-    <div>
+    <div className = 'demopage'>
       <Navigation id='navbar'></Navigation>
+      <div className='howto'>
+        <h1>How To Use</h1>
+        <ol> 
+          <li>Select a query you want to receive information for</li>
+          <li>Press Run Query and see the uncached fetch time</li>
+          <li>Press Run Query a second time and notice the cached runtime!</li>
+          <p> * Repeated query requests to cached data will remain around similar runtime! *</p>
+        </ol>
+      </div>
       <div className='card-container'>
         <div className='demo-query-container'>
          
           <div className='demo-query-btns btn-group-vertical'>
             <Form>
               
-              <FormLabel style={{ 'width': 'max-content', 'flex-direction': 'row', textShadow: '1px 1px 1px rgba(46, 46, 46, 0.62)' }}></FormLabel>
+              <FormLabel style={{ 'width': 'max-content', 'flex-direction': 'row' }}></FormLabel>
               <h4>Choose A Demo Query</h4>
               <Button   
-                className='demo-query-btn' href = "#/action-1" onClick = {handleChangeValorant} style={{boxShadow: '2px 2px 2px rgba(46, 46, 46, 0.62)'}}><Form.Check label="Query For Valorant" type="radio" checked={selectValorant}></Form.Check></Button>
+                className='demo-query-btn' href = "#/action-1" onClick = {handleChangeValorant}>
+                <Form.Check id='queries' label="Query For Valorant" type="radio" checked={selectValorant}></Form.Check>
+              </Button>
               <Button  
-                className='demo-query-btn' href = "#/action-2" onClick = {handleChangePokemon} style={{boxShadow: '2px 2px 2px rgba(46, 46, 46, 0.62)'}}><Form.Check label="Query For Pokemon" type="radio" checked={selectPokemon}></Form.Check></Button>
+                className='demo-query-btn' href = "#/action-2" onClick = {handleChangePokemon}><Form.Check id='queries' label="Query For Pokemon" type="radio" checked={selectPokemon}></Form.Check></Button>
               <Button  
-                className='demo-query-btn' href="#/action-3" onClick={handleChangeCities} style={{boxShadow: '2px 2px 2px rgba(46, 46, 46, 0.62)'}}><Form.Check label="Query For Cities" type="radio" checked={selectCities}></Form.Check></Button>
+                className='demo-query-btn' href="#/action-3" onClick={handleChangeCities}><Form.Check id='queries' label="Query For Cities" type="radio" checked={selectCities}></Form.Check></Button>
               <Button  
-                id='runQueBtn' onClick={runQuery} style={{ boxShadow: '2px 2px 2px rgba(46, 46, 46, 0.62)' }}>
+                id='runQueBtn' onClick={runQuery} >
                 {/* <img src={piggyIcon} width={25} height={40} /> */}
-                <FontAwesomeIcon icon={faPiggyBank}></FontAwesomeIcon>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Run Query
+                <Row>
+                  <Col id='piggy'><FontAwesomeIcon icon={faPiggyBank}></FontAwesomeIcon></Col>
+                  <Col> <p>Run Query</p></Col>
+                </Row>
+          
               </Button>
             </Form>
           </div>
@@ -384,7 +389,7 @@ const Demo = () => {
 
         <Row>
           <Col>
-            <Card style={{color: '#000', width: '30rem', height: '25rem', top:'40px'}}>
+            <Card style={{color: '#000', width: '30rem', height: '15rem', top:'40px'}} className = 'metricsbox'>
               <Card.Body >
                 <Card.Title className='metrics'>
                     Metrics
@@ -399,7 +404,7 @@ const Demo = () => {
             </Card>
           </Col>
           <Col>
-            <Card style={{color: '#000', width: '30rem', height: '25rem', top:'40px'}}>
+            <Card style={{color: '#000', width: '30rem', height: '15rem', top:'40px'}} className = 'graphbox'>
               <Card.Body>
                 <Card.Title className='graph'>
                     Graph
