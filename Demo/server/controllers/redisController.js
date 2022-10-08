@@ -13,9 +13,7 @@ function dacheQL({ redis } = {},capacity = 50, endpoint = '', TTL){
          
           //if the query is not in redis, follow this control flow
           if(!query){
-          // console.log('setting the key in redis');
-          // console.log('req.body.query', req.body.query);
-          //fetch the graphql response to the user's specified endpoint
+            //fetch the graphql response to the user's specified endpoint
             const fetchedData = await fetch(endpoint, {
               method: 'POST', 
               headers: {
@@ -27,19 +25,15 @@ function dacheQL({ redis } = {},capacity = 50, endpoint = '', TTL){
               })
             })
               .then((res) => {
-                // console.log('res',res);
                 return res.json();
               })
               .then((data) => {
-                // console.log('data: ', JSON.stringify(data));
                 return JSON.stringify(data);
               })
               .catch((err) => console.log('err in fetch server'));
          
-            // console.log('response:', fetchedData);
             //set the key as the query in Redis with the value as the GraphQL response
             const obj = await redis.SETEX(req.body.query, TTL, fetchedData);
-          // console.log('response:', obj);
           }
         }
         return next();
@@ -158,7 +152,6 @@ class LRUCache {
       } return node.value;
 
     } else {
-      //console.log('not found in cache aka GET key is not found in the map this is supposed to happen try 1', key);
       return false;
     }
   }
@@ -178,9 +171,7 @@ class LRUCache {
       //removeLast method will also return the last node so we can later delete it in our
       //hashmap as well
       //we are deleting from the hashmap via the new key property we added to each linked list node
-      // console.log('MAP BEFORE DELETE: ', this.map.has(lastNode.key));
       this.map.delete(lastNode.key);
-      // console.log('MAP AFTER DELETION: ', this.map.has(lastNode.key));
       //stick in the new node at the front aka add method
       const newNode = new ListNode(value, key);
       this.list.add(newNode);
@@ -208,7 +199,6 @@ class DoublyLinkedList {
   }
   add(newNode) {
     //new instance of node
-    //console.log('attempt to add node: ', newNode);
     if (!this.head && !this.tail) {
       //console.log('head doesn\'t exist');
       this.head = this.tail = newNode;
@@ -232,13 +222,11 @@ class DoublyLinkedList {
     //since the one before it is now the new tail it points to null
     this.tail = this.tail.prev;
     //the new tail is now the one before it
-    //console.log('REMOVE LAST');
     this.delete(lastNode);
     //delete the tail that was assigned to this variable before the rest of this
     return lastNode;
   }
   moveToFront(node) {
-    //console.log('MOVE TO FRONT HERE: ');
     //deletes node and then adds to front aka for updating
     this.delete(node);
     this.add(node);
@@ -249,19 +237,16 @@ class DoublyLinkedList {
     //connects previous node to next one aka removing current one from LL
     //console.log('attempt to delete node', node);
     if (!this.head && !this.tail) {
-      //console.log('this.head & tail doesnt exist');
       return;
     }
     // checking value of head
     if (this.head.value === node.value) {
-      //console.log('TRYING TO DELETE THE HEAD');
       this.head = this.head.next;
       //deletion when equal to the head
       // checking value of tail
     } else if (this.tail.value === node.value) {
       //if the tail is what we are trying to delete
       //i think we having a issue here
-      //console.log('TRYING TO DELETE THE TAIL');
       this.tail = this.tail.prev;
       this.tail.next = null;
     } else {
@@ -283,7 +268,6 @@ class DoublyLinkedList {
         }
       }
     }
-    //console.log('list after deletion: ', this.head);
     this.size--;
     return node;
   }
@@ -299,6 +283,5 @@ class ListNode {
     this.prev = 0;
   }
 }
-
 
 module.exports = dacheQL;
