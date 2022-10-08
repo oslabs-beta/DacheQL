@@ -27,7 +27,7 @@ app.get('/', (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
 });
 
-app.use('/graphql', dacheQL({redis: client}, 'http://localhost:3000/graphql2', 300), expressGraphQL({
+app.use('/graphql', dacheQL({}, 2, 'http://localhost:3000/graphql2', 300), expressGraphQL({
   schema: schema,
   graphiql: true,
 }));
