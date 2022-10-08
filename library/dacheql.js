@@ -1,6 +1,7 @@
 const fetch = require('node-fetch');
 const axios = require('axios');
 
+
 function dacheQL({ redis } = {},capacity = 50, endpoint = '', TTL){
   //if the user is using redis
   if(redis){

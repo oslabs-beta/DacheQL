@@ -2,10 +2,11 @@ const path = require('path');
 const express = require('express');
 const expressGraphQL = require('express-graphql').graphqlHTTP;
 const schema = require('./schema/schema.js');
+import { Request, Response, NextFunction }  from 'express';
+import { ErrObject } from '../../types';
 const cors = require('cors');
 const redis = require('redis');
 const dacheQL = require('./controllers/redisController');
-const fetch = require('node-fetch');
 
 
 const PORT = 3000;
@@ -22,7 +23,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/dist', express.static(path.join(__dirname, '../dist')));
 app.use(cors());
 
-app.get('/', (req, res) => {
+app.get('/', (req: Request, res: Response) => {
   console.log('getting index.html');
   return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
 });
@@ -37,9 +38,9 @@ app.use('/graphql2', expressGraphQL({
   graphiql: true,
 }));
 
-app.use((req, res) => res.status(404).send('Cannot get route'));
+app.use((req: Request, res: Response) => res.status(404).send('Cannot get route'));
 
-app.use((err, req, res, next) => {
+app.use((err: ErrObject, req: Request, res: Response, next: NextFunction) => {
   const defaultErr = {
     log: 'Express error handler caught unknown middleware error',
     status: 500,
