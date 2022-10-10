@@ -2,7 +2,7 @@
   "name": "dacheql",
   "version": "1.0.0",
   "description": "GraphQL caching tool",
-  "main": "server.ts",
+  "main": "index.js",
   "scripts": {
     "start": "node ./Demo/server/server.ts",
     "dev": "webpack-dev-server --mode development --open --hot & nodemon ./Demo/server/server.ts",
