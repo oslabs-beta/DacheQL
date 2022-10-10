@@ -41,7 +41,9 @@ const Navigation = () => {
           style={{ justifyContent: 'center', right: '5vw', position: 'absolute' }}
         >
           <Nav.Link className="nav-item" as={Link} to="/homepage">
+            {/* imported icons from FontAwesomeIcon */}
             <FontAwesomeIcon icon={faHouse} />
+            {/* &nbsp; is adding white space */}
             &nbsp;Home
           </Nav.Link>
           <Nav.Link className="nav-item" as={Link} to="/docs">
