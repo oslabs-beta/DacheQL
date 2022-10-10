@@ -10,7 +10,7 @@ import {
   faDownload,
   faFolderOpen,
 } from '@fortawesome/free-solid-svg-icons';
-import { faGithub, faNpm } from '@fortawesome/free-brands-svg-icons';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import logo from './assets/logo.png';
 
 const Navigation = () => {
@@ -69,7 +69,6 @@ const Navigation = () => {
           </Nav.Link>
           <Nav.Link
             className="nav-item"
-            as={Link}
             href="https://www.npmjs.com/package/dacheql"
             target="_blank"
             rel="noreferrer"
