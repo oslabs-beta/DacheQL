@@ -26,15 +26,30 @@ import logo from './assets/runpig.png';
 const drawerWidth = 260;
 
 const Sidebar = () => {
-  const string1 = "dacheQL({ redis } = {}, endpoint = '', TTL)";
-  const string2 = "app.use('/graphql', dacheql(), /* other middleware */);";
-  const string3 = `app.use( 
-    '/graphql',
-    dacheql(),
-    httpCache(),
-    graphqlHTTP({ schema: schema, graphiql: true })
-);`;
+  const string1 = `app.use(
+    '/graphql', 
+    dacheQL({ redis } = {<redis: client>}, capacity, endpoint, TTL),
+    expressGraphQL({
+      schema: schema,
+      graphiql: true,
+    })
+  );`;
+  const string2 = `app.use(
+    '/graphql', 
+    dacheQL({}, capacity, endpoint, TTL),
+    expressGraphQL({
+      schema: schema,
+      graphiql: true,
+    })
+  );`;
+//   const string3 = `app.use( 
+//     '/graphql',
+//     dacheql(),
+//     httpCache(),
+//     graphqlHTTP({ schema: schema, graphiql: true })
+// );`;
   const string4 = '{redis: client}';
+  const string5 = '{}';
   const hash = '#';
 
   const change = (num) => {
@@ -47,6 +62,13 @@ const Sidebar = () => {
       elem.style.width = '50px';
     }
   };
+
+  // const onNavClick = (event, id) => {
+  //   const element = document.getElementById(id);
+  //   event.preventDefault();
+  //   element.scrollIntoView();
+  //   window.history.pushState(id, id);
+  // };
 
   return (
     <Box sx={{ display: 'fixed' }}>
@@ -108,7 +130,7 @@ const Sidebar = () => {
             ))}
           </List>
           <List>
-            {['DacheQL with HTTP cache'].map((text, index) => (
+            {['DacheQL without Redis'].map((text, index) => (
               <ListItem key={text} disablePadding>
                 <ListItemButton href="#dacheqlwithhttpcache">
                   <ListItemText primary={text} />
@@ -134,34 +156,25 @@ const Sidebar = () => {
         <div className="textbox">
           <div className="dacheqldocs">
             <h2>DacheQL</h2>
-            <p id="usingdacheql">
-              DacheQL is an open-source developer tool that leverages the pinpoint accuracy of
-              GraphQL’s queries and implements caching to improve your website’s query efficiency
+            <p>
+            DacheQL is an open-source developer tool that leverages the pinpoint accuracy of GraphQL’s queries and implements caching to improve your website’s query efficiency
             </p>
           </div>
-          <div>
-            <div
-              id="breakline2"
-              style={{ borderTop: '3px solid lightgrey', marginLeft: 0, marginRight: 0 }}
-            ></div>
+          <div id = 'usingdacheql'>
+            <div id='breakline2' style={{ borderTop: "3px solid lightgrey", marginLeft: 0, marginRight: 0 }}></div>
             <h1>Using DacheQL</h1>
             <p>
               Prerequistes:
               <ul>
                 <li>Redis installed if using Redis as your cache</li>
                 <li>GraphQL schemas setup with your database</li>
-                <li id="gettingstarted">
-                  Fullstack Application where frontend makes query request to backend
-                </li>
+                <li>Fullstack Application where frontend makes query request to backend</li>
               </ul>
             </p>
           </div>
-
-          <div className="gettingstarted">
-            <div
-              id="breakline2"
-              style={{ borderTop: '3px solid lightgrey', marginLeft: 0, marginRight: 0 }}
-            ></div>
+         
+          <div id='gettingstarted' className='gettingstarted' >
+            <div id='breakline2' style={{ borderTop: "3px solid lightgrey", marginLeft: 0, marginRight: 0 }}></div>
             <h1>Getting Started</h1>
             <p>
               If this is your first time using DacheQL, run the following command in your terminal
@@ -217,28 +230,22 @@ const Sidebar = () => {
                 </CopyToClipboard>
               </Card.Text>
             </Card>
-            <p id="below">Add the following code to use the express.json() middleware function: </p>
-            <Card
-              className="code-box"
-              style={{ color: '#000', width: '100%', height: '100%', top: '10px' }}
-            >
-              <Card.Text className="code-text">
-                <pre id="dacheqlwithredis">app.use(express.json());</pre>
-                <CopyToClipboard text="app.use(express.json());">
-                  <button className="copy-button" onClick={() => change(4)} id="button4">
-                    Copy
-                  </button>
+            <p id = 'below'>Add the following code to use the express.json() middleware function: </p>
+            <Card className='code-box'style={{color: '#000', width: '100%', height: '100%', top: '10px'}}>
+              <Card.Text className='code-text'>
+                <pre>
+              app.use(express.json());
+                </pre>
+                <CopyToClipboard text = "app.use(express.json());">
+                  <button className = 'copy-button' onClick = {() => change(4)} id ='button4'>Copy</button>
                 </CopyToClipboard>
               </Card.Text>
             </Card>
             <p id="below"></p>
           </div>
-
-          <div>
-            <div
-              id="breakline"
-              style={{ borderTop: '3px solid lightgrey', marginLeft: 0, marginRight: 0 }}
-            ></div>
+        
+          <div id = 'dacheqlwithredis'>
+            <div id='breakline' style={{ borderTop: "3px solid lightgrey", marginLeft: 0, marginRight: 0 }}></div>
             <h1>Using DacheQL with Redis</h1>
             <p>
               DacheQL lets you decide if you would like to use Redis as your cache, or an HTTP
@@ -322,77 +329,39 @@ const Sidebar = () => {
                 DacheQL function as middleware in your /graphql endpoint. The parameters for our
                 function are as follows:
               </p>
-              <Card
-                className="code-box"
-                style={{ color: '#000', width: '100%', height: '100%', top: '10px' }}
-              >
-                <Card.Text className="code-text">
-                  <pre>{string1}</pre>
-                  <CopyToClipboard text="dacheQL({ redis } = {}, endpoint = '', TTL)">
-                    <button className="copy-button" onClick={() => change(9)} id="button9">
-                      Copy
-                    </button>
+              <Card className='code-box'style={{color: '#000', width: '100%', height: '100%', top: '10px'}}>
+                <Card.Text className='code-text'>
+                  <pre>
+                    {string1}
+                  </pre>
+                  <CopyToClipboard text = {string1}>
+                    <button className = 'copy-button' onClick = {() => change(9)} id ='button9'>Copy</button>
                   </CopyToClipboard>
                 </Card.Text>
               </Card>
-              <p id="below">
-                The first parameter is to let the function know where you are using Redis or not as
-                your cache. If you are, you will have to pass Redis into the function as{' '}
-                <code id="dacheqlwithhttpcache"> {string4} </code> like so. The second parameter is
-                the endpoint at which you are actually using GraphQL. For example, this endpoint may
-                be <code>http://localhost:3000/graphql.</code> Our last parameter is the Time to
-                Live, or how long you want this specific query to last in your cache for. This
-                parameter is given in seconds, so make sure to convert the time you want the query
-                to last in your Redis cache for into seconds. Now you are good to cache your GraphQL
-                responses!
+              <p id='below'>
+            The first parameter is to let the function know where you are using Redis or not as your cache. If you are, you will have to pass Redis into the function as <code> {string4} </code> like so. <br></br> <br></br>The second parameter is the capacity you want to specify if you are not using the Redis Cache and are using our custom cache. If you decide to use the Redis cache, just default to leaving the cache at 50. <br></br> <br></br> The third parameter is the endpoint at which you are actually using GraphQL. For example, this endpoint may be <code>http://localhost:3000/graphql.</code> <br></br> <br></br>Our last parameter is the Time to Live, or how long you want this specific query to last in your cache for. This parameter is given in seconds, so make sure to convert the time you want the query to last in your Redis cache for into seconds. Now you are good to cache your GraphQL responses!
               </p>
             </div>
           </div>
-
-          <div className="httpcache">
-            <div
-              id="breakline2"
-              style={{ borderTop: '3px solid lightgrey', marginLeft: 0, marginRight: 0 }}
-            ></div>
-            <h1>Using DacheQL with HTTP cache</h1>
-            <p>
-              If you are not using Redis caching, DacheQL provides a middleware for caching using
-              the server's memory.
-            </p>
-            <Card
-              className="code-box"
-              style={{ color: '#000', width: '100%', height: '100%', top: '10px' }}
-            >
-              <Card.Text className="code-text">
-                <pre>{string2}</pre>
-                <CopyToClipboard text="app.use('/graphql', dacheql(), /* other middleware */);">
-                  <button className="copy-button" onClick={() => change(10)} id="button10">
-                    Copy
-                  </button>
+        
+          <div className='httpcache' id = 'dacheqlwithhttpcache'>
+            <div id='breakline2' style={{ borderTop: "3px solid lightgrey", marginLeft: 0, marginRight: 0 }}></div>
+            <h1>Using DacheQL without Redis</h1>
+            <p>If you are not using Redis caching, DacheQL provides a middleware for caching using the server's memory with our custom cache that behaves with an LRU eviction policy. The arguments you should input for this middlware are as follows. <br></br> <br></br>For the first parameter, since you are not using Redis, simply pass in an empty object <code id='dacheqlwithhttpcache'> {string5} </code> like so. <br></br> <br></br>Next, is the capacity you would like your cache to hold. This capacity refers to when our cache will begin evicting items. For example, if you set the capacity to 50, it will evict an item upon the 51st unique query. It should be noted that if you pass in a non-whole number, it will be rounded down for you. Non integers, negative numbers, and capacities below 1 will default to simply creating a GraphQL fetch without storing values in the cache. <br></br> <br></br>The third parameter is the endpoint at which you are actually using GraphQL. For example, this endpoint may be <code>http://localhost:3000/graphql.</code> <br></br> <br></br>Our last parameter is the Time to Live, or how long you want this specific query to last in your cache for. Since we aren't using Redis here, just pass in anything for your TTL as our cache is not reliant on this information. Now you are good to cache your GraphQL responses! </p>
+             
+            <Card className='code-box'style={{color: '#000', width: '100%', height: '100%', top: '10px'}}>
+              <Card.Text className='code-text'>
+                <pre>
+                  {string2}
+                </pre>
+                <CopyToClipboard text = {string2}>
+                  <button className = 'copy-button' onClick = {() => change(10)} id ='button10'>Copy</button>
                 </CopyToClipboard>
               </Card.Text>
             </Card>
-            <p id="below">
-              Use the following HTTPcache middleware prior to sending a response, so that the
-              responses are cacheable:
-            </p>
-            <Card
-              className="code-box"
-              style={{ color: '#000', width: '100%', height: '100%', top: '10px' }}
-            >
-              <Card.Text className="code-text">
-                <pre>{string3}</pre>
-                <CopyToClipboard text={string3}>
-                  <button className="copy-button" onClick={() => change(11)} id="button11">
-                    Copy
-                  </button>
-                </CopyToClipboard>
-              </Card.Text>
-            </Card>
-            <p id="below">
-              Now, you have properly set up the middleware functions in order to use DacheQL's
-              caching tools!
-            </p>
+    
+            <p id = 'below'>Now, you have properly set up the middleware functions in order to use DacheQL's caching tools!</p>
           </div>
           <div className="built-with">
             <div
