@@ -1,7 +1,17 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import Navigation from './Navigation';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { DropdownButton, Dropdown, Button, Card, Container, Row, Col, Form, FormLabel } from 'react-bootstrap';
+import {
+  DropdownButton,
+  Dropdown,
+  Button,
+  Card,
+  Container,
+  Row,
+  Col,
+  Form,
+  FormLabel,
+} from 'react-bootstrap';
 import Query from './Query';
 import Metrics from './Metrics';
 import Footer from './Footer.js';
@@ -18,16 +28,8 @@ import {
   Legend,
 } from 'chart.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faPiggyBank} from '@fortawesome/free-solid-svg-icons';
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-);
+import { faPiggyBank } from '@fortawesome/free-solid-svg-icons';
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 //counter to keep track for our incrementer function globally declared
 let counter = 0;
@@ -43,14 +45,14 @@ const Demo = () => {
   const [queryString, setQueryString] = useState('');
 
   //react hook for the timer state comparing the diference will give us the time elapsed
-  const [timeToFetch, setTimeToFetch] = useState([0,0]);
+  const [timeToFetch, setTimeToFetch] = useState([0, 0]);
 
-  //cache fetch time 
+  //cache fetch time
   const [cacheFetchTime, setCacheFetchTime] = useState([0]);
 
   //react hook for storing the state of whatever was fetched (will use to render on resulting query)
   const [result, setResult] = useState('');
-  
+
   //states to see if the info was cached or not
   const [valorantCount, setValorantCount] = useState(0);
   const [pokemonCount, setPokemonCount] = useState(0);
@@ -68,16 +70,16 @@ const Demo = () => {
 
   const [timeArray, setTimeArray] = useState([]);
 
-  //react hook for a boolean value that the incrementor will accept 
+  //react hook for a boolean value that the incrementor will accept
   const [booleanVal, setBooleanVal] = useState(true);
 
   //options for line chart
   const options = {
-    responsive: true, 
-    maintainAspectRatio: false, 
+    responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
-        position:'top',
+        position: 'top',
       },
     },
     scales: {
@@ -87,28 +89,22 @@ const Demo = () => {
     },
   };
 
-
   //everytime the timearray length changes we are rerendering the chart to account for that with new labels for nodes
   // useEffect for timeArray
   useEffect(() => {
-
     const labels = [];
     // if (timeArray[2] === 0) return;
     //dynamically updates the label for each node on line chart after the first uncached node
     for (let i = 0; i < timeArray.length; i++) {
-
       if (i === 0) {
         labels.push('Starting Point');
-      }
-      else if(i === 1) {
+      } else if (i === 1) {
         labels.push('Uncached Data');
-      }
-
-      else {
+      } else {
         labels.push('Cached data');
       }
     }
-    
+
     setChartData({
       labels: labels,
       datasets: [
@@ -119,39 +115,38 @@ const Demo = () => {
           backgroundColor: 'rgba(26,72,186)',
           borderColor: 'rgb(26,72,186)',
           borderWidth: 3,
-        }
-      ]
+        },
+      ],
     });
     console.log('useEffect timearray: ', timeArray);
     //console.log('chartdata length: ', Object.keys(chartData).length);
-  },[timeArray]);
-  
+  }, [timeArray]);
+
   //instead of calling incremeneter inside the runquery we just call it everytime either of the times change
 
-  useEffect( () => {
-    incrementer(timeToFetch[1], cacheFetchTime[0],booleanVal);
-  },[timeToFetch]);
+  useEffect(() => {
+    incrementer(timeToFetch[1], cacheFetchTime[0], booleanVal);
+  }, [timeToFetch]);
 
-  useEffect( () => {
-    incrementer(timeToFetch[1], cacheFetchTime[0],booleanVal);
-  },[cacheFetchTime]);
-
+  useEffect(() => {
+    incrementer(timeToFetch[1], cacheFetchTime[0], booleanVal);
+  }, [cacheFetchTime]);
 
   console.log('chartdata: ', chartData);
 
-  //function to incremement a counter so that the first element of the array 
-  //is the uncached time and it isnt ever repeated 
+  //function to incremement a counter so that the first element of the array
+  //is the uncached time and it isnt ever repeated
   const incrementer = (uncachedData, cachedData, bool) => {
     //control flow to check the state of the booleanval hook and then if its switched i will reassign counter to 0 to begin again
-    if(bool === true) {
+    if (bool === true) {
       counter = 0;
       setBooleanVal(false);
     }
     console.log('counter ', counter);
-    if(counter < 1) {
+    if (counter < 1) {
       counter++;
-    }else if(counter === 1) {
-      setTimeArray((timeArray) => [...timeArray, uncachedData ]);
+    } else if (counter === 1) {
+      setTimeArray((timeArray) => [...timeArray, uncachedData]);
       //console.log('timeArrayIncrementor: ', timeArray);
       counter++;
     } else {
@@ -164,13 +159,14 @@ const Demo = () => {
   const handleChangeValorant = (event) => {
     //console.log(event.target.innerHTML);
     // setTimeArray([]);
-    
+
     setQuery(event.target.innerHTML);
     setOutput('Query For Valorant');
     // set selectValorant to be true, to display the selected effect in button
     setSelectValorant(true);
     // set the rest of select hook to be false
-    setSelectCities(false); setSelectPokemon(false);
+    setSelectCities(false);
+    setSelectPokemon(false);
     setQueryString(`
 
     query  {
@@ -187,12 +183,11 @@ const Demo = () => {
     //resets the time array when switching queries
     setTimeArray([0]);
     // setLabel([]);
-    //reset the chart render to its original state 
+    //reset the chart render to its original state
     setChartData({
       datasets: [],
     });
     setBooleanVal(true);
-    
   };
 
   const handleChangePokemon = (event) => {
@@ -202,8 +197,9 @@ const Demo = () => {
     //set selectValorant to be true, to display the selected effect in button
     setSelectPokemon(true);
     // set the rest of select hook to be false
-    setSelectCities(false); setSelectValorant(false);
-    
+    setSelectCities(false);
+    setSelectValorant(false);
+
     setQueryString(`
     query {
       pokemon  {
@@ -217,12 +213,11 @@ const Demo = () => {
     setCacheFetchTime([0]);
     //resets the time array when switching queries
     setTimeArray([0]);
-    //reset the chart render to its original state 
+    //reset the chart render to its original state
     setChartData({
       datasets: [],
     });
     setBooleanVal(true);
-
   };
 
   const handleChangeCities = (event) => {
@@ -232,7 +227,8 @@ const Demo = () => {
     //set selectValorant to be true, to display the selected effect in button
     setSelectCities(true);
     // set the rest of select hook to be false
-    setSelectPokemon(false); setSelectValorant(false);
+    setSelectPokemon(false);
+    setSelectValorant(false);
     setQueryString(`
     query {
       cities  {
@@ -246,81 +242,78 @@ const Demo = () => {
     setCacheFetchTime([0]);
     //resets the time array when switching queries
     setTimeArray([0]);
-    //reset the chart render to its original state 
+    //reset the chart render to its original state
     setChartData({
       datasets: [],
     });
     setBooleanVal(true);
   };
 
-  let startTime; 
+  let startTime;
   let endTime;
-  const runQuery = async() => {
-    if(selectValorant === true){
+  const runQuery = async () => {
+    if (selectValorant === true) {
       setValorantCount(valorantCount + 1);
     }
-    if(selectPokemon === true){
+    if (selectPokemon === true) {
       setPokemonCount(pokemonCount + 1);
     }
-    if(selectCities === true){
+    if (selectCities === true) {
       setCitiesCount(citiesCount + 1);
     }
     startTime = performance.now();
     await fetch('http://localhost:3000/graphql', {
-      method: 'POST', 
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
+        Accept: 'application/json',
       },
       body: JSON.stringify({
         query: queryString,
-      })
+      }),
     })
       .then((res) => {
         return res.json();
       })
-      
+
       .then((data) => {
-        //update the second timer variable once fetch is finished 
+        //update the second timer variable once fetch is finished
         // cache[queryString] = data;
         // console.log('cache:', cache);
         endTime = performance.now();
-        const totalRunTime = (endTime - startTime);
+        const totalRunTime = endTime - startTime;
         //update the react hook state for timetofetch
-        
 
-        if(selectValorant === true && valorantCount >= 1){
+        if (selectValorant === true && valorantCount >= 1) {
           setCacheFetchTime([totalRunTime]);
           setResult(JSON.stringify(data, null, 2));
           return;
         }
 
-        if(selectPokemon === true && pokemonCount >= 1){
+        if (selectPokemon === true && pokemonCount >= 1) {
           setCacheFetchTime([totalRunTime]);
           setResult(JSON.stringify(data, null, 2));
           return;
         }
 
-        if(selectCities === true && citiesCount >= 1){
+        if (selectCities === true && citiesCount >= 1) {
           setCacheFetchTime([totalRunTime]);
           setResult(JSON.stringify(data, null, 2));
           return;
         }
-    
-        setTimeToFetch([timeToFetch, totalRunTime]);        
-  
+
+        setTimeToFetch([timeToFetch, totalRunTime]);
+
         setResult(JSON.stringify(data, null, 2));
         console.log('result', result);
       })
       .catch((err) => console.log('error on demo runQuery', err));
   };
-  
-
 
   return (
-    <div className = 'demopage'>
-      <Navigation id='navbar'></Navigation>
-      <div className='howto'>
+    <div className="demopage">
+      <Navigation id="navbar"></Navigation>
+      <div className="howto">
         <h1>How To Use</h1>
         <ol> 
           <li>Select a query you want to receive information for.</li>
@@ -329,55 +322,74 @@ const Demo = () => {
           <p> <br></br> * It should be noted the first ever query will have a significantly higher runtime than the other first queries because it is establishing a connection.<br></br> In addition, if you return to a previous query you have already ran, the uncached runtime time on the graph will show as zero as it is already stored in the cache. *</p>
         </ol>
       </div>
-      <div className='card-container'>
-        <div className='demo-query-container'>
-         
-          <div className='demo-query-btns btn-group-vertical'>
+      <div className="card-container">
+        <div className="demo-query-container">
+          <div className="demo-query-btns btn-group-vertical">
             <Form>
-              
-              <FormLabel style={{ 'width': 'max-content', 'flex-direction': 'row' }}></FormLabel>
+              <FormLabel style={{ width: 'max-content', 'flex-direction': 'row' }}></FormLabel>
               <h4>Choose A Demo Query</h4>
-              <Button   
-                className='demo-query-btn' href = "#/action-1" onClick = {handleChangeValorant}>
-                <Form.Check className='queries' label="Query For Valorant" type="radio" checked={selectValorant}></Form.Check>
+              <Button className="demo-query-btn" href="#/action-1" onClick={handleChangeValorant}>
+                <Form.Check
+                  className="queries"
+                  label="Query For Valorant"
+                  type="radio"
+                  checked={selectValorant}
+                ></Form.Check>
               </Button>
-              <Button  
-                className='demo-query-btn' href = "#/action-2" onClick = {handleChangePokemon}><Form.Check className='queries' label="Query For Pokemon" type="radio" checked={selectPokemon}></Form.Check></Button>
-              <Button  
-                className='demo-query-btn' href="#/action-3" onClick={handleChangeCities}><Form.Check className='queries' label="Query For Cities" type="radio" checked={selectCities}></Form.Check></Button>
-              <Button  
-                id='runQueBtn' onClick={runQuery} >
+              <Button className="demo-query-btn" href="#/action-2" onClick={handleChangePokemon}>
+                <Form.Check
+                  className="queries"
+                  label="Query For Pokemon"
+                  type="radio"
+                  checked={selectPokemon}
+                ></Form.Check>
+              </Button>
+              <Button className="demo-query-btn" href="#/action-3" onClick={handleChangeCities}>
+                <Form.Check
+                  className="queries"
+                  label="Query For Cities"
+                  type="radio"
+                  checked={selectCities}
+                ></Form.Check>
+              </Button>
+              <Button id="runQueBtn" onClick={runQuery}>
                 {/* <img src={piggyIcon} width={25} height={40} /> */}
                 <Row>
-                  <Col id='piggy'><FontAwesomeIcon icon={faPiggyBank}></FontAwesomeIcon></Col>
-                  <Col> <p>Run Query</p></Col>
+                  <Col id="piggy">
+                    <FontAwesomeIcon icon={faPiggyBank}></FontAwesomeIcon>
+                  </Col>
+                  <Col>
+                    {' '}
+                    <p>Run Query</p>
+                  </Col>
                 </Row>
-          
               </Button>
             </Form>
           </div>
         </div>
         <Row>
           <Col>
-            <Card style={{ color: '#000', width: '30rem', height: '30rem', right: '10px' }} className='selected-query'>
+            <Card
+              style={{ color: '#000', width: '30rem', height: '30rem', right: '10px' }}
+              className="selected-query"
+            >
               <Card.Body>
-                <Card.Title className='selected-query'>
-                  Selected Query:
-                </Card.Title>
-              
-                <Card.Text className='selected-query'>
-                  <Query output = {output} />
+                <Card.Title className="selected-query">Selected Query:</Card.Title>
+
+                <Card.Text className="selected-query">
+                  <Query output={output} />
                 </Card.Text>
               </Card.Body>
             </Card>
           </Col>
           <Col>
-            <Card className='result-query'style={{color: '#000', width: '30rem', height: '30rem', top: '10px'}}>
+            <Card
+              className="result-query"
+              style={{ color: '#000', width: '30rem', height: '30rem', top: '10px' }}
+            >
               <Card.Body>
-                <Card.Title className='result-query'>
-                  Resulting Query:
-                </Card.Title>
-                <Card.Text className='result-query'>
+                <Card.Title className="result-query">Resulting Query:</Card.Title>
+                <Card.Text className="result-query">
                   <pre>
                     <code>{result}</code>
                   </pre>
@@ -389,28 +401,27 @@ const Demo = () => {
 
         <Row>
           <Col>
-            <Card style={{color: '#000', width: '30rem', height: '15rem', top:'40px'}} className = 'metricsbox'>
-              <Card.Body >
-                <Card.Title className='metrics'>
-                    Metrics
-                </Card.Title>
-                <Card.Text id='metricsbody'>
-                  <Metrics
-                    timeToFetch={timeToFetch}
-                    cacheFetchTime ={cacheFetchTime}
-                  />
+            <Card
+              style={{ color: '#000', width: '30rem', height: '15rem', top: '40px' }}
+              className="metricsbox"
+            >
+              <Card.Body>
+                <Card.Title className="metrics">Metrics</Card.Title>
+                <Card.Text id="metricsbody">
+                  <Metrics timeToFetch={timeToFetch} cacheFetchTime={cacheFetchTime} />
                 </Card.Text>
               </Card.Body>
             </Card>
           </Col>
           <Col>
-            <Card style={{color: '#000', width: '30rem', height: '15rem', top:'40px'}} className = 'graphbox'>
+            <Card
+              style={{ color: '#000', width: '30rem', height: '15rem', top: '40px' }}
+              className="graphbox"
+            >
               <Card.Body>
-                <Card.Title className='graph'>
-                    Graph
-                </Card.Title>
-                <Card.Text id='linechart'>
-                  <Line  options = {options} data = {chartData}/>
+                <Card.Title className="graph">Graph</Card.Title>
+                <Card.Text id="linechart">
+                  <Line options={options} data={chartData} />
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -419,8 +430,7 @@ const Demo = () => {
       </div>
       {/* <Footer></Footer> */}
     </div>
-   
-  ); 
+  );
 };
 
 export default Demo;

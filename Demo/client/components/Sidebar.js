@@ -8,11 +8,20 @@ import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
-import { DropdownButton, Dropdown, Button, Card, Container, Row, Col, Form, FormLabel } from 'react-bootstrap';
+import {
+  DropdownButton,
+  Dropdown,
+  Button,
+  Card,
+  Container,
+  Row,
+  Col,
+  Form,
+  FormLabel,
+} from 'react-bootstrap';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import '../styles.scss';
 import logo from './assets/runpig.png';
-
 
 const drawerWidth = 260;
 
@@ -45,11 +54,10 @@ const Sidebar = () => {
 
   const change = (num) => {
     const elem = document.getElementById(`button${num}`);
-    if(elem.innerHTML === 'Copy'){
+    if (elem.innerHTML === 'Copy') {
       elem.innerHTML = 'Copied!';
       elem.style.width = '75px';
-    }
-    else{
+    } else {
       elem.innerHTML = 'Copy';
       elem.style.width = '50px';
     }
@@ -65,24 +73,30 @@ const Sidebar = () => {
   return (
     <Box sx={{ display: 'fixed' }}>
       <CssBaseline />
-      <Drawer 
-        className = 'drawer'
+      <Drawer
+        className="drawer"
         variant="permanent"
         open
         sx={{
-          display: {xs: 'none', sm: 'block'},
+          display: { xs: 'none', sm: 'block' },
           width: drawerWidth,
           flexShrink: 0,
-          ['& .MuiDrawer-paper']: { width: drawerWidth, boxSizing: 'border-box', height:'100%', zIndex:'0', fontFamily: 'Inter'}, 
+          ['& .MuiDrawer-paper']: {
+            width: drawerWidth,
+            boxSizing: 'border-box',
+            height: '100%',
+            zIndex: '0',
+            fontFamily: 'Inter',
+          },
         }}
       >
-        <Toolbar /> 
+        <Toolbar />
         <img src={logo} id="doclogo"></img>
-        <Box sx={{ overflow: 'hidden' }} className = 'list' >
+        <Box sx={{ overflow: 'hidden' }} className="list">
           <List>
             {['DacheQL'].map((text, index) => (
               <ListItem key={text} disablePadding>
-                <ListItemButton href = '#top'>
+                <ListItemButton href="#top">
                   <ListItemText primary={text} />
                 </ListItemButton>
               </ListItem>
@@ -91,7 +105,7 @@ const Sidebar = () => {
           <List>
             {['Using DacheQL'].map((text, index) => (
               <ListItem key={text} disablePadding>
-                <ListItemButton href = '#usingdacheql'>
+                <ListItemButton href="#usingdacheql">
                   <ListItemText primary={text} />
                 </ListItemButton>
               </ListItem>
@@ -100,7 +114,7 @@ const Sidebar = () => {
           <List>
             {['Getting Started'].map((text, index) => (
               <ListItem key={text} disablePadding>
-                <ListItemButton href = '#gettingstarted'>
+                <ListItemButton href="#gettingstarted">
                   <ListItemText primary={text} />
                 </ListItemButton>
               </ListItem>
@@ -109,7 +123,7 @@ const Sidebar = () => {
           <List>
             {['DacheQL with Redis'].map((text, index) => (
               <ListItem key={text} disablePadding>
-                <ListItemButton href = '#dacheqlwithredis'>
+                <ListItemButton href="#dacheqlwithredis">
                   <ListItemText primary={text} />
                 </ListItemButton>
               </ListItem>
@@ -118,7 +132,7 @@ const Sidebar = () => {
           <List>
             {['DacheQL without Redis'].map((text, index) => (
               <ListItem key={text} disablePadding>
-                <ListItemButton href = '#dacheqlwithhttpcache'>
+                <ListItemButton href="#dacheqlwithhttpcache">
                   <ListItemText primary={text} />
                 </ListItemButton>
               </ListItem>
@@ -128,7 +142,7 @@ const Sidebar = () => {
           <List>
             {['Technology Stack'].map((text, index) => (
               <ListItem key={text} disablePadding>
-                <ListItemButton href = '#techstack'>
+                <ListItemButton href="#techstack">
                   <ListItemText primary={text} />
                 </ListItemButton>
               </ListItem>
@@ -136,11 +150,11 @@ const Sidebar = () => {
           </List>
         </Box>
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }} className='docsbg'>
+      <Box component="main" sx={{ flexGrow: 1, p: 3 }} className="docsbg">
         <Toolbar />
-    
-        <div className='textbox'>
-          <div className = 'dacheqldocs'>
+
+        <div className="textbox">
+          <div className="dacheqldocs">
             <h2>DacheQL</h2>
             <p>
             DacheQL is an open-source developer tool that leverages the pinpoint accuracy of GraphQL’s queries and implements caching to improve your website’s query efficiency
@@ -149,7 +163,8 @@ const Sidebar = () => {
           <div id = 'usingdacheql'>
             <div id='breakline2' style={{ borderTop: "3px solid lightgrey", marginLeft: 0, marginRight: 0 }}></div>
             <h1>Using DacheQL</h1>
-            <p>Prerequistes:
+            <p>
+              Prerequistes:
               <ul>
                 <li>Redis installed if using Redis as your cache</li>
                 <li>GraphQL schemas setup with your database</li>
@@ -162,38 +177,56 @@ const Sidebar = () => {
             <div id='breakline2' style={{ borderTop: "3px solid lightgrey", marginLeft: 0, marginRight: 0 }}></div>
             <h1>Getting Started</h1>
             <p>
-          If this is your first time using DacheQL, run the following command in your terminal
+              If this is your first time using DacheQL, run the following command in your terminal
             </p>
-            <Card className='code-box'style={{color: '#000', width: '100%', height: '100%', top: '10px'}}>
-              <Card.Text className='code-text'>
-                <pre>
-            npm install dacheql
-                </pre>
-                <CopyToClipboard text = 'npm install dacheql'>
-                  <button className = 'copy-button' onClick = {() => change(1)} id ='button1'>Copy</button>
+            <Card
+              className="code-box"
+              style={{ color: '#000', width: '100%', height: '100%', top: '10px' }}
+            >
+              <Card.Text className="code-text">
+                <pre>npm install dacheql</pre>
+                <CopyToClipboard text="npm install dacheql">
+                  <button className="copy-button" onClick={() => change(1)} id="button1">
+                    Copy
+                  </button>
                 </CopyToClipboard>
               </Card.Text>
             </Card>
-            <p id = 'below'>In your server file, you want to require our middleware to handle GraphQL request using the CommonJS format.</p>
-            <Card className='code-box'style={{color: '#000', width: '100%', height: '100%', top: '10px'}}>
-              <Card.Text className='code-text'>
-                <pre>
-              const dacheql = require('dacheql');
-                </pre>
-                <CopyToClipboard text = "const dacheql = require('dacheql');">
-                  <button className = 'copy-button' onClick = {() => change(2)} id ='button2'>Copy</button>
+            <p id="below">
+              In your server file, you want to require our middleware to handle GraphQL request
+              using the CommonJS format.
+            </p>
+            <Card
+              className="code-box"
+              style={{ color: '#000', width: '100%', height: '100%', top: '10px' }}
+            >
+              <Card.Text className="code-text">
+                <pre>const dacheql = require('dacheql');</pre>
+                <CopyToClipboard text="const dacheql = require('dacheql');">
+                  <button className="copy-button" onClick={() => change(2)} id="button2">
+                    Copy
+                  </button>
                 </CopyToClipboard>
               </Card.Text>
             </Card>
-            <p id = 'below'>DacheQL functionality depends on Express' built-in method express.json() middleware function in order to parse incoming JSON payloads.</p>
-            <p id = 'below'>If you haven't already set up your server file with Express, add the following code to require Express: </p>
-            <Card className='code-box'style={{color: '#000', width: '100%', height: '100%', top: '10px'}}>
-              <Card.Text className='code-text'>
-                <pre>
-              const express = require('express');
-                </pre>
-                <CopyToClipboard text = "const express = require('express');">
-                  <button className = 'copy-button' onClick = {() => change(3)} id ='button3'>Copy</button>
+            <p id="below">
+              DacheQL functionality depends on Express' built-in method express.json() middleware
+              function in order to parse incoming JSON payloads.
+            </p>
+            <p id="below">
+              If you haven't already set up your server file with Express, add the following code to
+              require Express:{' '}
+            </p>
+            <Card
+              className="code-box"
+              style={{ color: '#000', width: '100%', height: '100%', top: '10px' }}
+            >
+              <Card.Text className="code-text">
+                <pre>const express = require('express');</pre>
+                <CopyToClipboard text="const express = require('express');">
+                  <button className="copy-button" onClick={() => change(3)} id="button3">
+                    Copy
+                  </button>
                 </CopyToClipboard>
               </Card.Text>
             </Card>
@@ -208,73 +241,93 @@ const Sidebar = () => {
                 </CopyToClipboard>
               </Card.Text>
             </Card>
-            <p id='below'></p>
+            <p id="below"></p>
           </div>
         
           <div id = 'dacheqlwithredis'>
             <div id='breakline' style={{ borderTop: "3px solid lightgrey", marginLeft: 0, marginRight: 0 }}></div>
             <h1>Using DacheQL with Redis</h1>
             <p>
-          DacheQL lets you decide if you would like to use Redis as your cache, or an HTTP cache. If you are using Redis, make sure you have Redis installed and your Redis server is running. To run Redis, type the following command in your terminal:
+              DacheQL lets you decide if you would like to use Redis as your cache, or an HTTP
+              cache. If you are using Redis, make sure you have Redis installed and your Redis
+              server is running. To run Redis, type the following command in your terminal:
             </p>
-            <Card className='code-box'style={{color: '#000', width: '100%', height: '100%', top: '10px'}}>
-              <Card.Text className='code-text'>
-                <pre>
-            redis-cli
-                </pre>
-                <CopyToClipboard text = 'redis-cli'>
-                  <button className = 'copy-button' onClick = {() => change(5)} id ='button5'>Copy</button>
+            <Card
+              className="code-box"
+              style={{ color: '#000', width: '100%', height: '100%', top: '10px' }}
+            >
+              <Card.Text className="code-text">
+                <pre>redis-cli</pre>
+                <CopyToClipboard text="redis-cli">
+                  <button className="copy-button" onClick={() => change(5)} id="button5">
+                    Copy
+                  </button>
                 </CopyToClipboard>
               </Card.Text>
             </Card>
-            <p id = 'below'>
-          Once your Redis server is up and running, type <code>PING</code> into the terminal where your Redis server is running and you should receive a <code>PONG</code> response. If you get this response, you are ready to use DacheQL with Redis!
+            <p id="below">
+              Once your Redis server is up and running, type <code>PING</code> into the terminal
+              where your Redis server is running and you should receive a <code>PONG</code>{' '}
+              response. If you get this response, you are ready to use DacheQL with Redis!
             </p>
             <p>
-            Now that your Redis server is up and running, in your backend server file, import Redis like so:
+              Now that your Redis server is up and running, in your backend server file, import
+              Redis like so:
             </p>
-            <Card className='code-box'style={{color: '#000', width: '100%', height: '100%', top: '10px'}}>
-              <Card.Text className='code-text'>
-                <pre>
-              const redis = require('redis');
-                </pre>
-                <CopyToClipboard text = "const redis = require('redis');">
-                  <button className = 'copy-button' onClick = {() => change(6)} id ='button6'>Copy</button>
+            <Card
+              className="code-box"
+              style={{ color: '#000', width: '100%', height: '100%', top: '10px' }}
+            >
+              <Card.Text className="code-text">
+                <pre>const redis = require('redis');</pre>
+                <CopyToClipboard text="const redis = require('redis');">
+                  <button className="copy-button" onClick={() => change(6)} id="button6">
+                    Copy
+                  </button>
                 </CopyToClipboard>
               </Card.Text>
             </Card>
-         
-            <p id = 'below'>
-           After importing Redis, you will have to create your Redis client which can be done as so:
+
+            <p id="below">
+              After importing Redis, you will have to create your Redis client which can be done as
+              so:
             </p>
-            <Card className='code-box'style={{color: '#000', width: '100%', height: '100%', top: '10px'}}>
-              <Card.Text className='code-text'>
+            <Card
+              className="code-box"
+              style={{ color: '#000', width: '100%', height: '100%', top: '10px' }}
+            >
+              <Card.Text className="code-text">
                 <pre>const client = redis.createClient(REDIS_PORT);</pre>
-                <CopyToClipboard text = "const client = redis.createClient(REDIS_PORT);">
-                  <button className = 'copy-button' onClick = {() => change(7)} id ='button7'>Copy</button>
+                <CopyToClipboard text="const client = redis.createClient(REDIS_PORT);">
+                  <button className="copy-button" onClick={() => change(7)} id="button7">
+                    Copy
+                  </button>
                 </CopyToClipboard>
               </Card.Text>
             </Card>
-            <p id = 'below'>
-            Replace the text <code>REDIS_PORT</code> with your own Redis port (typically 6379)
+            <p id="below">
+              Replace the text <code>REDIS_PORT</code> with your own Redis port (typically 6379)
             </p>
-            <p>
-            Lastly, connect your client!
-            </p>
-            <Card className='code-box'style={{color: '#000', width: '100%', height: '100%', top: '10px'}}>
-              <Card.Text className='code-text'>
-                <pre>
-              client.connect();
-                </pre>
-                <CopyToClipboard text = "client.connect();">
-                  <button className = 'copy-button' onClick = {() => change(8)} id ='button8'>Copy</button>
+            <p>Lastly, connect your client!</p>
+            <Card
+              className="code-box"
+              style={{ color: '#000', width: '100%', height: '100%', top: '10px' }}
+            >
+              <Card.Text className="code-text">
+                <pre>client.connect();</pre>
+                <CopyToClipboard text="client.connect();">
+                  <button className="copy-button" onClick={() => change(8)} id="button8">
+                    Copy
+                  </button>
                 </CopyToClipboard>
               </Card.Text>
             </Card>
 
             <div>
-              <p id = 'below'>
-            In order to cache your graphQL query responses, all you have to do is call our DacheQL function as middleware in your /graphql endpoint. The parameters for our function are as follows:
+              <p id="below">
+                In order to cache your graphQL query responses, all you have to do is call our
+                DacheQL function as middleware in your /graphql endpoint. The parameters for our
+                function are as follows:
               </p>
               <Card className='code-box'style={{color: '#000', width: '100%', height: '100%', top: '10px'}}>
                 <Card.Text className='code-text'>
@@ -310,9 +363,12 @@ const Sidebar = () => {
     
             <p id = 'below'>Now, you have properly set up the middleware functions in order to use DacheQL's caching tools!</p>
           </div>
-          <div className='built-with'>
-            <div id='breakline2' style={{ borderTop: "3px solid lightgrey", marginLeft: 0, marginRight: 0 }}></div>
-            <h1 id = 'techstack'>Technology Stack</h1>
+          <div className="built-with">
+            <div
+              id="breakline2"
+              style={{ borderTop: '3px solid lightgrey', marginLeft: 0, marginRight: 0 }}
+            ></div>
+            <h1 id="techstack">Technology Stack</h1>
             <ul>
               <li>GraphQL</li>
               <li>Redis</li>
@@ -324,7 +380,6 @@ const Sidebar = () => {
             </ul>
           </div>
         </div>
-        
       </Box>
     </Box>
   );
