@@ -1,40 +1,41 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-
 module.exports = {
   entry: './Demo/client/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
+    publicPath: '/',
   },
-  plugins: [new HtmlWebpackPlugin(
-    {
+  plugins: [
+    new HtmlWebpackPlugin({
       title: 'Development',
-      template: './Demo/client/index.html'
-    }
-  )],
+      template: './Demo/client/index.html',
+    }),
+  ],
   devServer: {
+    historyApiFallback: true,
     static: {
       publicPath: '/dist',
       directory: path.join(__dirname, './dist'),
-    }, 
+    },
     proxy: {
       '/api': 'http://localhost:3000',
     },
-  }, 
+  },
   mode: process.env.NODE_ENV,
-  module: { 
+  module: {
     rules: [
-      { 
-        test: /\.jsx?/, 
+      {
+        test: /\.jsx?/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env', '@babel/preset-react']
-          }
-        }
+            presets: ['@babel/preset-env', '@babel/preset-react'],
+          },
+        },
       },
       {
         test: /\.(ts|tsx)$/,
@@ -47,9 +48,9 @@ module.exports = {
           // loader: ['@svgr/webpack', 'url-loader', 'file-loader'],
           loader: 'file-loader',
           options: {
-            name: 'public/icons/[name].[ext]'
+            name: 'public/icons/[name].[ext]',
           },
-        }
+        },
       },
       {
         test: /\.mp4$/,
@@ -58,40 +59,37 @@ module.exports = {
             loader: 'file-loader',
             options: {
               name: 'public/videos/[name].[ext]',
-              outputPath: 'video'
-            }
-          }
-        ]
+              outputPath: 'video',
+            },
+          },
+        ],
       },
-    
+
       {
         test: /\.s?[ac]ss$/,
         use: [
           {
-            loader: 'style-loader'
+            loader: 'style-loader',
           },
           {
-            loader: 'css-loader'
+            loader: 'css-loader',
           },
           {
             loader: 'postcss-loader',
             options: {
               postcssOptions: {
-                plugins: () => [
-                  require('autoprefixer')
-                ]
-              }
-            }
+                plugins: () => [require('autoprefixer')],
+              },
+            },
           },
           {
-            loader: 'sass-loader'
-          }
-        ]
+            loader: 'sass-loader',
+          },
+        ],
       },
     ],
   },
   resolve: {
     extensions: ['.js', '.jsx'],
   },
-
 };
