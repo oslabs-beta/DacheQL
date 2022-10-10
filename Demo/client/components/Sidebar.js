@@ -230,6 +230,22 @@ const Sidebar = () => {
                 </CopyToClipboard>
               </Card.Text>
             </Card>
+            <p id='below'>
+              Add the following code to construct an Express application based on a GraphQL schema: 
+            </p>
+            <Card
+              className="code-box"
+              style={{ color: '#000', width: '100%', height: '100%', top: '10px' }}
+            >
+              <Card.Text className="code-text">
+                <pre>const expressGraphQL = require('express-graphql').graphqlHTTP;</pre>
+                <CopyToClipboard text="const expressGraphQL = require('express-graphql').graphqlHTTP;">
+                  <button className="copy-button" onClick={() => change(12)} id="button12">
+                    Copy
+                  </button>
+                </CopyToClipboard>
+              </Card.Text>
+            </Card>
             <p id = 'below'>Add the following code to use the express.json() middleware function: </p>
             <Card className='code-box'style={{color: '#000', width: '100%', height: '100%', top: '10px'}}>
               <Card.Text className='code-text'>

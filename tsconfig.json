@@ -8,5 +8,5 @@
       "preserveConstEnums": true,
       "sourceMap": true
     },
-    "include": ["src/**/*"]
+    "include": ["Demo/**/*"]
   }
