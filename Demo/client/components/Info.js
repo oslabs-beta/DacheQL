@@ -20,7 +20,7 @@ const Info = () => {
               <p>An open-source developer tool that leverages the pinpoint accuracy of GraphQL’s queries and implements caching to improve your website’s query efficiency</p>
               <Row className='twobuttons'>
                 <Col>
-                  <a className = 'link' href = 'https://github.com/oslabs-beta/DacheQL' target="_blank" rel="noreferrer">
+                  <a className = 'link' href = 'https://www.npmjs.com/package/dacheql' target="_blank" rel="noreferrer">
                     <button className='button1'>Get Started</button>
                   </a>
                 </Col>

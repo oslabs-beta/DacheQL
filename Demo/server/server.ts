@@ -28,10 +28,11 @@ app.get('/', (req: Request, res: Response) => {
   return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
 });
 
-app.use('/graphql', dacheQL({}, 2, 'http://localhost:3000/graphql2', 300), expressGraphQL({
+app.use('/graphql', dacheQL({}, 10, 'http://localhost:3000/graphql2', 300), expressGraphQL({
   schema: schema,
   graphiql: true,
 }));
+
 
 app.use('/graphql2', expressGraphQL({
   schema: schema,
