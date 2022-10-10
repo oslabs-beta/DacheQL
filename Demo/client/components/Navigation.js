@@ -31,7 +31,7 @@ const Navigation = () => {
           <Nav.Link className='nav-item' as={Link} to='/demo'><FontAwesomeIcon icon={faLaptopCode} />&nbsp;Demo</Nav.Link>
           <Nav.Link className='nav-item' as={Link} to='/about'><FontAwesomeIcon icon={faAddressCard} />&nbsp;About Us</Nav.Link>
           <Nav.Link className='nav-item' href='https://github.com/oslabs-beta/DacheQL' target="_blank" rel="noreferrer"><FontAwesomeIcon icon={faGithub} />&nbsp;GitHub</Nav.Link>
-          <Nav.Link className='nav-item' as={Link} href="https://www.npmjs.com/package/dacheql" target="_blank" rel="noreferrer"><FontAwesomeIcon icon={faDownload}/>&nbsp;Install</Nav.Link>
+          <Nav.Link className='nav-item' href="https://www.npmjs.com/package/dacheql" target="_blank" rel="noreferrer"><FontAwesomeIcon icon={faDownload}/>&nbsp;Install</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
