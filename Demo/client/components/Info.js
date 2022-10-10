@@ -70,7 +70,6 @@ const Info = () => {
           <Col>
             <div>
               <div id="graphql">GraphQL</div>
-
               <div className="fs-5">
                 GraphQL is an open-source data query and manipulation language for APIs, and a
                 runtime for fulfilling queries with existing data.{' '}
