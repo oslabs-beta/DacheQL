@@ -41,10 +41,12 @@ const Navigation = () => {
           style={{ justifyContent: 'center', right: '5vw', position: 'absolute' }}
         >
           <Nav.Link className="nav-item" as={Link} to="/homepage">
-            <FontAwesomeIcon icon={faHouse}></FontAwesomeIcon>&nbsp;Home
+            <FontAwesomeIcon icon={faHouse} />
+            &nbsp;Home
           </Nav.Link>
           <Nav.Link className="nav-item" as={Link} to="/docs">
-            <FontAwesomeIcon icon={faFolderOpen}></FontAwesomeIcon>&nbsp;Docs
+            <FontAwesomeIcon icon={faFolderOpen} />
+            &nbsp;Docs
           </Nav.Link>
           <Nav.Link className="nav-item" as={Link} to="/demo">
             <FontAwesomeIcon icon={faLaptopCode} />
