@@ -1,8 +1,8 @@
 const path = require('path');
-const express = require('express');
+// const express = require('express');
 const expressGraphQL = require('express-graphql').graphqlHTTP;
 const schema = require('./schema/schema.js');
-import { Request, Response, NextFunction }  from 'express';
+import express, { Request, Response, NextFunction }  from 'express';
 import { ErrObject } from '../../types';
 const cors = require('cors');
 const redis = require('redis');
@@ -20,13 +20,15 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/dist', express.static(path.join(__dirname, '../dist')));
+// app.use('/dist', express.static(path.join(__dirname, '../dist')));
 app.use(cors());
 
-app.get('/', (req: Request, res: Response) => {
-  console.log('getting index.html');
-  return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
-});
+app.use(express.static(path.resolve(__dirname, "../../dist")));
+
+// app.get('/', (req: Request, res: Response) => {
+//   console.log('getting index.html');
+//   return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
+// });
 
 app.use('/graphql', dacheQL({}, 10, 'http://localhost:3000/graphql2', 300), expressGraphQL({
   schema: schema,
@@ -54,4 +56,4 @@ app.use((err: ErrObject, req: Request, res: Response, next: NextFunction) => {
 
 app.listen(PORT,  () => console.log(`listening on port ${PORT}...`));
 
-module.exports = app;
+export default app;
