@@ -374,12 +374,12 @@ const Demo = () => {
     <div className="demopage">
       <Navigation id="navbar"></Navigation>
       <div className="howto">
-        <h1>How To Use</h1>
-        <ol>
-          <li>Select a query you want to receive information for</li>
-          <li>Press Run Query and see the uncached fetch time</li>
+        <h1>Demo</h1>
+        <ol> 
+          <li>Select a query you want to receive information for.</li>
+          <li>Press Run Query and see the uncached fetch time.</li>
           <li>Press Run Query a second time and notice the cached runtime!</li>
-          <p> * Repeated query requests to cached data will remain around similar runtime! *</p>
+          <p> <br></br> * It should be noted the first ever query will have a significantly higher runtime than the other first queries because it is establishing a connection.<br></br> In addition, if you return to a previous query you have already ran, the uncached runtime on the graph will show as zero as it is already stored in the cache. *</p>
         </ol>
       </div>
       <div className="card-container">
