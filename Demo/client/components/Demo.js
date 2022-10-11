@@ -15,7 +15,7 @@ import {
 import Query from './Query';
 import Metrics from './Metrics';
 import Footer from './Footer.js';
-import DacheQL from '../../../library/dacheql';
+// import DacheQL from '../../../library/dacheql';
 import { Line } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -98,7 +98,7 @@ const Demo = () => {
     for (let i = 0; i < timeArray.length; i++) {
       if (i === 0) {
         labels.push('Starting Point');
-      } else if (i === 1) {
+      } else if (i === 1 && timeArray[i] !== 0) {
         labels.push('Uncached Data');
       } else {
         labels.push('Cached data');
@@ -132,7 +132,7 @@ const Demo = () => {
     incrementer(timeToFetch[1], cacheFetchTime[0], booleanVal);
   }, [cacheFetchTime]);
 
-  console.log('chartdata: ', chartData);
+  // console.log('chartdata: ', chartData);
 
   //function to incremement a counter so that the first element of the array
   //is the uncached time and it isnt ever repeated
@@ -142,7 +142,10 @@ const Demo = () => {
       counter = 0;
       setBooleanVal(false);
     }
-    console.log('counter ', counter);
+    // console.log('counter ', counter);
+    if (counter === 0) {
+      console.log('counter in crementer 0');
+    }
     if (counter < 1) {
       counter++;
     } else if (counter === 1) {
@@ -157,9 +160,22 @@ const Demo = () => {
   };
   //upon change of drop down after selection set new values for react states for etc...
   const handleChangeValorant = (event) => {
-    //console.log(event.target.innerHTML);
-    // setTimeArray([]);
-
+    console.log('last query: ', queryString);
+    if (queryString) {
+      setValorantCount(0);
+      fetch('http://localhost:3000/graphql', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          query: 'CLEAR',
+        }),
+      });
+    }
+    // console.log(event.target.innerHTML);
+    setTimeArray([]);
     setQuery(event.target.innerHTML);
     setOutput('Query For Valorant');
     // set selectValorant to be true, to display the selected effect in button
@@ -191,7 +207,21 @@ const Demo = () => {
   };
 
   const handleChangePokemon = (event) => {
-    // setTimeArray([]);
+    console.log('last query: ', queryString);
+    if (queryString) {
+      setPokemonCount(0);
+      fetch('http://localhost:3000/graphql', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          query: 'CLEAR',
+        }),
+      });
+    }
+    setTimeArray([]);
     setQuery(event.target.innerHTML);
     setOutput('Query For Pokemon');
     //set selectValorant to be true, to display the selected effect in button
@@ -221,7 +251,22 @@ const Demo = () => {
   };
 
   const handleChangeCities = (event) => {
+    // setTimeToFetch([timeToFetch, totalRunTime]);
     //console.log(event.target.innerHTML);
+    console.log('last query: ', queryString);
+    if (queryString) {
+      setCitiesCount(0);
+      fetch('http://localhost:3000/graphql', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          query: 'CLEAR',
+        }),
+      });
+    }
     setQuery(event.target.innerHTML);
     setOutput('Query For Cities');
     //set selectValorant to be true, to display the selected effect in button
@@ -252,6 +297,21 @@ const Demo = () => {
   let startTime;
   let endTime;
   const runQuery = async () => {
+    //react hook for the timer state comparing the diference will give us the time elapsed
+    console.log('WHEN RUN QUERY: ', timeToFetch);
+    console.log('timeToFetch: ', timeToFetch);
+    //cache fetch time
+    console.log('cacheFetchTime: ', cacheFetchTime);
+    //react hook for storing the state of whatever was fetched (will use to render on resulting query)
+    console.log('result: ', result);
+    //states to see if the info was cached or not
+    console.log('valorantCount: ', valorantCount);
+    console.log('pokementCount: ', pokemonCount);
+    console.log('citiesCount: ', citiesCount);
+    console.log('chartData: ', chartData);
+    console.log('timeArray: ', timeArray);
+    console.log('booleanVal: ', booleanVal);
+
     if (selectValorant === true) {
       setValorantCount(valorantCount + 1);
     }
@@ -261,6 +321,7 @@ const Demo = () => {
     if (selectCities === true) {
       setCitiesCount(citiesCount + 1);
     }
+    console.log('query string:', queryString);
     startTime = performance.now();
     await fetch('http://localhost:3000/graphql', {
       method: 'POST',
@@ -275,7 +336,6 @@ const Demo = () => {
       .then((res) => {
         return res.json();
       })
-
       .then((data) => {
         //update the second timer variable once fetch is finished
         // cache[queryString] = data;
@@ -283,31 +343,31 @@ const Demo = () => {
         endTime = performance.now();
         const totalRunTime = endTime - startTime;
         //update the react hook state for timetofetch
-
         if (selectValorant === true && valorantCount >= 1) {
           setCacheFetchTime([totalRunTime]);
           setResult(JSON.stringify(data, null, 2));
           return;
         }
-
         if (selectPokemon === true && pokemonCount >= 1) {
           setCacheFetchTime([totalRunTime]);
           setResult(JSON.stringify(data, null, 2));
           return;
         }
-
         if (selectCities === true && citiesCount >= 1) {
+          console.log('citiesCOunt', citiesCount);
           setCacheFetchTime([totalRunTime]);
           setResult(JSON.stringify(data, null, 2));
           return;
         }
-
+        // setCacheFetchTime([totalRunTime]);
+        // setResult(JSON.stringify(data, null, 2));
         setTimeToFetch([timeToFetch, totalRunTime]);
-
+        // console.log('time to fetch: ', totalRunTime);
         setResult(JSON.stringify(data, null, 2));
-        console.log('result', result);
+        // console.log('result', result);
       })
       .catch((err) => console.log('error on demo runQuery', err));
+    // console.log('time to fetch: ', totalRunTime);
   };
 
   return (
@@ -370,7 +430,7 @@ const Demo = () => {
         <Row>
           <Col>
             <Card
-              style={{ color: '#000', width: '30rem', height: '30rem', right: '10px' }}
+              style={{ color: '#000', width: '20rem', height: '20rem', right: '10px' }}
               className="selected-query"
             >
               <Card.Body>
@@ -385,7 +445,7 @@ const Demo = () => {
           <Col>
             <Card
               className="result-query"
-              style={{ color: '#000', width: '30rem', height: '30rem', top: '10px' }}
+              style={{ color: '#000', width: '20rem', height: '20rem', top: '10px' }}
             >
               <Card.Body>
                 <Card.Title className="result-query">Resulting Query:</Card.Title>
@@ -402,7 +462,7 @@ const Demo = () => {
         <Row>
           <Col>
             <Card
-              style={{ color: '#000', width: '30rem', height: '15rem', top: '40px' }}
+              style={{ color: '#000', width: '20rem', height: '15rem', top: '40px' }}
               className="metricsbox"
             >
               <Card.Body>
@@ -415,7 +475,7 @@ const Demo = () => {
           </Col>
           <Col>
             <Card
-              style={{ color: '#000', width: '30rem', height: '15rem', top: '40px' }}
+              style={{ color: '#000', width: '20rem', height: '15rem', top: '40px' }}
               className="graphbox"
             >
               <Card.Body>

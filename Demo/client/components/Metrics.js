@@ -3,8 +3,8 @@ import React from 'react';
 const Metrics = (props) => {
   const { timeToFetch, cacheFetchTime } = props;
   //console.log('props' ,props);
-  //console.log('timetofetch',timeToFetch);
-  console.log('cache fetchTime', cacheFetchTime);
+  // console.log('timetofetch', timeToFetch);
+  // console.log('cache fetchTime', cacheFetchTime);
   return (
     <>
       <div className="metrics-div">

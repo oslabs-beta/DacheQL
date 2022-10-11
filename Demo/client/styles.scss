@@ -208,18 +208,13 @@ body {
     border-color: $info;
     // border-color: none;
     flex-shrink: 0;
-    width: 220px;
-    height: 50px;
+    width: 15vw;
+    height: 5.5vh;
     border-radius: 99em;
     margin-right: 0.375em;
     margin-bottom: 8px;
     transition: 0.25s ease;
     // box-shadow: inset 0 0 0 0.125em black;
-    #queries {
-        margin-top: 10px;
-    }
-   
-    
 }
 // Styling demo query buttons
 label{
@@ -248,8 +243,8 @@ label{
     
     // border-color: $primary;
     align-items: center;
-    height: 50px;
-    width: 220px;
+    width: 15vw;
+    height: 5.5vh;
     margin-right: 0.375em;
     margin-bottom: 20px;
     transition: 0.25s ease;
