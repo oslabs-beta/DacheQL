@@ -314,7 +314,7 @@ const Demo = () => {
     <div className="demopage">
       <Navigation id="navbar"></Navigation>
       <div className="howto">
-        <h1>How To Use</h1>
+        <h1>Demo</h1>
         <ol> 
           <li>Select a query you want to receive information for.</li>
           <li>Press Run Query and see the uncached fetch time.</li>
