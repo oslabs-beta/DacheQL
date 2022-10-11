@@ -434,7 +434,7 @@ const Demo = () => {
         <Row>
           <Col>
             <Card
-              style={{ color: '#000', width: '20rem', height: '20rem', right: '10px' }}
+              style={{ color: '#000', width: '30rem', height: '25rem', right: '10px' }}
               className="selected-query"
             >
               <Card.Body>
@@ -449,7 +449,7 @@ const Demo = () => {
           <Col>
             <Card
               className="result-query"
-              style={{ color: '#000', width: '20rem', height: '20rem', top: '10px' }}
+              style={{ color: '#000', width: '30rem', height: '25rem', top: '10px' }}
             >
               <Card.Body>
                 <Card.Title className="result-query">Resulting Query:</Card.Title>
@@ -466,7 +466,7 @@ const Demo = () => {
         <Row>
           <Col>
             <Card
-              style={{ color: '#000', width: '20rem', height: '15rem', top: '40px' }}
+              style={{ color: '#000', width: '30rem', height: '15rem', top: '40px' }}
               className="metricsbox"
             >
               <Card.Body>
@@ -479,7 +479,7 @@ const Demo = () => {
           </Col>
           <Col>
             <Card
-              style={{ color: '#000', width: '20rem', height: '15rem', top: '40px' }}
+              style={{ color: '#000', width: '30rem', height: '15rem', top: '40px' }}
               className="graphbox"
             >
               <Card.Body>

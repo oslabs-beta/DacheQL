@@ -2,6 +2,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Commissioner:wght@300&family=PT+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Commissioner:wght@300&family=PT+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap');
 
 $enable-grid-classes: false;
 $primary: #bde9e2;
@@ -208,13 +212,18 @@ body {
     border-color: $info;
     // border-color: none;
     flex-shrink: 0;
-    width: 15vw;
-    height: 5.5vh;
+    width: 220px;
+    height: 50px;
     border-radius: 99em;
     margin-right: 0.375em;
     margin-bottom: 8px;
     transition: 0.25s ease;
     // box-shadow: inset 0 0 0 0.125em black;
+    #queries {
+        margin-top: 10px;
+    }
+   
+    
 }
 // Styling demo query buttons
 label{
@@ -243,8 +252,8 @@ label{
     
     // border-color: $primary;
     align-items: center;
-    width: 15vw;
-    height: 5.5vh;
+    height: 50px;
+    width: 220px;
     margin-right: 0.375em;
     margin-bottom: 20px;
     transition: 0.25s ease;
