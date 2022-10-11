@@ -25,7 +25,7 @@ const Info = () => {
                 <Col>
                   <a
                     className="link"
-                    href="https://github.com/oslabs-beta/DacheQL"
+                    href="https://www.npmjs.com/package/dacheql"
                     target="_blank"
                     rel="noreferrer"
                   >
@@ -52,14 +52,13 @@ const Info = () => {
             <span className="material-symbols-outlined">inventory_2</span>
             <h2>Efficient Memory Usage</h2>
             <p>
-              We store your cached information for you in our own database and prevent excessive
-              information from being called from the API
+              We store your queried information for you via caching and prevent the need for excessive query calls
             </p>
           </Col>
           <Col>
             <span className="material-symbols-outlined">install_desktop</span>
             <h2>Ease of Use</h2>
-            <p>Our tool is easy to install and apply to your coding base</p>
+            <p>Our tool is easy to install and apply to your code base</p>
           </Col>
         </Row>
 

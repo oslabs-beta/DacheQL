@@ -157,7 +157,7 @@ const Sidebar = () => {
           <div className="dacheqldocs">
             <h2>DacheQL</h2>
             <p>
-            DacheQL is an open-source developer tool that leverages the pinpoint accuracy of GraphQL’s queries and implements caching to improve your website’s query efficiency
+            DacheQL is an open-source developer tool that leverages the pinpoint accuracy of GraphQL’s queries and implements caching to improve your website’s query efficiency.
             </p>
           </div>
           <div id = 'usingdacheql'>
@@ -166,9 +166,9 @@ const Sidebar = () => {
             <p>
               Prerequistes:
               <ul>
-                <li>Redis installed if using Redis as your cache</li>
-                <li>GraphQL schemas setup with your database</li>
-                <li>Fullstack Application where frontend makes query request to backend</li>
+                <li>Redis installed if you are using Redis as your cache.</li>
+                <li>GraphQL schemas setup with your database.</li>
+                <li>Fullstack Application where frontend makes query request to backend.</li>
               </ul>
             </p>
           </div>
@@ -177,7 +177,7 @@ const Sidebar = () => {
             <div id='breakline2' style={{ borderTop: "3px solid lightgrey", marginLeft: 0, marginRight: 0 }}></div>
             <h1>Getting Started</h1>
             <p>
-              If this is your first time using DacheQL, run the following command in your terminal
+              If this is your first time using DacheQL, run the following command in your terminal:
             </p>
             <Card
               className="code-box"
@@ -193,7 +193,7 @@ const Sidebar = () => {
               </Card.Text>
             </Card>
             <p id="below">
-              In your server file, you want to require our middleware to handle GraphQL request
+              In your server file, you want to require our middleware to handle GraphQL requests
               using the CommonJS format.
             </p>
             <Card
@@ -264,8 +264,7 @@ const Sidebar = () => {
             <div id='breakline' style={{ borderTop: "3px solid lightgrey", marginLeft: 0, marginRight: 0 }}></div>
             <h1>Using DacheQL with Redis</h1>
             <p>
-              DacheQL lets you decide if you would like to use Redis as your cache, or an HTTP
-              cache. If you are using Redis, make sure you have Redis installed and your Redis
+              DacheQL lets you decide if you would like to use Redis, or our custom LRU eviction cache. If you are using Redis, make sure you have Redis installed and your Redis
               server is running. To run Redis, type the following command in your terminal:
             </p>
             <Card
@@ -322,7 +321,7 @@ const Sidebar = () => {
               </Card.Text>
             </Card>
             <p id="below">
-              Replace the text <code>REDIS_PORT</code> with your own Redis port (typically 6379)
+              Replace the text <code>REDIS_PORT</code> with your own Redis port (typically 6379).
             </p>
             <p>Lastly, connect your client!</p>
             <Card
@@ -356,7 +355,7 @@ const Sidebar = () => {
                 </Card.Text>
               </Card>
               <p id='below'>
-            The first parameter is to let the function know where you are using Redis or not as your cache. If you are, you will have to pass Redis into the function as <code> {string4} </code> like so. <br></br> <br></br>The second parameter is the capacity you want to specify if you are not using the Redis Cache and are using our custom cache. If you decide to use the Redis cache, just default to leaving the cache at 50. <br></br> <br></br> The third parameter is the endpoint at which you are actually using GraphQL. For example, this endpoint may be <code>http://localhost:3000/graphql.</code> <br></br> <br></br>Our last parameter is the Time to Live, or how long you want this specific query to last in your cache for. This parameter is given in seconds, so make sure to convert the time you want the query to last in your Redis cache for into seconds. Now you are good to cache your GraphQL responses!
+            The first parameter is to let the function know whether you are using Redis or not as your cache. If you are, you will have to pass Redis into the function as <code> {string4} </code> like so. <br></br> <br></br>The second parameter is the capacity for our custom LRU cache. If you are using Redis as your cache, just default to leaving the cache at 50. <br></br> <br></br> The third parameter is the endpoint at which you are actually using GraphQL. For example, this endpoint may be <code>http://localhost:3000/graphql.</code> <br></br> <br></br>Our last parameter is the Time to Live, or how long you want this specific query to last in your cache for. Pass in your time to live as seconds. Now you are good to cache your GraphQL responses!
               </p>
             </div>
           </div>
@@ -364,7 +363,7 @@ const Sidebar = () => {
           <div className='httpcache' id = 'dacheqlwithhttpcache'>
             <div id='breakline2' style={{ borderTop: "3px solid lightgrey", marginLeft: 0, marginRight: 0 }}></div>
             <h1>Using DacheQL without Redis</h1>
-            <p>If you are not using Redis caching, DacheQL provides a middleware for caching using the server's memory with our custom cache that behaves with an LRU eviction policy. The arguments you should input for this middlware are as follows. <br></br> <br></br>For the first parameter, since you are not using Redis, simply pass in an empty object <code id='dacheqlwithhttpcache'> {string5} </code> like so. <br></br> <br></br>Next, is the capacity you would like your cache to hold. This capacity refers to when our cache will begin evicting items. For example, if you set the capacity to 50, it will evict an item upon the 51st unique query. It should be noted that if you pass in a non-whole number, it will be rounded down for you. Non integers, negative numbers, and capacities below 1 will default to simply creating a GraphQL fetch without storing values in the cache. <br></br> <br></br>The third parameter is the endpoint at which you are actually using GraphQL. For example, this endpoint may be <code>http://localhost:3000/graphql.</code> <br></br> <br></br>Our last parameter is the Time to Live, or how long you want this specific query to last in your cache for. Since we aren't using Redis here, just pass in anything for your TTL as our cache is not reliant on this information. Now you are good to cache your GraphQL responses! </p>
+            <p>If you are not using Redis caching, DacheQL provides a middleware for caching using the server's memory with our custom cache that behaves with an LRU eviction policy. The arguments you should input for this middlware are as follows: <br></br> <br></br>For the first parameter, since you are not using Redis, simply pass in an empty object <code id='dacheqlwithhttpcache'> {string5} </code> like so. <br></br> <br></br>Next, is the capacity you would like your cache to hold. This capacity refers to when our cache will begin evicting items. For example, if you set the capacity to 50, it will evict an item upon the 51st unique query. It should be noted that if you pass in a non-whole number, it will be rounded down for you. Non integers, negative numbers, and capacities below two will default to simply creating a GraphQL fetch without storing values in the cache. <br></br> <br></br>The third parameter is the endpoint at which you are actually using GraphQL. For example, this endpoint may be <code>http://localhost:3000/graphql.</code> <br></br> <br></br>Our last parameter is the Time to Live, or how long you want this specific query to last in your cache for. Since we aren't using Redis here, just pass in anything for your TTL as our cache is not reliant on this information. Now you are good to cache your GraphQL responses! </p>
              
             <Card className='code-box'style={{color: '#000', width: '100%', height: '100%', top: '10px'}}>
               <Card.Text className='code-text'>
@@ -387,12 +386,15 @@ const Sidebar = () => {
             <h1 id="techstack">Technology Stack</h1>
             <ul>
               <li>GraphQL</li>
-              <li>Redis</li>
-              <li>Chart.js</li>
-              <li>React</li>
               <li>Typescript</li>
-              <li>Jest</li>
-              <li>Node</li>
+              <li>Redis</li>
+              <li>Node/Express</li>
+              <li>AWS RDS</li>
+              <li>React</li>
+              <li>Chart.js</li>
+              <li>Boostrap</li>
+              <li>Jest/Supertest</li>
+              <li>Webpack</li>
             </ul>
           </div>
         </div>
