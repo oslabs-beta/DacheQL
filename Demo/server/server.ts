@@ -6,7 +6,8 @@ import express, { Request, Response, NextFunction }  from 'express';
 import { ErrObject } from '../../types';
 const cors = require('cors');
 const redis = require('redis');
-const dacheQL = require('dacheql');
+// const dacheQL = require('dacheql');
+const dacheQL = require('../server/controllers/redisController');
 
 
 const PORT = 3000;
@@ -33,7 +34,9 @@ app.use(express.static(path.resolve(__dirname, "../../dist")));
 app.use('/graphql', dacheQL({}, 10, 'http://localhost:3000/graphql2', 300), expressGraphQL({
   schema: schema,
   graphiql: true,
-}));
+}), (req: Request, res: Response) => {
+  return res.sendStatus(200)
+});
 
 
 app.use('/graphql2', expressGraphQL({
