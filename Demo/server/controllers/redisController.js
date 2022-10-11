@@ -1,28 +1,27 @@
 const fetch = require('node-fetch');
 const axios = require('axios');
 
-
-function dacheQL({ redis } = {},capacity = 50, endpoint = '', TTL){
+function dacheQL({ redis } = {}, capacity = 50, endpoint = '', TTL) {
   //if the user is using redis
-  if(redis){
+  if (redis) {
     return async function redisCache(req, res, next) {
-      try{
-        if(req.method === 'POST'){
+      try {
+        if (req.method === 'POST') {
           //check to see if the query is already in redis
           const query = await redis.get(req.body.query);
-         
+
           //if the query is not in redis, follow this control flow
-          if(!query){
+          if (!query) {
             //fetch the graphql response to the user's specified endpoint
             const fetchedData = await fetch(endpoint, {
-              method: 'POST', 
+              method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
-                'Accept': 'application/json',
+                Accept: 'application/json',
               },
               body: JSON.stringify({
                 query: req.body.query,
-              })
+              }),
             })
               .then((res) => {
                 return res.json();
@@ -31,43 +30,49 @@ function dacheQL({ redis } = {},capacity = 50, endpoint = '', TTL){
                 return JSON.stringify(data);
               })
               .catch((err) => console.log('err in fetch server'));
-         
+
             //set the key as the query in Redis with the value as the GraphQL response
             const obj = await redis.SETEX(req.body.query, TTL, fetchedData);
           }
         }
         return next();
-      } catch(err) {
+      } catch (err) {
         return next({
           message: ('err occurred', err),
           log: `err occurred in redis controller ${err}`,
-          status: 400
+          status: 400,
         });
       }
     };
-  }
-  else{
+  } else {
     capacity = Math.floor(capacity);
     //if they are missing the url
     if (!endpoint) {
       throw new Error({ log: 'Url Argument is missing or invalid' });
-    }
-    if (redis) {
-      console.log('bye');
     } else {
-    //new instance of our cache that we are making for the user
+      //new instance of our cache that we are making for the user
       const cache = new LRUCache(capacity, endpoint);
       //this returned function has access to request bodies etc which we can then pass down into our LRUCache class
       return async function cacheHandler(req, res, next) {
         const { query } = req.body;
+        console.log('REQ BODY: ', req.body);
+        console.log('METHOD: ', query);
         //cachechecker is the evaluated result of trying to get the query from the hashmap
         const cacheChecker = cache.get(query);
+        console.log('cache Checker before delete ', cacheChecker);
+        // console.log('cache Checker', cacheChecker);
+        if (query === 'CLEAR') {
+          console.log('cache Checker before delete ', cacheChecker);
+          cache.delete(query);
+          console.log('cache Checker after delete ', cacheChecker);
+          delete cache;
+        }
         //req.body we just want the query they are asking for
         //if it is inside the cache then it just spits out query result tied to that query key and moves it to the first position of the LL
         //if its not we are gonna make a req to the db and alter our LL and Hashmap as well.
         //this will only be done once for as long as that item is in our cache saving the client substantial time
         if (!cacheChecker) {
-        //in the event that the query does not exist in our cache after invoking our get on it we make a query to the database
+          //in the event that the query does not exist in our cache after invoking our get on it we make a query to the database
           axios
             .post(endpoint, {
               query: query,
@@ -75,11 +80,11 @@ function dacheQL({ redis } = {},capacity = 50, endpoint = '', TTL){
             .then((data) => {
               const result = JSON.stringify(data.data);
               if (capacity > 1) {
-              //here essentially removes the edge case for a invalid capacity under zero to proceed
-              //reassigning our query result to the returned value of adding a new node (LL) and key value pair (HashMap) so we can send it as a response
+                //here essentially removes the edge case for a invalid capacity under zero to proceed
+                //reassigning our query result to the returned value of adding a new node (LL) and key value pair (HashMap) so we can send it as a response
                 const queryResult = cache.put(query, result);
                 res.locals.queryResult = queryResult;
-                console.log('OUR LINKED LIST CONTENTS AFTER AXIOS FETCH: ', cache.list);
+                // console.log('OUR LINKED LIST CONTENTS AFTER AXIOS FETCH: ', cache.list);
                 return next();
               }
               // if capicity <= 0, query to graphQL directly only edge case we just directly query for them when they dont make a cache size above 0
@@ -93,9 +98,9 @@ function dacheQL({ redis } = {},capacity = 50, endpoint = '', TTL){
               });
             });
         } else {
-        //if the query is actually in our cache so the other control flow statement we can simply employ our get method from our LRUCache class
+          //if the query is actually in our cache so the other control flow statement we can simply employ our get method from our LRUCache class
           res.locals.queryResult = cacheChecker;
-          console.log('OUR LINKED LIST CONTENTS IN THE ELSE STATEMENT: ', cache.list);
+          // console.log('OUR LINKED LIST CONTENTS IN THE ELSE STATEMENT: ', cache.list);
           return next();
         }
       };
@@ -139,18 +144,18 @@ class LRUCache {
     //native method get and has
     if (this.map.has(keyChecker)) {
       //the key is in the hashmap
-      console.log('using GET');
+      console.log('using cache GET');
       //using get native not ours
       const valueInCache = this.map.get(keyChecker);
       //assign value in cache to the value of the map at that key instance
       //make new instnace of a node with the valueInCache
       const node = new ListNode(valueInCache, keyChecker);
 
-      if(this.list.size !== 1) {
+      if (this.list.size !== 1) {
         this.list.moveToFront(node);
         //edge case for when the capacity is 1 we just send back the value
-      } return node.value;
-
+      }
+      return node.value;
     } else {
       return false;
     }
@@ -165,7 +170,7 @@ class LRUCache {
       //if at capacity evict the least recently used item aka end of the LL
       //remove it from the LL and hashmap and decrement LL size by 1
       //delete the last item in the cache
-      console.log('KEY: ', key);
+      // console.log('KEY: ', key);
       //console.log('this.map: ', this.map);
       const lastNode = this.list.removeLast();
       //removeLast method will also return the last node so we can later delete it in our
@@ -185,8 +190,28 @@ class LRUCache {
       this.map.set(key, value);
     }
     // }
-    console.log('CONTENT IN this.map: ', this.map);
+    // console.log('CONTENT IN this.map: ', this.map);
     return this.map.get(key);
+  }
+  delete(key) {
+    const keyChecker = key.trim();
+    console.log('cleaning cache', this.map.has(keyChecker));
+    this.map.clear();
+    if (this.map.has(keyChecker)) {
+      //the key is in the hashmap
+      // console.log('using GET');
+      //using get native not ours
+      // const value = this.map.get(keyChecker);
+      // console.log(value);
+      // const deleteNode = new ListNode(keyChecker, value);
+      // this.list.delete(deleteNode);
+      // return 'cache cleared';
+    } else {
+      console.log('DNE in cache');
+      // return "Doesn't exist in cache";
+    }
+    console.log('cache cleared', this.map.has(keyChecker));
+    console.log('CONTENT OF CACHE AFTER CLEAR: ', this.map);
   }
 }
 
@@ -235,7 +260,7 @@ class DoublyLinkedList {
   delete(node) {
     //traverse till we hit the node we want then invoke the functionality of conjoining whats in front and back of it
     //connects previous node to next one aka removing current one from LL
-    //console.log('attempt to delete node', node);
+    // console.log('attempt to delete node', node);
     if (!this.head && !this.tail) {
       return;
     }
@@ -257,7 +282,7 @@ class DoublyLinkedList {
         //if the node is tail and has same value as the argument node
         //if only one node in LL;
         if (current.next.value === node.value) {
-          console.log('DELETE TARGET IS FOUND NOT IN HEAD OR TAIL', current.next.value);
+          // console.log('DELETE TARGET IS FOUND NOT IN HEAD OR TAIL', current.next.value);
           //once found the target node
           current.next = current.next.next;
           current.next.prev = current;
@@ -273,7 +298,7 @@ class DoublyLinkedList {
   }
 }
 
-//added a key property to our listNode so that when we send it back and try to delete it from the hashmap we can delete by 
+//added a key property to our listNode so that when we send it back and try to delete it from the hashmap we can delete by
 //key and not by value
 class ListNode {
   constructor(value, key) {
