@@ -25,14 +25,6 @@ app.use(cors());
 
 app.use(express.static(path.resolve(__dirname, "../../dist")));
 
-app.get('/*', (req: Request, res: Response) => {
-  return res.sendFile(path.resolve(__dirname, "../../dist/index.html"), function(err) {
-    if (err) {
-      res.status(500).send(err)
-    }
-  })
-})
-
 app.use('/graphql', dacheQL({}, 50, `https://dacheql2.herokuapp.com/graphql2`, 300), httpCache(), expressGraphQL({
   schema: schema,
   graphiql: true,
@@ -45,6 +37,14 @@ app.use(`/graphql2`, expressGraphQL({
   schema: schema,
   graphiql: true,
 }));
+
+app.get('/*', (req: Request, res: Response) => {
+  return res.sendFile(path.resolve(__dirname, "../../dist/index.html"), function(err) {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
 
 app.use((req: Request, res: Response) => res.status(404).send('Cannot get route'));
 
