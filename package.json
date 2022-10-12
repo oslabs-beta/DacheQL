@@ -4,7 +4,7 @@
   "description": "GraphQL caching tool",
   "main": "index.js",
   "scripts": {
-    "start": "npm install && npx ts-node ./Demo/server/server.ts",
+    "start": "npx ts-node ./Demo/server/server.ts",
     "dev": "webpack-dev-server --mode development --open --hot & nodemon ./Demo/server/server.ts",
     "build": "webpack --mode production",
     "test": "jest --verbose"
