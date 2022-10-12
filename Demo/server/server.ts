@@ -41,7 +41,7 @@ app.use('/graphql', dacheQL({}, 50, `https://dacheql2.herokuapp.com/graphql2`, 3
 });
 
 
-app.use(`https://dacheql2.herokuapp.com/graphql2`, expressGraphQL({
+app.use(`/graphql2`, expressGraphQL({
   schema: schema,
   graphiql: true,
 }));
