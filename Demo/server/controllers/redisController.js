@@ -151,7 +151,9 @@ class LRUCache {
   }
   //get method should grab value of the key from the hashmap and move it to the front of the linkedlist
   get(key) {
-    const keyChecker = key.trim();
+    if (key) {
+      const keyChecker = key.trim();
+    }
     //trims the key that gets passed in to the get to get rid of the unneccessary spaces
     //native method get and has
     if (this.map.has(keyChecker)) {
@@ -174,7 +176,9 @@ class LRUCache {
   }
   put(key, value) {
     //key already exists in our hashmap so in this case if put is being called we are updating
-    key = key.trim();
+    if (key) {
+      const keyChecker = key.trim();
+    }
     //reassigning the key to the value of the key trimmed to avoid the spaces
     if (this.list.size >= this.capacity) {
       //EVICTING
@@ -206,7 +210,9 @@ class LRUCache {
     return this.map.get(key);
   }
   delete(key) {
-    const keyChecker = key.trim();
+    if (key) {
+      const keyChecker = key.trim();
+    }
     console.log('cleaning cache', this.map.has(keyChecker));
     this.map.clear();
     if (this.map.has(keyChecker)) {
