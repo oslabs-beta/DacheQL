@@ -22,7 +22,7 @@ module.exports = {
       directory: path.join(__dirname, './dist'),
     },
     proxy: {
-      '/': 'https://dacheql2.herokuapp.com/graphql2',
+      '/': 'https://dacheql2.herokuapp.com',
     },
   },
   mode: process.env.NODE_ENV,
