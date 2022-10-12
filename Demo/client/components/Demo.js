@@ -163,7 +163,7 @@ const Demo = () => {
     console.log('last query: ', queryString);
     if (queryString) {
       setValorantCount(0);
-      fetch('http://localhost:3000/graphql', {
+      fetch('https://dacheql2.herokuapp.com/graphql', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -210,7 +210,7 @@ const Demo = () => {
     console.log('last query: ', queryString);
     if (queryString) {
       setPokemonCount(0);
-      fetch('http://localhost:3000/graphql', {
+      fetch('https://dacheql2.herokuapp.com/graphql', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -256,7 +256,7 @@ const Demo = () => {
     console.log('last query: ', queryString);
     if (queryString) {
       setCitiesCount(0);
-      fetch('http://localhost:3000/graphql', {
+      fetch('https://dacheql2.herokuapp.com/graphql', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -323,7 +323,7 @@ const Demo = () => {
     }
     console.log('query string:', queryString);
     startTime = performance.now();
-    await fetch('http://localhost:3000/graphql', {
+    await fetch('https://dacheql2.herokuapp.com/graphql', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
