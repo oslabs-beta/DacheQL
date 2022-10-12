@@ -87,6 +87,9 @@ function dacheQL({ redis } = {}, capacity = 50, endpoint = '', TTL) {
               query: query,
             }),
           })
+            .then((res) => {
+              return res.json();
+            })
             .then((data) => {
               const result = JSON.stringify(data.data);
               if (capacity > 1) {
