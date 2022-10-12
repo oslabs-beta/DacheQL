@@ -21,7 +21,7 @@ module.exports = {
       directory: path.join(__dirname, './dist'),
     },
     proxy: {
-      '/': 'https://www.dacheql.com:3000',
+      '/': 'https://www.dacheql.io:3000',
     },
   },
   mode: process.env.NODE_ENV,
