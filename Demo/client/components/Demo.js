@@ -297,21 +297,6 @@ const Demo = () => {
   let startTime;
   let endTime;
   const runQuery = async () => {
-    //react hook for the timer state comparing the diference will give us the time elapsed
-    console.log('WHEN RUN QUERY: ', timeToFetch);
-    console.log('timeToFetch: ', timeToFetch);
-    //cache fetch time
-    console.log('cacheFetchTime: ', cacheFetchTime);
-    //react hook for storing the state of whatever was fetched (will use to render on resulting query)
-    console.log('result: ', result);
-    //states to see if the info was cached or not
-    console.log('valorantCount: ', valorantCount);
-    console.log('pokementCount: ', pokemonCount);
-    console.log('citiesCount: ', citiesCount);
-    console.log('chartData: ', chartData);
-    console.log('timeArray: ', timeArray);
-    console.log('booleanVal: ', booleanVal);
-
     if (selectValorant === true) {
       setValorantCount(valorantCount + 1);
     }
