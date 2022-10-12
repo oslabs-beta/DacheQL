@@ -1,5 +1,5 @@
 const fetch = require('node-fetch');
-const axios = require('axios');
+// const axios = require('axios');
 
 function dacheQL({ redis } = {}, capacity = 50, endpoint = '', TTL) {
   //if the user is using redis
@@ -73,10 +73,20 @@ function dacheQL({ redis } = {}, capacity = 50, endpoint = '', TTL) {
         //this will only be done once for as long as that item is in our cache saving the client substantial time
         if (!cacheChecker) {
           //in the event that the query does not exist in our cache after invoking our get on it we make a query to the database
-          axios
-            .post(endpoint, {
+          // axios
+          //   .post(endpoint, {
+          //     query: query,
+          //   })
+          fetch(endpoint, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Accept: 'application/json',
+            },
+            body: JSON.stringify({
               query: query,
-            })
+            }),
+          })
             .then((data) => {
               const result = JSON.stringify(data.data);
               if (capacity > 1) {
