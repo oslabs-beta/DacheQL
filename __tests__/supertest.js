@@ -11,3 +11,14 @@ describe('Route integration', () => {
         });
       });
     });
+
+    describe('/graphql', () => {
+        describe('GET', () => {
+          it('responds with content-type appplication/json and status 200', async () => {
+            const response = await request(server)
+              .get('/graphql');
+            expect(response.type).toBe('appplication/json');
+            expect(response.statusCode).toBe(200);
+          });
+        });
+      });
