@@ -32,7 +32,6 @@ app.use('/graphql', dacheQL({}, 50, `/graphql2`, 300), httpCache(), expressGraph
   return res.sendStatus(200)
 });
 
-
 app.use(`/graphql2`, expressGraphQL({
   schema: schema,
   graphiql: true,

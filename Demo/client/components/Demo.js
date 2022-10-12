@@ -323,7 +323,7 @@ const Demo = () => {
     }
     console.log('query string:', queryString);
     startTime = performance.now();
-    await fetch('/graphql', {
+    await fetch('https://dacheql2.herokuapp.com/graphql', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
