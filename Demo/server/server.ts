@@ -25,7 +25,7 @@ app.use(cors());
 
 app.use(express.static(path.resolve(__dirname, "../../dist")));
 
-app.use('/graphql', dacheQL({}, 50, `/graphql2`, 300), httpCache(), expressGraphQL({
+app.use('/graphql', dacheQL({}, 500, `/graphql2`, 300), httpCache(), expressGraphQL({
   schema: schema,
   graphiql: true,
 }), (req: Request, res: Response) => {

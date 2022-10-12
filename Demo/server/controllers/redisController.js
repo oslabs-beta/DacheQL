@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 // const axios = require('axios');
 
-function dacheQL({ redis } = {}, capacity = 50, endpoint = '', TTL) {
+function dacheQL({ redis } = {}, capacity = 500, endpoint = '', TTL) {
   //if the user is using redis
   if (redis) {
     return async function redisCache(req, res, next) {
@@ -45,6 +45,8 @@ function dacheQL({ redis } = {}, capacity = 50, endpoint = '', TTL) {
       }
     };
   } else {
+    console.log('endpoint', endpoint);
+    console.log('capacity:', capacity);
     capacity = Math.floor(capacity);
     //if they are missing the url
     if (!endpoint) {
