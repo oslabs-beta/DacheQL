@@ -11,13 +11,19 @@ const Homepage = () => {
 
   return (
     <div>
-      <Navigation id="navbar"></Navigation>
-      <Row>
-        <div className="info2">
-          <Info />{' '}
-        </div>
-      </Row>
-      <Footer></Footer>
+      <div id="navbar">
+        <Navigation></Navigation>
+      </div>
+      <Container className="homepage-container">
+        <Row>
+          <Col>
+            <div className="fs-1">
+              Introduction
+              <Info />
+            </div>
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 };

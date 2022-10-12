@@ -323,16 +323,4 @@ class ListNode {
   }
 }
 
-function httpCache() {
-  const defaultHeaders = {
-    'Cache-Control': 'max-age=5',
-  };
-
-  const finalHeaders = { ...defaultHeaders };
-  return function setHeaders(req, res, next) {
-    res.set(finalHeaders);
-    return next();
-  };
-}
-
-module.exports = { dacheQL, httpCache };
+module.exports = dacheQl;
