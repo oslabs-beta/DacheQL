@@ -96,7 +96,7 @@ function dacheQL({ redis } = {}, capacity = 50, endpoint = '', TTL) {
                 //reassigning our query result to the returned value of adding a new node (LL) and key value pair (HashMap) so we can send it as a response
                 const queryResult = cache.put(query, result);
                 res.locals.queryResult = queryResult;
-                // console.log('OUR LINKED LIST CONTENTS AFTER AXIOS FETCH: ', cache.list);
+                console.log('OUR LINKED LIST CONTENTS AFTER AXIOS FETCH: ', cache.list);
                 return next();
               }
               // if capicity <= 0, query to graphQL directly only edge case we just directly query for them when they dont make a cache size above 0
@@ -112,7 +112,7 @@ function dacheQL({ redis } = {}, capacity = 50, endpoint = '', TTL) {
         } else {
           //if the query is actually in our cache so the other control flow statement we can simply employ our get method from our LRUCache class
           res.locals.queryResult = cacheChecker;
-          // console.log('OUR LINKED LIST CONTENTS IN THE ELSE STATEMENT: ', cache.list);
+          console.log('OUR LINKED LIST CONTENTS IN THE ELSE STATEMENT: ', cache.list);
           return next();
         }
       };

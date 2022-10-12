@@ -161,19 +161,19 @@ const Demo = () => {
   //upon change of drop down after selection set new values for react states for etc...
   const handleChangeValorant = (event) => {
     console.log('last query: ', queryString);
-    if (queryString) {
-      setValorantCount(0);
-      fetch('https://dacheql2.herokuapp.com/graphql', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify({
-          query: 'CLEAR',
-        }),
-      });
-    }
+    // if (queryString) {
+    //   setValorantCount(0);
+    //   fetch('https://dacheql2.herokuapp.com/graphql', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //       Accept: 'application/json',
+    //     },
+    //     body: JSON.stringify({
+    //       query: 'CLEAR',
+    //     }),
+    //   });
+    // }
     // console.log(event.target.innerHTML);
     setTimeArray([]);
     setQuery(event.target.innerHTML);
@@ -208,19 +208,19 @@ const Demo = () => {
 
   const handleChangePokemon = (event) => {
     console.log('last query: ', queryString);
-    if (queryString) {
-      setPokemonCount(0);
-      fetch('https://dacheql2.herokuapp.com/graphql', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify({
-          query: 'CLEAR',
-        }),
-      });
-    }
+    // if (queryString) {
+    //   setPokemonCount(0);
+    //   fetch('https://dacheql2.herokuapp.com/graphql', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //       Accept: 'application/json',
+    //     },
+    //     body: JSON.stringify({
+    //       query: 'CLEAR',
+    //     }),
+    //   });
+    // }
     setTimeArray([]);
     setQuery(event.target.innerHTML);
     setOutput('Query For Pokemon');
@@ -254,19 +254,19 @@ const Demo = () => {
     // setTimeToFetch([timeToFetch, totalRunTime]);
     //console.log(event.target.innerHTML);
     console.log('last query: ', queryString);
-    if (queryString) {
-      setCitiesCount(0);
-      fetch('https://dacheql2.herokuapp.com/graphql', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify({
-          query: 'CLEAR',
-        }),
-      });
-    }
+    // if (queryString) {
+    //   setCitiesCount(0);
+    //   fetch('https://dacheql2.herokuapp.com/graphql', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //       Accept: 'application/json',
+    //     },
+    //     body: JSON.stringify({
+    //       query: 'CLEAR',
+    //     }),
+    //   });
+    // }
     setQuery(event.target.innerHTML);
     setOutput('Query For Cities');
     //set selectValorant to be true, to display the selected effect in button
