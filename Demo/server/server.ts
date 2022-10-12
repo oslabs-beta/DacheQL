@@ -45,7 +45,16 @@ app.get('/*', (req: Request, res: Response) => {
   })
 })
 
-app.use((req: Request, res: Response) => res.status(404).send('Cannot get route'));
+app.use((req: Request, res: Response) => {
+  const defaultErr = {
+    log: 'Express error handler caught unknown middleware error',
+    status: 404,
+    message: '404 Not Found, cannot get to route' ,
+  };
+  const errorObj = Object.assign({}, defaultErr);
+  console.log(errorObj.log);
+  return (res.status(errorObj.status).json(errorObj.message));
+});
 
 app.use((err: ErrObject, req: Request, res: Response, next: NextFunction) => {
   const defaultErr = {
