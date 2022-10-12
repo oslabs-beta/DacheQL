@@ -9,7 +9,7 @@ const redis = require('redis');
 const dacheQL = require('dacheql');
 
 
-const PORT = 3000;
+const PORT = process.env.port || 3000;
 
 // const REDIS_PORT = process.env.PORT || 6379;
 // const client = redis.createClient(REDIS_PORT);
