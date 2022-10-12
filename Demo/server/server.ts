@@ -36,7 +36,7 @@ app.get('/*', (req: Request, res: Response) => {
     }
   })
 })
-app.use('/graphql', dacheQL({}, 50, 'https://dacheql2.herokuapp.com/graphql2', 300), expressGraphQL({
+app.use('/graphql', dacheQL({}, 50, `https://dacheql2.herokuapp.com:${PORT}/graphql2`, 300), expressGraphQL({
   schema: schema,
   graphiql: true,
 }), (req: Request, res: Response) => {
