@@ -6,7 +6,7 @@ import express, { Request, Response, NextFunction }  from 'express';
 import { ErrObject } from '../../types';
 const cors = require('cors');
 const redis = require('redis');
-const dacheQL = require('dacheql');
+const dacheQL = require('../server/controllers/redisController.js');
 
 
 const PORT = process.env.PORT || 3000;
