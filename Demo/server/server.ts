@@ -5,7 +5,7 @@ const schema = require('./schema/schema.js');
 import express, { Request, Response, NextFunction }  from 'express';
 import { ErrObject } from '../../types';
 const cors = require('cors');
-const redis = require('redis');
+// const redis = require('redis');
 const dacheQL = require('../server/controllers/redisController.js');
 
 
@@ -33,7 +33,7 @@ app.get('/*', (req: Request, res: Response) => {
   })
 })
 
-app.use('/graphql', dacheQL({}, 10, 'https://dacheql2.herokuapp.com/graphql2', 300), expressGraphQL({
+app.use('/graphql', dacheQL({}, 50, 'https://dacheql2.herokuapp.com/graphql2', 300), expressGraphQL({
   schema: schema,
   graphiql: true,
 }), (req: Request, res: Response) => {
