@@ -30,7 +30,7 @@ app.use(express.static(path.resolve(__dirname, "../../dist")));
 //   return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
 // });
 app.get('/*', (req: Request, res: Response) => {
-  return res.sendFile(path.resolve(__dirname, "../../dist"), function(err) {
+  return res.sendFile(path.resolve(__dirname, "../../dist/index.html"), function(err) {
     if (err) {
       res.status(500).send(err)
     }
