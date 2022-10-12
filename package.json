@@ -4,7 +4,7 @@
   "description": "GraphQL caching tool",
   "main": "index.js",
   "scripts": {
-    "start": "npx ts-node ./Demo/server/server.ts",
+    "start": "npm install && npx ts-node ./Demo/server/server.ts",
     "dev": "webpack-dev-server --mode development --open --hot & nodemon ./Demo/server/server.ts",
     "build": "webpack --mode production",
     "test": "jest --verbose"
@@ -18,7 +18,7 @@
   "bugs": {
     "url": "https://github.com/oslabs-beta/DacheQL/issues"
   },
-  "homepage": "https://www.dacheql.com",
+  "homepage": "https://www.dacheql.io",
   "dependencies": {
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
