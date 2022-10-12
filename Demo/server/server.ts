@@ -30,7 +30,7 @@ app.use(express.static(path.resolve(__dirname, "../../dist")));
 //   return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
 // });
 
-app.use('/graphql', dacheQL({}, 2, '/graphql2', 300), expressGraphQL({
+app.use('/graphql', dacheQL({}, 2, 'https://dacheql2.herokuapp.com/graphql2', 300), expressGraphQL({
   schema: schema,
   graphiql: true,
 }), (req: Request, res: Response) => {
