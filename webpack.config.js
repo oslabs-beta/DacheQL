@@ -21,9 +21,9 @@ module.exports = {
       publicPath: '/dist',
       directory: path.join(__dirname, './dist'),
     },
-    // proxy: {
-    //   '/': 'http://localhost:3000',
-    // },
+    proxy: {
+      '/': 'https://dacheql2.herokuapp.com/graphql2',
+    },
   },
   mode: process.env.NODE_ENV,
   module: {
