@@ -29,8 +29,8 @@ app.use(express.static(path.resolve(__dirname, "../../dist")));
 //   console.log('getting index.html');
 //   return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
 // });
-app.get('/', (req: Request, res: Response) => {
-  res.sendFile(path.join(__dirname, '../client/index.html'), function(err) {
+app.get('/*', (req: Request, res: Response) => {
+  res.sendFile(path.resolve(__dirname, '../client/index.html'), function(err) {
     if (err) {
       res.status(500).send(err)
     }
@@ -59,7 +59,7 @@ app.use((err: ErrObject, req: Request, res: Response, next: NextFunction) => {
   };
   const errorObj = Object.assign({}, defaultErr, err);
   console.log(errorObj.log);
-  return res.status(errorObj.status).json(errorObj.message);
+  return next(res.status(errorObj.status).json(errorObj.message));
 });
 
 app.listen(PORT,  () => console.log(`listening on port ${PORT}...`));
