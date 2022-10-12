@@ -25,7 +25,7 @@ app.use(cors());
 
 app.use(express.static(path.resolve(__dirname, "../../dist")));
 
-app.use('/graphql', dacheQL({}, 50, `https://dacheql2.herokuapp.com/graphql2`, 300), httpCache(), expressGraphQL({
+app.use('/graphql', dacheQL({}, 50, `/graphql2`, 300), httpCache(), expressGraphQL({
   schema: schema,
   graphiql: true,
 }), (req: Request, res: Response) => {
@@ -33,7 +33,7 @@ app.use('/graphql', dacheQL({}, 50, `https://dacheql2.herokuapp.com/graphql2`, 3
 });
 
 
-app.use(`https://dacheql2.herokuapp.com/graphql2`, expressGraphQL({
+app.use(`/graphql2`, expressGraphQL({
   schema: schema,
   graphiql: true,
 }));
