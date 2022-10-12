@@ -20,9 +20,9 @@ module.exports = {
       publicPath: '/dist',
       directory: path.join(__dirname, './dist'),
     },
-    proxy: {
-      '/': 'https://dacheql2.herokuapp.com',
-    },
+    // proxy: {
+    //   '/': 'http://localhost:3000',
+    // },
   },
   mode: process.env.NODE_ENV,
   module: {
