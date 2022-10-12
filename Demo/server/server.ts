@@ -6,7 +6,7 @@ import express, { Request, Response, NextFunction }  from 'express';
 import { ErrObject } from '../../types';
 const cors = require('cors');
 // const redis = require('redis');
-const dacheQL = require('../server/controllers/redisController.js');
+const {dacheQL, httpCache} = require('../server/controllers/redisController.js');
 
 
 const PORT = process.env.PORT || 3000;
@@ -33,7 +33,7 @@ app.get('/*', (req: Request, res: Response) => {
   })
 })
 
-app.use('/graphql', dacheQL({}, 50, 'https://dacheql2.herokuapp.com/graphql2', 300), expressGraphQL({
+app.use('/graphql', dacheQL({}, 50, 'https://dacheql2.herokuapp.com/graphql2', 300), httpCache(), expressGraphQL({
   schema: schema,
   graphiql: true,
 }), (req: Request, res: Response) => {
