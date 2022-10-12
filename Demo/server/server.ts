@@ -29,7 +29,13 @@ app.use(express.static(path.resolve(__dirname, "../../dist")));
 //   console.log('getting index.html');
 //   return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
 // });
-
+app.get('/', (req: Request, res: Response) => {
+  res.sendFile(path.join(__dirname, '../client/index.html'), function(err) {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
 app.use('/graphql', dacheQL({}, 50, 'https://dacheql2.herokuapp.com/graphql2', 300), expressGraphQL({
   schema: schema,
   graphiql: true,
@@ -38,7 +44,7 @@ app.use('/graphql', dacheQL({}, 50, 'https://dacheql2.herokuapp.com/graphql2', 3
 });
 
 
-app.use(`https://dacheql2.herokuapp.com:${PORT}/graphql2`, expressGraphQL({
+app.use(`https://dacheql2.herokuapp.com/graphql2`, expressGraphQL({
   schema: schema,
   graphiql: true,
 }));
