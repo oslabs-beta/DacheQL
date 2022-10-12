@@ -327,11 +327,8 @@ function httpCache() {
   };
 
   const finalHeaders = { ...defaultHeaders };
-
   return function setHeaders(req, res, next) {
-    if (Object.hasOwn(res.locals, 'cacheable')) {
-      res.set(finalHeaders);
-    }
+    res.set(finalHeaders);
     return next();
   };
 }
