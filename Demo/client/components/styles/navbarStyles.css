@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+.homepage-container {
+  font-family: 'Inter', sans-serif;
+}
+/* #2a4faa */
+.navbar {
+  font-family:'Inter', sans-serif; 
+  font-size: large;
+  color:#2a4faa ;
+  display: flex;
+  justify-content: space-between; 
+  height: 70px;
+  align-items: center;
+  position: sticky;
+  @media screen and (max-width:1000px){
+    transition: 0.8s all ease;
+  }
+  
+}
+
+#navbar {
+  background: linear-gradient(to bottom, #fdfdfdea 0%, #fcfcfc 100%);
+}
+
+.nav-item {
+  color: black;
+}
+
+#brandname {
+  /* text-transform: uppercase; */
+  color: rgb(46, 44, 44);
+  /* text-decoration: bold; */
+  position: fixed;
+  display: inline-block;
+  font-family:'Inter', sans-serif; 
+  font-size: 27px;
+  left: 75px;
+  top: 18px;
+  /* margin-top: 20px; */
+  
+}
