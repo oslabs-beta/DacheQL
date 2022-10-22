@@ -50,7 +50,7 @@ npm install dacheql
 ```
 In your server file, you want to require our middleware to handle GraphQL requests using the CommonJS format.
 ```sh
-const dachql = require('dacheql');
+const dacheql = require('dacheql');
 ```
 DacheQL functionality depends on Express' built-in method express.json() middleware function in order to parse incoming JSON payloads.
 
