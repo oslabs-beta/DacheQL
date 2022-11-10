@@ -2,12 +2,12 @@ const path = require('path');
 // const express = require('express');
 const expressGraphQL = require('express-graphql').graphqlHTTP;
 const schema = require('./schema/schema.js');
-import express, { Request, Response, NextFunction }  from 'express';
+import express, { Request, Response, NextFunction, response }  from 'express';
 import { ErrObject } from '../../types';
 const cors = require('cors');
 const redis = require('redis');
-const dacheQL = require('dacheql');
-
+// const dacheQL = require('dacheql');
+const dacheQL = require('./controllers/redisController.js')
 
 const PORT = 3000;
 
@@ -25,11 +25,8 @@ app.use(cors());
 app.use(express.static(path.resolve(__dirname, "../../dist")));
 
 
-app.use('/graphql', dacheQL({}, 2, 'http://localhost:3000/graphql2', 300), expressGraphQL({
-  schema: schema,
-  graphiql: true,
-}), (req: Request, res: Response) => {
-  return res.sendStatus(200)
+app.use('/graphql', dacheQL({}, 50, 'http://localhost:3000/graphql2', 300),(req: Request, res: Response) => {
+  return res.status(200).send(res.locals.queryResult)
 });
 
 

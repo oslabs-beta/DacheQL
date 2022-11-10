@@ -29,7 +29,15 @@ import {
 } from 'chart.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPiggyBank } from '@fortawesome/free-solid-svg-icons';
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+);
 
 //counter to keep track for our incrementer function globally declared
 let counter = 0;
@@ -297,21 +305,6 @@ const Demo = () => {
   let startTime;
   let endTime;
   const runQuery = async () => {
-    //react hook for the timer state comparing the diference will give us the time elapsed
-    console.log('WHEN RUN QUERY: ', timeToFetch);
-    console.log('timeToFetch: ', timeToFetch);
-    //cache fetch time
-    console.log('cacheFetchTime: ', cacheFetchTime);
-    //react hook for storing the state of whatever was fetched (will use to render on resulting query)
-    console.log('result: ', result);
-    //states to see if the info was cached or not
-    console.log('valorantCount: ', valorantCount);
-    console.log('pokementCount: ', pokemonCount);
-    console.log('citiesCount: ', citiesCount);
-    console.log('chartData: ', chartData);
-    console.log('timeArray: ', timeArray);
-    console.log('booleanVal: ', booleanVal);
-
     if (selectValorant === true) {
       setValorantCount(valorantCount + 1);
     }
@@ -354,7 +347,7 @@ const Demo = () => {
           return;
         }
         if (selectCities === true && citiesCount >= 1) {
-          console.log('citiesCOunt', citiesCount);
+          // console.log('citiesCOunt', citiesCount);
           setCacheFetchTime([totalRunTime]);
           setResult(JSON.stringify(data, null, 2));
           return;
@@ -371,9 +364,9 @@ const Demo = () => {
   };
 
   return (
-    <div className="demopage">
-      <Navigation id="navbar"></Navigation>
-      <div className="howto">
+    <div className='demopage'>
+      <Navigation id='navbar'></Navigation>
+      <div className='howto'>
         <h1>Demo</h1>
         <ol>
           <li>Select a query you want to receive information for.</li>
@@ -381,45 +374,60 @@ const Demo = () => {
           <li>Press Run Query a second time and notice the cached runtime!</li>
           <p>
             {' '}
-            <br></br> * It should be noted the first ever query will have a significantly higher
-            runtime than the other first queries because it is establishing a connection.<br></br>
+            <br></br> * It should be noted the first ever query will have a
+            significantly higher runtime than the other first queries because it
+            is establishing a connection.<br></br>
           </p>
         </ol>
       </div>
-      <div className="card-container">
-        <div className="demo-query-container">
-          <div className="demo-query-btns btn-group-vertical">
+      <div className='card-container'>
+        <div className='demo-query-container'>
+          <div className='demo-query-btns btn-group-vertical'>
             <Form>
-              <FormLabel style={{ width: 'max-content', 'flex-direction': 'row' }}></FormLabel>
+              <FormLabel
+                style={{ width: 'max-content', 'flex-direction': 'row' }}
+              ></FormLabel>
               <h4>Choose A Demo Query</h4>
-              <Button className="demo-query-btn" href="#/action-1" onClick={handleChangeValorant}>
+              <Button
+                className='demo-query-btn'
+                href='#/action-1'
+                onClick={handleChangeValorant}
+              >
                 <Form.Check
-                  className="queries"
-                  label="Query For Valorant"
-                  type="radio"
+                  className='queries'
+                  label='Query For Valorant'
+                  type='radio'
                   checked={selectValorant}
                 ></Form.Check>
               </Button>
-              <Button className="demo-query-btn" href="#/action-2" onClick={handleChangePokemon}>
+              <Button
+                className='demo-query-btn'
+                href='#/action-2'
+                onClick={handleChangePokemon}
+              >
                 <Form.Check
-                  className="queries"
-                  label="Query For Pokemon"
-                  type="radio"
+                  className='queries'
+                  label='Query For Pokemon'
+                  type='radio'
                   checked={selectPokemon}
                 ></Form.Check>
               </Button>
-              <Button className="demo-query-btn" href="#/action-3" onClick={handleChangeCities}>
+              <Button
+                className='demo-query-btn'
+                href='#/action-3'
+                onClick={handleChangeCities}
+              >
                 <Form.Check
-                  className="queries"
-                  label="Query For Cities"
-                  type="radio"
+                  className='queries'
+                  label='Query For Cities'
+                  type='radio'
                   checked={selectCities}
                 ></Form.Check>
               </Button>
-              <Button id="runQueBtn" onClick={runQuery}>
+              <Button id='runQueBtn' onClick={runQuery}>
                 {/* <img src={piggyIcon} width={25} height={40} /> */}
                 <Row>
-                  <Col id="piggy">
+                  <Col id='piggy'>
                     <FontAwesomeIcon icon={faPiggyBank}></FontAwesomeIcon>
                   </Col>
                   <Col>
@@ -434,13 +442,20 @@ const Demo = () => {
         <Row>
           <Col>
             <Card
-              style={{ color: '#000', width: '30rem', height: '25rem', right: '10px' }}
-              className="selected-query"
+              style={{
+                color: '#000',
+                width: '30rem',
+                height: '25rem',
+                right: '10px',
+              }}
+              className='selected-query'
             >
               <Card.Body>
-                <Card.Title className="selected-query">Selected Query:</Card.Title>
+                <Card.Title className='selected-query'>
+                  Selected Query:
+                </Card.Title>
 
-                <Card.Text className="selected-query">
+                <Card.Text className='selected-query'>
                   <Query output={output} />
                 </Card.Text>
               </Card.Body>
@@ -448,12 +463,19 @@ const Demo = () => {
           </Col>
           <Col>
             <Card
-              className="result-query"
-              style={{ color: '#000', width: '30rem', height: '25rem', top: '10px' }}
+              className='result-query'
+              style={{
+                color: '#000',
+                width: '30rem',
+                height: '25rem',
+                top: '10px',
+              }}
             >
               <Card.Body>
-                <Card.Title className="result-query">Resulting Query:</Card.Title>
-                <Card.Text className="result-query">
+                <Card.Title className='result-query'>
+                  Resulting Query:
+                </Card.Title>
+                <Card.Text className='result-query'>
                   <pre>
                     <code>{result}</code>
                   </pre>
@@ -466,25 +488,38 @@ const Demo = () => {
         <Row>
           <Col>
             <Card
-              style={{ color: '#000', width: '30rem', height: '15rem', top: '40px' }}
-              className="metricsbox"
+              style={{
+                color: '#000',
+                width: '30rem',
+                height: '15rem',
+                top: '40px',
+              }}
+              className='metricsbox'
             >
               <Card.Body>
-                <Card.Title className="metrics">Metrics</Card.Title>
-                <Card.Text id="metricsbody">
-                  <Metrics timeToFetch={timeToFetch} cacheFetchTime={cacheFetchTime} />
+                <Card.Title className='metrics'>Metrics</Card.Title>
+                <Card.Text id='metricsbody'>
+                  <Metrics
+                    timeToFetch={timeToFetch}
+                    cacheFetchTime={cacheFetchTime}
+                  />
                 </Card.Text>
               </Card.Body>
             </Card>
           </Col>
           <Col>
             <Card
-              style={{ color: '#000', width: '30rem', height: '15rem', top: '40px' }}
-              className="graphbox"
+              style={{
+                color: '#000',
+                width: '30rem',
+                height: '15rem',
+                top: '40px',
+              }}
+              className='graphbox'
             >
               <Card.Body>
-                <Card.Title className="graph">Graph</Card.Title>
-                <Card.Text id="linechart">
+                <Card.Title className='graph'>Graph</Card.Title>
+                <Card.Text id='linechart'>
                   <Line options={options} data={chartData} />
                 </Card.Text>
               </Card.Body>

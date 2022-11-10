@@ -55,8 +55,8 @@ function dacheQL({ redis } = {}, capacity = 50, endpoint = '', TTL) {
       //this returned function has access to request bodies etc which we can then pass down into our LRUCache class
       return async function cacheHandler(req, res, next) {
         const { query } = req.body;
-        console.log('REQ BODY: ', req.body);
-        console.log('METHOD: ', query);
+        // console.log('REQ BODY: ', req.body);
+        // console.log('METHOD: ', query);
         //cachechecker is the evaluated result of trying to get the query from the hashmap
         const cacheChecker = cache.get(query);
         console.log('cache Checker before delete ', cacheChecker);
@@ -94,13 +94,16 @@ function dacheQL({ redis } = {}, capacity = 50, endpoint = '', TTL) {
             .catch((err) => {
               return next({
                 message: ('err occurred', err),
-                log: `err occurred in GraphQL query: ${err}`,
+                log: `err occurred in DacheQL Library LRUCache method: ${err}`,
               });
             });
         } else {
-          //if the query is actually in our cache so the other control flow statement we can simply employ our get method from our LRUCache class
+          // if the query is actually in our cache so the other control flow statement we can simply employ our get method from our LRUCache class
           res.locals.queryResult = cacheChecker;
-          // console.log('OUR LINKED LIST CONTENTS IN THE ELSE STATEMENT: ', cache.list);
+          console.log(
+            'OUR LINKED LIST CONTENTS IN THE ELSE STATEMENT: ',
+            cache.list,
+          );
           return next();
         }
       };
@@ -227,7 +230,7 @@ class DoublyLinkedList {
     } else {
       newNode.next = this.head;
       //this is making the new node point to the head
-      this.head.prev = newNode;
+      if (this.head) this.head.prev = newNode;
       //makes the old head point to the new node as its previous value
       this.head = newNode;
       //this is seting the new head to the new node
@@ -239,7 +242,7 @@ class DoublyLinkedList {
     // deleting a tail and returning it
     const lastNode = this.tail;
     //saving this node so we can use delete on it
-    this.tail.prev.next = null;
+    if (this.tail) this.tail.prev.next = null;
     //since the one before it is now the new tail it points to null
     this.tail = this.tail.prev;
     //the new tail is now the one before it
@@ -281,7 +284,7 @@ class DoublyLinkedList {
           // console.log('DELETE TARGET IS FOUND NOT IN HEAD OR TAIL', current.next.value);
           //once found the target node
           current.next = current.next.next;
-          current.next.prev = current;
+          if (current.next) current.next.prev = current;
           // return;
         } else {
           current = current.next;
