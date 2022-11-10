@@ -66,6 +66,10 @@ Add the following code to use the express.json() middleware function:
 ``` sh
 app.use(express.json());
 ```
+Add the following code to obtain cached query results in the middleware function:
+``` sh
+res.locals.queryResult;
+```
 
 ### Using DacheQL with Redis
 DacheQL lets you decide if you would like to use Redis, or our custom LRU eviction cache. If you are using Redis, make sure you have Redis installed and your Redis server is running. To run Redis, type the following command in your terminal:
@@ -93,10 +97,9 @@ In order to cache your graphQL query responses, all you have to do is call our D
 app.use(
     '/graphql', 
     dacheQL({ redis } = {<redis: client>}, capacity, endpoint, TTL),
-    expressGraphQL({
-      schema: schema,
-      graphiql: true,
-    })
+    (req, res)=>{
+      return res.status(200).send(res.locals.queryResult)
+    }
   );
 ```
 The first parameter is to let the function know whether you are using Redis or not as your cache. If you are, you will have to pass Redis into the function as {redis: client} like so.
@@ -121,10 +124,9 @@ Our last parameter is the Time to Live, or how long you want this specific query
 app.use(
     '/graphql', 
     dacheQL({}, capacity, endpoint, TTL),
-    expressGraphQL({
-      schema: schema,
-      graphiql: true,
-    })
+    (req, res)=>{
+      return res.status(200).send(res.locals.queryResult)
+    }
   );
 ```
 Now, you have properly set up the middleware functions in order to use DacheQL's caching tools!
