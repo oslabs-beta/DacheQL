@@ -200,17 +200,15 @@ class LRUCache {
       //the key is in the hashmap
       // console.log('using GET');
       //using get native not ours
-      // const value = this.map.get(keyChecker);
+      const value = this.map.get(keyChecker);
       // console.log(value);
-      // const deleteNode = new ListNode(keyChecker, value);
-      // this.list.delete(deleteNode);
-      // return 'cache cleared';
+      const deleteNode = new ListNode(keyChecker, value);
+      this.list.delete(deleteNode);
+      return 'cache cleared';
     } else {
-      console.log('DNE in cache');
-      // return "Doesn't exist in cache";
+      // console.log('DNE in cache');
+      return "Doesn't exist in cache";
     }
-    console.log('cache cleared', this.map.has(keyChecker));
-    console.log('CONTENT OF CACHE AFTER CLEAR: ', this.map);
   }
 }
 
