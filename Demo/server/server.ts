@@ -25,7 +25,7 @@ app.use(cors());
 app.use(express.static(path.resolve(__dirname, "../../dist")));
 
 
-app.use('/graphql', dacheQL({}, 50, 'https://www.dacheql.com/graphql2', 300),(req: Request, res: Response) => {
+app.use('/graphql', dacheQL({}, 50, 'https://dacheql.onrender.com/graphql2', 300),(req: Request, res: Response) => {
   return res.status(200).send(res.locals.queryResult)
 });
 
