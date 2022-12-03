@@ -171,7 +171,7 @@ const Demo = () => {
     console.log('last query: ', queryString);
     if (queryString) {
       setValorantCount(0);
-      fetch('https://dacheql1.onrender.com/graphql', {
+      fetch('https://www.dacheql.com/graphql', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -218,7 +218,7 @@ const Demo = () => {
     console.log('last query: ', queryString);
     if (queryString) {
       setPokemonCount(0);
-      fetch('https://dacheql1.onrender.com/graphql', {
+      fetch('https://www.dacheql.com/graphql', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -264,7 +264,7 @@ const Demo = () => {
     console.log('last query: ', queryString);
     if (queryString) {
       setCitiesCount(0);
-      fetch('https://dacheql1.onrender.com/graphql', {
+      fetch('https://www.dacheql.com/graphql', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -316,7 +316,7 @@ const Demo = () => {
     }
     console.log('query string:', queryString);
     startTime = performance.now();
-    await fetch('https://dacheql1.onrender.com/graphql', {
+    await fetch('https://www.dacheql.com/graphql', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
