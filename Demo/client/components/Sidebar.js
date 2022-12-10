@@ -42,12 +42,6 @@ const Sidebar = () => {
       graphiql: true,
     })
   );`;
-//   const string3 = `app.use( 
-//     '/graphql',
-//     dacheql(),
-//     httpCache(),
-//     graphqlHTTP({ schema: schema, graphiql: true })
-// );`;
   const string4 = '{redis: client}';
   const string5 = '{}';
   const hash = '#';
@@ -62,13 +56,6 @@ const Sidebar = () => {
       elem.style.width = '50px';
     }
   };
-
-  // const onNavClick = (event, id) => {
-  //   const element = document.getElementById(id);
-  //   event.preventDefault();
-  //   element.scrollIntoView();
-  //   window.history.pushState(id, id);
-  // };
 
   return (
     <Box sx={{ display: 'fixed' }}>
