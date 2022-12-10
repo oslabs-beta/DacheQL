@@ -184,6 +184,8 @@ class LRUCache {
       //if at capacity evict the least recently used item aka end of the LL
       //remove it from the LL and hashmap and decrement LL size by 1
       //delete the last item in the cache
+      // console.log('KEY: ', key);
+      //console.log('this.map: ', this.map);
       const lastNode = this.list.removeLast();
       //removeLast method will also return the last node so we can later delete it in our
       //hashmap as well
@@ -201,6 +203,8 @@ class LRUCache {
       this.list.add(newNode);
       this.map.set(key, value);
     }
+    // }
+    // console.log('CONTENT IN this.map: ', this.map);
     return this.map.get(key);
   }
   delete(key) {

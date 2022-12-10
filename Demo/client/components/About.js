@@ -4,6 +4,7 @@ import { Button, Card, Container, Row, Col, Link } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import './styles/aboutStyles.css';
+import Footer from './Footer.js';
 import sandy from './assets/sandy.jpg';
 import andrew from './assets/andrew.png';
 import chunhao from './assets/chunhao.png';
@@ -40,6 +41,7 @@ const About = (props) => {
               >
                 <FontAwesomeIcon className="contact-icon" icon={faLinkedin}></FontAwesomeIcon>
               </Card.Link>
+              {/* <Card.Text>Software Engineer</Card.Text> */}
             </Card.Body>
           </Card>
         </Col>
@@ -70,6 +72,7 @@ const About = (props) => {
               >
                 <FontAwesomeIcon className="contact-icon" icon={faLinkedin}></FontAwesomeIcon>
               </Card.Link>
+              {/* <Card.Text>Software Engineer</Card.Text> */}
             </Card.Body>
           </Card>
         </Col>
@@ -100,6 +103,7 @@ const About = (props) => {
               >
                 <FontAwesomeIcon className="contact-icon" icon={faLinkedin}></FontAwesomeIcon>
               </Card.Link>
+              {/* <Card.Text>Software Engineer</Card.Text> */}
             </Card.Body>
           </Card>
         </Col>
@@ -131,10 +135,12 @@ const About = (props) => {
               >
                 <FontAwesomeIcon className="contact-icon" icon={faLinkedin}></FontAwesomeIcon>
               </Card.Link>
+              {/* <Card.Text>Software Engineer</Card.Text> */}
             </Card.Body>
           </Card>
         </Col>
       </Row>
+      {/* <Footer></Footer> */}
     </div>
   );
 };
