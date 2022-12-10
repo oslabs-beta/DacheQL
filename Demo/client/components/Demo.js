@@ -126,8 +126,6 @@ const Demo = () => {
         },
       ],
     });
-    console.log('useEffect timearray: ', timeArray);
-    //console.log('chartdata length: ', Object.keys(chartData).length);
   }, [timeArray]);
 
   //instead of calling incremeneter inside the runquery we just call it everytime either of the times change
@@ -140,8 +138,6 @@ const Demo = () => {
     incrementer(timeToFetch[1], cacheFetchTime[0], booleanVal);
   }, [cacheFetchTime]);
 
-  // console.log('chartdata: ', chartData);
-
   //function to incremement a counter so that the first element of the array
   //is the uncached time and it isnt ever repeated
   const incrementer = (uncachedData, cachedData, bool) => {
@@ -150,25 +146,20 @@ const Demo = () => {
       counter = 0;
       setBooleanVal(false);
     }
-    // console.log('counter ', counter);
     if (counter === 0) {
-      console.log('counter in crementer 0');
     }
     if (counter < 1) {
       counter++;
     } else if (counter === 1) {
       setTimeArray((timeArray) => [...timeArray, uncachedData]);
-      //console.log('timeArrayIncrementor: ', timeArray);
       counter++;
     } else {
       setTimeArray((timeArray) => [...timeArray, cachedData]);
-      //console.log('timeArrayIncrementor: ', timeArray);
       counter++;
     }
   };
   //upon change of drop down after selection set new values for react states for etc...
   const handleChangeValorant = (event) => {
-    console.log('last query: ', queryString);
     if (queryString) {
       setValorantCount(0);
       fetch('http://localhost:3000/graphql', {
@@ -182,7 +173,6 @@ const Demo = () => {
         }),
       });
     }
-    // console.log(event.target.innerHTML);
     setTimeArray([]);
     setQuery(event.target.innerHTML);
     setOutput('Query For Valorant');
@@ -215,7 +205,6 @@ const Demo = () => {
   };
 
   const handleChangePokemon = (event) => {
-    console.log('last query: ', queryString);
     if (queryString) {
       setPokemonCount(0);
       fetch('http://localhost:3000/graphql', {
@@ -260,8 +249,6 @@ const Demo = () => {
 
   const handleChangeCities = (event) => {
     // setTimeToFetch([timeToFetch, totalRunTime]);
-    //console.log(event.target.innerHTML);
-    console.log('last query: ', queryString);
     if (queryString) {
       setCitiesCount(0);
       fetch('http://localhost:3000/graphql', {
@@ -314,7 +301,6 @@ const Demo = () => {
     if (selectCities === true) {
       setCitiesCount(citiesCount + 1);
     }
-    console.log('query string:', queryString);
     startTime = performance.now();
     await fetch('http://localhost:3000/graphql', {
       method: 'POST',
@@ -332,7 +318,6 @@ const Demo = () => {
       .then((data) => {
         //update the second timer variable once fetch is finished
         // cache[queryString] = data;
-        // console.log('cache:', cache);
         endTime = performance.now();
         const totalRunTime = endTime - startTime;
         //update the react hook state for timetofetch
@@ -347,7 +332,6 @@ const Demo = () => {
           return;
         }
         if (selectCities === true && citiesCount >= 1) {
-          // console.log('citiesCOunt', citiesCount);
           setCacheFetchTime([totalRunTime]);
           setResult(JSON.stringify(data, null, 2));
           return;
@@ -355,13 +339,29 @@ const Demo = () => {
         // setCacheFetchTime([totalRunTime]);
         // setResult(JSON.stringify(data, null, 2));
         setTimeToFetch([timeToFetch, totalRunTime]);
-        // console.log('time to fetch: ', totalRunTime);
         setResult(JSON.stringify(data, null, 2));
-        // console.log('result', result);
       })
       .catch((err) => console.log('error on demo runQuery', err));
-    // console.log('time to fetch: ', totalRunTime);
   };
+  const debounce = (fn) => {
+    let timer;
+    return function (...args) {
+      clearTimeout(timer);
+      timer = setTimeout(() => fn.apply(this, args), 500);
+    };
+  };
+  // const throttle = (func, limit) => {
+  //   let inThrottle;
+  //   return function () {
+  //     const args = arguments;
+  //     const context = this;
+  //     if (!inThrottle) {
+  //       func.apply(context, args);
+  //       inThrottle = true;
+  //       setTimeout(() => (inThrottle = false), limit);
+  //     }
+  //   };
+  // };
 
   return (
     <div className='demopage'>
@@ -424,7 +424,7 @@ const Demo = () => {
                   checked={selectCities}
                 ></Form.Check>
               </Button>
-              <Button id='runQueBtn' onClick={runQuery}>
+              <Button id='runQueBtn' onClick={debounce(runQuery, 1000)}>
                 {/* <img src={piggyIcon} width={25} height={40} /> */}
                 <Row>
                   <Col id='piggy'>

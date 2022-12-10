@@ -7,7 +7,7 @@ import { ErrObject } from '../../types';
 const cors = require('cors');
 const redis = require('redis');
 // const dacheQL = require('dacheql');
-const dacheQL = require('./controllers/redisController.js')
+const dacheQL = require('dacheql')
 
 const PORT = process.env.PORT || 3000;
 
